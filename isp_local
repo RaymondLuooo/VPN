@@ -462,6 +462,9 @@ rule-providers:
 
 rules:
   - RULE-SET,Advertising,REJECT
+  - DOMAIN-SUFFIX,doubleclick.net,REJECT
+  - DOMAIN-SUFFIX,googleadservices.com,REJECT
+  - DOMAIN-SUFFIX,googlesyndication.com,REJECT
 
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
@@ -504,6 +507,28 @@ rules:
 
   - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
 
+  # YouTube app/media traffic is kept before broad Google rules.
+  - DOMAIN-SUFFIX,youtube.com,赠送美国
+  - DOMAIN-SUFFIX,youtu.be,赠送美国
+  - DOMAIN-SUFFIX,youtube-nocookie.com,赠送美国
+  - DOMAIN-SUFFIX,googlevideo.com,赠送美国
+  - DOMAIN-SUFFIX,ytimg.com,赠送美国
+  - DOMAIN,yt3.ggpht.com,赠送美国
+  - DOMAIN,youtubei.googleapis.com,赠送美国
+  - DOMAIN,youtube.googleapis.com,赠送美国
+  - DOMAIN,youtubeembeddedplayer.googleapis.com,赠送美国
+  - DOMAIN,youtube-ui.l.google.com,赠送美国
+  - DOMAIN,ytimg.l.google.com,赠送美国
+  - RULE-SET,YouTube,赠送美国
+
+  # Keep Google Photos backup/media transfer off static residential nodes.
+  - DOMAIN,photos.google.com,赠送美国
+  - DOMAIN,photos.googleapis.com,赠送美国
+  - DOMAIN,photoslibrary.googleapis.com,赠送美国
+  - DOMAIN,photosdata-pa.googleapis.com,赠送美国
+  - DOMAIN,photos.fife.usercontent.google.com,赠送美国
+  - DOMAIN,photos-ugc.l.googleusercontent.com,赠送美国
+
   - DOMAIN,g.cn,静态住宅
   - DOMAIN-SUFFIX,google.cn,静态住宅
   - DOMAIN-SUFFIX,test-googleusercontent.com,静态住宅
@@ -519,7 +544,6 @@ rules:
   - RULE-SET,GitHub,静态住宅
   - RULE-SET,Google,静态住宅
 
-  - RULE-SET,YouTube,赠送美国
   - RULE-SET,Netflix,赠送美国
   - RULE-SET,Disney,赠送美国
   - DOMAIN-SUFFIX,litix.io,赠送美国
