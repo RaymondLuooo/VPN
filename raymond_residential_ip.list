@@ -1,0 +1,7 @@
+# Raymond custom static residential rules.
+DOMAIN,g.cn
+DOMAIN-SUFFIX,google.cn
+DOMAIN-SUFFIX,test-googleusercontent.com
+DOMAIN-SUFFIX,googleusercontent.com
+DOMAIN-SUFFIX,gstatic.com
+DOMAIN-SUFFIX,googleapis.com

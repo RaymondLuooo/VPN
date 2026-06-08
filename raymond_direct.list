@@ -1,0 +1,11 @@
+# Raymond custom DIRECT rules.
+DOMAIN-SUFFIX,local
+DOMAIN,localhost
+DOMAIN,captive.apple.com
+DOMAIN-SUFFIX,ccb.com
+DOMAIN-SUFFIX,abchina.com.cn
+DOMAIN-SUFFIX,psbc.com
+DOMAIN,openspeech.bytedance.com
+DOMAIN-SUFFIX,qq.com
+DOMAIN-SUFFIX,dmall.com
+DOMAIN-SUFFIX,larksuite.com
