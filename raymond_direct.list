@@ -2,4 +2,18 @@
 DOMAIN,openspeech.bytedance.com
 DOMAIN-SUFFIX,qq.com
 DOMAIN-SUFFIX,dmall.com
+
+# Feishu/Lark docs, client, package, and CDN domains kept on DIRECT.
 DOMAIN-SUFFIX,larksuite.com
+DOMAIN-SUFFIX,larksuitecdn.com
+DOMAIN-SUFFIX,larksuitepkg.com
+DOMAIN-SUFFIX,feishu.cn
+DOMAIN-SUFFIX,feishu.net
+DOMAIN-SUFFIX,feishuapp.cn
+DOMAIN-SUFFIX,feishucdn.com
+DOMAIN-SUFFIX,feishuimg.com
+DOMAIN-SUFFIX,feishupkg.com
+DOMAIN-SUFFIX,getfeishu.cn
+DOMAIN-SUFFIX,larkoffice.com
+DOMAIN-SUFFIX,bytednsdoc.com
+DOMAIN-SUFFIX,ibytedapm.com

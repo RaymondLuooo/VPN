@@ -82,6 +82,9 @@ dns:
   proxy-server-nameserver:
     - https://cloudflare-dns.com/dns-query
     - https://dns.google/dns-query
+  nameserver-policy:
+    "rule-set:RaymondDirect":
+      - "dhcp://system"
   nameserver:
     - "https://cloudflare-dns.com/dns-query#PROXY"
     - "https://dns.google/dns-query#PROXY"
