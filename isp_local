@@ -1,4 +1,9 @@
 # Clash Meta for Android / Mihomo profile rebuilt from local_group.conf.
+# 设计目标：
+# - 国内、局域网、银行和用户自维护域名尽量直连。
+# - AI、Google、GitHub 等账号或风控敏感服务走“静态住宅”。
+# - YouTube、Google Photos、流媒体、社交、游戏平台等高流量国外服务走“赠送美国”。
+# - 默认 DNS 通过代理侧 DoH 解析，只有 RaymondDirect 这类明确直连域名使用系统 DNS。
 # Android 端建议关闭系统“私人 DNS”，否则系统可能绕过 TUN DNS hijack。
 
 mixed-port: 7890
@@ -11,6 +16,8 @@ tcp-concurrent: true
 find-process-mode: strict
 
 sniffer:
+  # 纯 IP 或被 App 隐藏域名的连接，尽量通过 TLS/HTTP/QUIC 嗅探还原目标域名。
+  # 这样规则可以按域名命中；override-destination 保持 false，避免全局改写目标地址。
   enable: true
   force-dns-mapping: true
   parse-pure-ip: true
@@ -29,6 +36,8 @@ profile:
   store-fake-ip: true
 
 tun:
+  # TUN 接管 Android 系统流量，并劫持 53 端口 DNS 到 Mihomo。
+  # route-exclude-address 保留局域网、回环、保留网段和组播直连，避免破坏本地网络发现。
   enable: true
   stack: system
   auto-route: true
@@ -54,6 +63,11 @@ tun:
     - 255.255.255.255/32
 
 dns:
+  # DNS 总策略：
+  # - fake-ip 用于让 Mihomo 接管域名解析和后续规则匹配。
+  # - nameserver 和 fallback 都通过 #PROXY 走代理侧 DoH，减少本地 DNS 泄露。
+  # - respect-rules=false 表示 DNS 查询不按最终分流规则自动选择出口。
+  # - 只有 nameserver-policy 明确写出的 RaymondDirect 使用 Android 当前网络的系统 DNS。
   enable: true
   listen: 0.0.0.0:1053
   ipv6: false
@@ -64,6 +78,7 @@ dns:
   use-system-hosts: false
   respect-rules: false
   fake-ip-filter:
+    # 下列域名不分配 fake-ip，保持真实解析或本地语义，避免局域网、NTP、银行和 captive portal 异常。
     - "*.lan"
     - "*.local"
     - "localhost"
@@ -77,18 +92,25 @@ dns:
     - "ntp.*.com"
     - "ntp.*.org"
   default-nameserver:
+    # 用于解析 DoH 服务器本身等 bootstrap 场景；这里是 IP，避免 bootstrap 再依赖域名。
     - 1.1.1.1
     - 8.8.8.8
   proxy-server-nameserver:
+    # 代理节点、远程规则和 provider 相关域名优先用可信 DoH 解析。
     - https://cloudflare-dns.com/dns-query
     - https://dns.google/dns-query
   nameserver-policy:
+    # RaymondDirect 是用户自维护直连域名集合。
+    # 这些域名通常需要国内 CDN、企业服务或系统服务的本地化解析，所以使用当前网络的系统 DNS。
+    # 新增 RaymondDirect 域名时，需要同时判断它是否适合暴露给系统 DNS。
     "rule-set:RaymondDirect":
       - "dhcp://system"
   nameserver:
+    # 默认 DNS 出口：经 PROXY 访问 Cloudflare / Google DoH，避免普通域名解析落到本地运营商。
     - "https://cloudflare-dns.com/dns-query#PROXY"
     - "https://dns.google/dns-query#PROXY"
   fallback:
+    # 备用 DoH，同样强制经 PROXY；fallback-filter 用于处理可能污染或异常的返回。
     - "https://dns.quad9.net/dns-query#PROXY"
     - "https://cloudflare-dns.com/dns-query#PROXY"
   fallback-filter:
@@ -103,6 +125,8 @@ hosts:
 proxies: []
 
 proxy-providers:
+  # Airport 是订阅节点来源，真实订阅 URL 属于敏感信息，不能写入聊天、文档或提交说明。
+  # health-check 只用于确认节点连通性，不改变分流规则本身。
   Airport:
     type: http
     url: "https://equaldcdn.com/use/unsafe/sub.php?t=eyJ1dWlkIjoiN0JGNjdBMTktMkU5Qi00MDg5LTk3QTktQUIwRjI5NzYzRDRCIiwic2VydmVyIjoiNjQuMTg2LjIyNC4xNDUiLCJwb3J0IjoiNDQzIiwicHVibGljX2tleSI6IkFsYU9ycnJhSDNLMVRDSHlTWF9yejZleHZ4MFdoQkNYckN2b0xBbFdQMjgiLCJzaG9ydF9pZCI6ImZmYWM1MTliYzkxZDEyYTMiLCJzZXJ2ZXJuYW1lIjoid3d3LmNvb3Blci5lZHUiLCJ0b3RhbCI6MTA3Mzc0MTgyNDAwLCJleHBpcmUiOjE3ODMwNzIxNTV9&s=69bfa134618ebc9a5f880cc055d1cecd1fcafd77de295e446d6bb86234eb07e4"
@@ -123,6 +147,8 @@ proxy-providers:
       udp: true
 
 proxy-groups:
+  # PROXY 是未命中特定服务规则后的手工兜底入口。
+  # 下面两个自动测速组按节点名称过滤：账号敏感服务优先静态住宅，高流量服务优先赠送美国。
   - name: PROXY
     type: select
     proxies:
@@ -132,6 +158,8 @@ proxy-groups:
       - Airport
 
   - name: 静态住宅
+    # 静态住宅 IP 更像稳定家庭宽带出口，适合 AI、Google、GitHub 等更看重账号信誉和风控一致性的服务。
+    # 不把大流量媒体默认放这里，是为了避免消耗高价值住宅流量。
     type: url-test
     use:
       - Airport
@@ -144,6 +172,8 @@ proxy-groups:
     expected-status: 204
 
   - name: 赠送美国
+    # 赠送美国用于成本更低、流量更大的美国节点池。
+    # YouTube、Google Photos、流媒体、社交、游戏平台等优先走这里，降低静态住宅节点消耗。
     type: url-test
     use:
       - Airport
@@ -156,6 +186,13 @@ proxy-groups:
     expected-status: 204
 
 rule-providers:
+  # rule-providers 是远程规则集缓存：
+  # - RaymondDirect 来自本仓库文本规则，既用于 DIRECT 路由，也用于 DNS nameserver-policy。
+  # - Advertising 优先 REJECT，用于广告和跟踪拦截。
+  # - AI、Google、GitHub 等规则集指向静态住宅。
+  # - YouTube、流媒体、社交、购物、游戏和 Microsoft 等规则集指向赠送美国。
+  # - 国内和局域网规则集指向 DIRECT。
+  # 所有远程规则集 interval=86400，每天刷新一次；proxy: PROXY 表示拉取规则时走代理，避免 GitHub Raw 被本地网络影响。
   RaymondDirect:
     type: http
     behavior: classical
@@ -486,11 +523,14 @@ rule-providers:
     proxy: PROXY
 
 rules:
+  # 规则按顺序匹配；越具体、越需要保护顺序的规则越靠前。
+  # 广告和跟踪先 REJECT，避免后续服务规则把广告域名放行。
   - RULE-SET,Advertising,REJECT
   - DOMAIN-SUFFIX,doubleclick.net,REJECT
   - DOMAIN-SUFFIX,googleadservices.com,REJECT
   - DOMAIN-SUFFIX,googlesyndication.com,REJECT
 
+  # 局域网、保留地址、银行和 captive portal 必须直连；IP-CIDR 使用 no-resolve，避免为了匹配 IP 再触发 DNS。
   - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
   - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
   - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
@@ -512,6 +552,8 @@ rules:
   - DOMAIN-SUFFIX,abchina.com.cn,DIRECT
   - DOMAIN-SUFFIX,psbc.com,DIRECT
 
+  # 用户自维护直连域名先命中 RaymondDirect，再进入通用 Apple / 国内规则。
+  # RaymondDirect 同时影响 DNS policy，所以只放确定适合直连和系统 DNS 的域名。
   - RULE-SET,RaymondDirect,DIRECT
   - RULE-SET,Apple,DIRECT
   - RULE-SET,BiliBili,DIRECT
@@ -527,9 +569,10 @@ rules:
   - RULE-SET,Lan,DIRECT
   - GEOIP,CN,DIRECT
 
+  # 拦截代理出口上的 QUIC，减少 UDP/443 绕过 TCP 代理链或导致策略不一致的概率。
   - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
 
-  # YouTube app/media traffic is kept before broad Google rules.
+  # YouTube App / 媒体域名放在 Google 宽规则前，避免被 googleapis / googleusercontent / gstatic 提前命中到静态住宅。
   - DOMAIN-SUFFIX,youtube.com,赠送美国
   - DOMAIN-SUFFIX,youtu.be,赠送美国
   - DOMAIN-SUFFIX,youtube-nocookie.com,赠送美国
@@ -543,7 +586,7 @@ rules:
   - DOMAIN,ytimg.l.google.com,赠送美国
   - RULE-SET,YouTube,赠送美国
 
-  # Keep Google Photos backup/media transfer off static residential nodes.
+  # Google Photos 备份和媒体传输流量大，走赠送美国，避免消耗静态住宅节点流量。
   - DOMAIN,photos.google.com,赠送美国
   - DOMAIN,photos.googleapis.com,赠送美国
   - DOMAIN,photoslibrary.googleapis.com,赠送美国
@@ -551,6 +594,8 @@ rules:
   - DOMAIN,photos.fife.usercontent.google.com,赠送美国
   - DOMAIN,photos-ugc.l.googleusercontent.com,赠送美国
 
+  # Google 宽规则、AI 工具和 GitHub 走静态住宅，优先保证账号信誉、登录稳定性和风控一致性。
+  # g.cn / google.cn 会被 URL Rewrite 到 google.com，但这里仍保持静态住宅出口。
   - DOMAIN,g.cn,静态住宅
   - DOMAIN-SUFFIX,google.cn,静态住宅
   - DOMAIN-SUFFIX,test-googleusercontent.com,静态住宅
@@ -566,6 +611,7 @@ rules:
   - RULE-SET,GitHub,静态住宅
   - RULE-SET,Google,静态住宅
 
+  # 国外媒体、社交、支付购物、微软和游戏平台走赠送美国，主要目标是降低高流量服务成本。
   - RULE-SET,Netflix,赠送美国
   - RULE-SET,Disney,赠送美国
   - DOMAIN-SUFFIX,litix.io,赠送美国
@@ -587,5 +633,6 @@ rules:
   - RULE-SET,Game,赠送美国
   - RULE-SET,Microsoft,赠送美国
 
+  # Global 处理常见国外代理域名；最终 MATCH 交给 PROXY 手工兜底。
   - RULE-SET,Global,PROXY
   - MATCH,PROXY

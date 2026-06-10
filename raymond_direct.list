@@ -6,6 +6,7 @@ DOMAIN-SUFFIX,dmall.com
 # Apple and iCloud domains kept on DIRECT.
 DOMAIN-SUFFIX,apple.com
 DOMAIN-SUFFIX,icloud.com
+DOMAIN-SUFFIX,apple-cloudkit.com
 
 # Feishu/Lark docs, client, package, and CDN domains kept on DIRECT.
 DOMAIN-SUFFIX,larksuite.com
