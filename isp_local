@@ -125,12 +125,30 @@ hosts:
 proxies: []
 
 proxy-providers:
-  # Airport 是订阅节点来源，真实订阅 URL 属于敏感信息，不能写入聊天、文档或提交说明。
+  # 机场 provider 是订阅节点来源，真实订阅 URL 属于敏感信息，不能写入聊天、文档或提交说明。
   # health-check 只用于确认节点连通性，不改变分流规则本身。
-  Airport:
+  机场equaldcdn:
     type: http
     url: "https://equaldcdn.com/use/unsafe/sub.php?t=eyJ1dWlkIjoiN0JGNjdBMTktMkU5Qi00MDg5LTk3QTktQUIwRjI5NzYzRDRCIiwic2VydmVyIjoiNjQuMTg2LjIyNC4xNDUiLCJwb3J0IjoiNDQzIiwicHVibGljX2tleSI6IkFsYU9ycnJhSDNLMVRDSHlTWF9yejZleHZ4MFdoQkNYckN2b0xBbFdQMjgiLCJzaG9ydF9pZCI6ImZmYWM1MTliYzkxZDEyYTMiLCJzZXJ2ZXJuYW1lIjoid3d3LmNvb3Blci5lZHUiLCJ0b3RhbCI6MTA3Mzc0MTgyNDAwLCJleHBpcmUiOjE3ODMwNzIxNTV9&s=69bfa134618ebc9a5f880cc055d1cecd1fcafd77de295e446d6bb86234eb07e4"
     path: ./providers/airport.yaml
+    interval: 86400
+    proxy: DIRECT
+    header:
+      User-Agent:
+        - clash.meta
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 600
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      udp: true
+  机场悠兔:
+    type: http
+    url: "https://b.youtulink3.top/dy/2a30b4b12692f127cf87f39da8378269"
+    path: ./providers/airport_youtu.yaml
     interval: 86400
     proxy: DIRECT
     header:
@@ -155,15 +173,45 @@ proxy-groups:
       - 静态住宅
       - 赠送美国
     use:
-      - Airport
+      - 机场equaldcdn
 
   - name: 静态住宅
     # 静态住宅 IP 更像稳定家庭宽带出口，适合 AI、Google、GitHub 等更看重账号信誉和风控一致性的服务。
     # 不把大流量媒体默认放这里，是为了避免消耗高价值住宅流量。
     type: url-test
     use:
-      - Airport
-    filter: "静态住宅"
+      - 机场equaldcdn
+    filter: "静态.*住宅|住宅.*静态"
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 0
+    timeout: 5000
+    lazy: false
+    expected-status: 204
+
+  - name: 赠送美国主选
+    # 主选：两个机场里所有名字包含“美国”且不包含“静态”的节点，按测速结果自动选择最快节点。
+    type: url-test
+    use:
+      - 机场equaldcdn
+      - 机场悠兔
+    filter: "美国"
+    exclude-filter: "静态"
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 0
+    timeout: 5000
+    lazy: false
+    expected-status: 204
+
+  - name: 赠送非美兜底
+    # 兜底：美国非静态节点都不可用时，再从日本、台湾或新加坡的非静态节点中选最快节点。
+    type: url-test
+    use:
+      - 机场equaldcdn
+      - 机场悠兔
+    filter: "日本|台湾|台灣|新加坡"
+    exclude-filter: "静态"
     url: http://www.gstatic.com/generate_204
     interval: 600
     tolerance: 0
@@ -172,15 +220,14 @@ proxy-groups:
     expected-status: 204
 
   - name: 赠送美国
-    # 赠送美国用于成本更低、流量更大的美国节点池。
+    # 赠送美国用于成本更低、流量更大的节点池；优先美国非静态节点，全不可用时再使用非美兜底。
     # YouTube、Google Photos、流媒体、社交、游戏平台等优先走这里，降低静态住宅节点消耗。
-    type: url-test
-    use:
-      - Airport
-    filter: "赠送.*美国|美国.*赠送"
+    type: fallback
+    proxies:
+      - 赠送美国主选
+      - 赠送非美兜底
     url: http://www.gstatic.com/generate_204
     interval: 600
-    tolerance: 0
     timeout: 5000
     lazy: false
     expected-status: 204
@@ -577,6 +624,7 @@ rules:
   - DOMAIN-SUFFIX,youtu.be,赠送美国
   - DOMAIN-SUFFIX,youtube-nocookie.com,赠送美国
   - DOMAIN-SUFFIX,googlevideo.com,赠送美国
+  - DOMAIN-SUFFIX,gvt1.com,赠送美国
   - DOMAIN-SUFFIX,ytimg.com,赠送美国
   - DOMAIN,yt3.ggpht.com,赠送美国
   - DOMAIN,youtubei.googleapis.com,赠送美国
