@@ -150,7 +150,7 @@ proxy-providers:
     url: "https://b.youtulink3.top/dy/2a30b4b12692f127cf87f39da8378269"
     path: ./providers/airport_youtu.yaml
     interval: 86400
-    proxy: DIRECT
+    proxy: PROXY
     header:
       User-Agent:
         - clash.meta
@@ -681,6 +681,6 @@ rules:
   - RULE-SET,Game,赠送美国
   - RULE-SET,Microsoft,赠送美国
 
-  # Global 处理常见国外代理域名；最终 MATCH 交给 PROXY 手工兜底。
-  - RULE-SET,Global,PROXY
-  - MATCH,PROXY
+  # Global 处理常见国外代理域名；最终 MATCH 也交给赠送美国兜底。
+  - RULE-SET,Global,赠送美国
+  - MATCH,赠送美国
