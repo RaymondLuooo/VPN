@@ -41,7 +41,7 @@ udp-policy-not-supported-behaviour = REJECT
 block-quic = all-proxy
 
 # 使用本仓库 Raw URL 作为 Shadowrocket 配置更新源
-update-url = https://raw.githubusercontent.com/RaymondLuooo/VPN/main/local_group.conf
+update-url = https://raw.githubusercontent.com/RaymondLuooo/VPN/main/r_equ_onlyUS_mac
 
 [Proxy Group]
 # 静态住宅：用于 AI、Google、GitHub 等账号或风控敏感服务，优先稳定住宅出口和账号信誉。
