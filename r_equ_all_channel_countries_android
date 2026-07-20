@@ -1,0 +1,658 @@
+# Clash Meta for Android / Mihomo profile rebuilt from local_group.conf.
+# ==============================================================================
+# 配置文件节点组（proxy-groups）说明：
+#
+# 1. 静态住宅 (url-test 自动测速组)
+#    - 节点来源：来自“机场equaldcdn”订阅，筛选名称包含“静态”且包含“住宅”的节点 (filter: "静态.*住宅|住宅.*静态")。
+#    - 匹配流量：Google 宽规则、AI 工具 (OpenAI, Anthropic, Claude, Gemini, Copilot, AI_Extra 等)、GitHub，优先保证账号稳定与风控一致性。
+#
+# 2. 赠送节点 (url-test 自动测速组)
+#    - 节点来源：来自“机场equaldcdn”与“机场悠兔”订阅，筛选排除“静态”的所有节点 (exclude-filter: "静态")，不限国家和地区，自动选取延迟最低的节点。
+#    - 匹配流量：YouTube、Google Photos 媒体传输、国外流媒体 (Netflix, Disney, HBO, Spotify)、社交/平台 (Telegram, Twitter, Facebook, TikTok)、支付/购物 (PayPal, Amazon)、游戏平台 (Sony, Nintendo, Epic, Steam, Game)、Microsoft 服务、Global 规则以及 MATCH 未命中规则的国外通用代理流量，用于降低大流量成本。
+# ==============================================================================
+# 设计目标：
+# - 国内、局域网、银行和用户自维护域名尽量直连。
+# - AI、Google、GitHub 等账号或风控敏感服务走"静态住宅"。
+# - YouTube、Google Photos、流媒体、社交、游戏平台等高流量国外服务走"赠送节点"。
+# - 默认 DNS 通过代理侧 DoH 解析，只有 RaymondDirect 这类明确直连域名使用系统 DNS。
+# Android 端建议关闭系统"私人 DNS"，否则系统可能绕过 TUN DNS hijack。
+
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+find-process-mode: strict
+
+sniffer:
+  # 纯 IP 或被 App 隐藏域名的连接，尽量通过 TLS/HTTP/QUIC 嗅探还原目标域名。
+  # 这样规则可以按域名命中；override-destination 保持 false，避免全局改写目标地址。
+  enable: true
+  force-dns-mapping: true
+  parse-pure-ip: true
+  override-destination: false
+  sniff:
+    TLS:
+      ports: [443, 8443]
+    HTTP:
+      ports: [80, 8080-8880]
+      override-destination: true
+    QUIC:
+      ports: [443, 8443]
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+tun:
+  # TUN 接管 Android 系统流量，并劫持 53 端口 DNS 到 Mihomo。
+  # route-exclude-address 保留局域网、回环、保留网段和组播直连，避免破坏本地网络发现。
+  enable: true
+  stack: system
+  auto-route: true
+  auto-detect-interface: true
+  strict-route: true
+  dns-hijack:
+    - any:53
+    - tcp://any:53
+  route-exclude-address:
+    - 10.0.0.0/8
+    - 100.64.0.0/10
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - 172.16.0.0/12
+    - 192.0.0.0/24
+    - 192.0.2.0/24
+    - 192.88.99.0/24
+    - 192.168.0.0/16
+    - 198.51.100.0/24
+    - 203.0.113.0/24
+    - 224.0.0.0/4
+    - 239.255.255.250/32
+    - 255.255.255.255/32
+
+dns:
+  # DNS 总策略：
+  # - fake-ip 用于让 Mihomo 接管域名解析和后续规则匹配。
+  # - nameserver 和 fallback 都通过 #静态住宅 走代理侧 DoH，减少本地 DNS 泄露。
+  # - respect-rules=false 表示 DNS 查询不按最终分流规则自动选择出口。
+  # - 只有 nameserver-policy 明确写出的 RaymondDirect 使用 Android 当前网络的系统 DNS。
+  enable: true
+  listen: 0.0.0.0:1053
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter-mode: blacklist
+  use-hosts: true
+  use-system-hosts: false
+  respect-rules: false
+  fake-ip-filter:
+    # 下列域名不分配 fake-ip，保持真实解析或本地语义，避免局域网、NTP、银行和 captive portal 异常。
+    - "*.lan"
+    - "*.local"
+    - "localhost"
+    - "localhost.*"
+    - "captive.apple.com"
+    - "*.ccb.com"
+    - "*.abchina.com.cn"
+    - "*.psbc.com"
+    - "time.*.com"
+    - "time.*.gov"
+    - "ntp.*.com"
+    - "ntp.*.org"
+  default-nameserver:
+    # 用于解析 DoH 服务器本身等 bootstrap 场景；这里是 IP，避免 bootstrap 再依赖域名。
+    - 1.1.1.1
+    - 8.8.8.8
+  proxy-server-nameserver:
+    # 代理节点、远程规则和 provider 相关域名优先用可信 DoH 解析。
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  nameserver-policy:
+    # RaymondDirect 是用户自维护直连域名集合。
+    # 这些域名通常需要国内 CDN、企业服务或系统服务的本地化解析，所以使用当前网络的系统 DNS。
+    # 新增 RaymondDirect 域名时，需要同时判断它是否适合暴露给系统 DNS。
+    "rule-set:RaymondDirect":
+      - "dhcp://system"
+  nameserver:
+    # 默认 DNS 出口：经 静态住宅 访问 Cloudflare / Google DoH，避免普通域名解析落到本地运营商。
+    - "https://cloudflare-dns.com/dns-query#静态住宅"
+    - "https://dns.google/dns-query#静态住宅"
+  fallback:
+    # 备用 DoH，同样强制经 静态住宅；fallback-filter 用于处理可能污染或异常的返回。
+    - "https://dns.quad9.net/dns-query#静态住宅"
+    - "https://cloudflare-dns.com/dns-query#静态住宅"
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
+
+hosts:
+  localhost: 127.0.0.1
+
+proxies: []
+
+proxy-providers:
+  # 机场 provider 是订阅节点来源，真实订阅 URL 属于敏感信息，不能写入聊天、文档或提交说明。
+  # health-check 只用于确认节点连通性，不改变分流规则本身。
+  机场equaldcdn:
+    type: http
+    url: "https://equaldcdn.com/use/unsafe/sub.php?t=eyJ1dWlkIjoiN0JGNjdBMTktMkU5Qi00MDg5LTk3QTktQUIwRjI5NzYzRDRCIiwic2VydmVyIjoiNjQuMTg2LjIyNC4xNDUiLCJwb3J0IjoiNDQzIiwicHVibGljX2tleSI6IkFsYU9ycnJhSDNLMVRDSHlTWF9yejZleHZ4MFdoQkNYckN2b0xBbFdQMjgiLCJzaG9ydF9pZCI6ImZmYWM1MTliYzkxZDEyYTMiLCJzZXJ2ZXJuYW1lIjoid3d3LmNvb3Blci5lZHUiLCJ0b3RhbCI6MTA3Mzc0MTgyNDAwLCJleHBpcmUiOjE3ODMwNzIxNTV9&s=69bfa134618ebc9a5f880cc055d1cecd1fcafd77de295e446d6bb86234eb07e4"
+    path: ./providers/airport.yaml
+    interval: 86400
+    proxy: DIRECT
+    header:
+      User-Agent:
+        - clash.meta
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 600
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      udp: true
+  机场悠兔:
+    type: http
+    url: "https://b.youtulink3.top/dy/2a30b4b12692f127cf87f39da8378269"
+    path: ./providers/airport_youtu.yaml
+    interval: 86400
+    proxy: 静态住宅
+    header:
+      User-Agent:
+        - clash.meta
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 600
+      timeout: 5000
+      lazy: true
+      expected-status: 204
+    override:
+      udp: true
+
+proxy-groups:
+  - name: 静态住宅
+    # 静态住宅 IP 更像稳定家庭宽带出口，适合 AI、Google、GitHub 等更看重账号信誉和风控一致性的服务。
+    # 不把大流量媒体默认放这里，是为了避免消耗高价值住宅流量。
+    type: url-test
+    use:
+      - 机场equaldcdn
+    filter: "静态.*住宅|住宅.*静态"
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 0
+    timeout: 5000
+    lazy: false
+    expected-status: 204
+
+  - name: 赠送节点
+    # 赠送节点：从两个机场的所有非静态节点中，按延迟自动测速选最快节点，不限地区。
+    type: url-test
+    use:
+      - 机场equaldcdn
+      - 机场悠兔
+    exclude-filter: "静态"
+    url: http://www.gstatic.com/generate_204
+    interval: 600
+    tolerance: 0
+    timeout: 5000
+    lazy: false
+    expected-status: 204
+
+rule-providers:
+  # rule-providers 是远程规则集缓存：
+  # - RaymondDirect 来自本仓库文本规则，既用于 DIRECT 路由，也用于 DNS nameserver-policy。
+  # - Advertising 优先 REJECT，用于广告和跟踪拦截。
+  # - AI、Google、GitHub 等规则集指向静态住宅。
+  # - YouTube、流媒体、社交、购物、游戏和 Microsoft 等规则集指向赠送节点。
+  # - 国内和局域网规则集指向 DIRECT。
+  # 所有远程规则集 interval=86400，每天刷新一次；proxy: PROXY 表示拉取规则时走代理，避免 GitHub Raw 被本地网络影响。
+  RaymondDirect:
+    type: http
+    behavior: classical
+    format: text
+    path: ./ruleset/raymond_direct.list
+    url: https://raw.githubusercontent.com/RaymondLuooo/VPN/main/raymond_direct.list
+    interval: 86400
+    proxy: 静态住宅
+  Advertising:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Advertising.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.yaml
+    interval: 86400
+    proxy: 静态住宅
+  OpenAI:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/OpenAI.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Anthropic:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Anthropic.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Anthropic/Anthropic.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Claude:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Claude.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Gemini:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Gemini.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Copilot:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Copilot.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.yaml
+    interval: 86400
+    proxy: 静态住宅
+  AI_Extra:
+    type: http
+    behavior: classical
+    format: text
+    path: ./ruleset/AI_Extra.txt
+    url: https://raw.githubusercontent.com/iab0x00/ProxyRules/main/Rule/AI.txt
+    interval: 86400
+    proxy: 静态住宅
+  GitHub:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/GitHub.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml
+    interval: 86400
+    proxy: 静态住宅
+  YouTube:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/YouTube.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Netflix:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Netflix.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Disney:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Disney.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.yaml
+    interval: 86400
+    proxy: 静态住宅
+  HBO:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/HBO.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HBO/HBO.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Spotify:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Spotify.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Telegram:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Telegram.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml
+    interval: 86400
+    proxy: 静态住宅
+  PayPal:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/PayPal.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Twitter:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Twitter.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Facebook:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Facebook.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Amazon:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Amazon.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Amazon/Amazon.yaml
+    interval: 86400
+    proxy: 静态住宅
+  TikTok:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/TikTok.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Sony:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Sony.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Sony/Sony.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Nintendo:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Nintendo.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Epic:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Epic.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.yaml
+    interval: 86400
+    proxy: 静态住宅
+  SteamCN:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/SteamCN.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Steam:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Steam.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Game:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Game.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Microsoft:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Microsoft.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Google:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Google.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Apple:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Apple.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml
+    interval: 86400
+    proxy: 静态住宅
+  BiliBili:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/BiliBili.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml
+    interval: 86400
+    proxy: 静态住宅
+  NetEaseMusic:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/NetEaseMusic.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Baidu:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Baidu.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Baidu/Baidu.yaml
+    interval: 86400
+    proxy: 静态住宅
+  DouBan:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/DouBan.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DouBan/DouBan.yaml
+    interval: 86400
+    proxy: 静态住宅
+  WeChat:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/WeChat.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Sina:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Sina.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Sina/Sina.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Zhihu:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Zhihu.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Zhihu/Zhihu.yaml
+    interval: 86400
+    proxy: 静态住宅
+  XiaoHongShu:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/XiaoHongShu.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/XiaoHongShu/XiaoHongShu.yaml
+    interval: 86400
+    proxy: 静态住宅
+  DouYin:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/DouYin.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DouYin/DouYin.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Global:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Global.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global.yaml
+    interval: 86400
+    proxy: 静态住宅
+  ChinaMax:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/ChinaMax.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax.yaml
+    interval: 86400
+    proxy: 静态住宅
+  Lan:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./ruleset/Lan.yaml
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml
+    interval: 86400
+    proxy: 静态住宅
+
+rules:
+  # 规则按顺序匹配；越具体、越需要保护顺序的规则越靠前。
+  # 广告和跟踪先 REJECT，避免后续服务规则把广告域名放行。
+  - RULE-SET,Advertising,REJECT
+  - DOMAIN-SUFFIX,doubleclick.net,REJECT
+  - DOMAIN-SUFFIX,googleadservices.com,REJECT
+  - DOMAIN-SUFFIX,googlesyndication.com,REJECT
+
+  # 局域网、保留地址、银行和 captive portal 必须直连；IP-CIDR 使用 no-resolve，避免为了匹配 IP 再触发 DNS。
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,100.64.0.0/10,DIRECT,no-resolve
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.0.0.0/24,DIRECT,no-resolve
+  - IP-CIDR,192.0.2.0/24,DIRECT,no-resolve
+  - IP-CIDR,192.88.99.0/24,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,198.51.100.0/24,DIRECT,no-resolve
+  - IP-CIDR,203.0.113.0/24,DIRECT,no-resolve
+  - IP-CIDR,224.0.0.0/4,DIRECT,no-resolve
+  - IP-CIDR,239.255.255.250/32,DIRECT,no-resolve
+  - IP-CIDR,255.255.255.255/32,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,local,DIRECT
+  - DOMAIN,localhost,DIRECT
+  - DOMAIN,captive.apple.com,DIRECT
+  - DOMAIN-SUFFIX,ccb.com,DIRECT
+  - DOMAIN-SUFFIX,abchina.com.cn,DIRECT
+  - DOMAIN-SUFFIX,psbc.com,DIRECT
+
+  # 用户自维护直连域名先命中 RaymondDirect，再进入通用 Apple / 国内规则。
+  # RaymondDirect 同时影响 DNS policy，所以只放确定适合直连和系统 DNS 的域名。
+  - RULE-SET,RaymondDirect,DIRECT
+  - RULE-SET,Apple,DIRECT
+  - RULE-SET,BiliBili,DIRECT
+  - RULE-SET,NetEaseMusic,DIRECT
+  - RULE-SET,Baidu,DIRECT
+  - RULE-SET,DouBan,DIRECT
+  - RULE-SET,WeChat,DIRECT
+  - RULE-SET,Sina,DIRECT
+  - RULE-SET,Zhihu,DIRECT
+  - RULE-SET,XiaoHongShu,DIRECT
+  - RULE-SET,DouYin,DIRECT
+  - RULE-SET,ChinaMax,DIRECT
+  - RULE-SET,Lan,DIRECT
+  - GEOIP,CN,DIRECT
+
+  # 拦截代理出口上的 QUIC，减少 UDP/443 绕过 TCP 代理链或导致策略不一致的概率。
+  - AND,((NETWORK,UDP),(DST-PORT,443)),REJECT
+
+  # YouTube App / 媒体域名放在 Google 宽规则前，避免被 googleapis / googleusercontent / gstatic 提前命中到静态住宅。
+  - DOMAIN-SUFFIX,youtube.com,赠送节点
+  - DOMAIN-SUFFIX,youtu.be,赠送节点
+  - DOMAIN-SUFFIX,youtube-nocookie.com,赠送节点
+  - DOMAIN-SUFFIX,googlevideo.com,赠送节点
+  - DOMAIN-SUFFIX,gvt1.com,赠送节点
+  - DOMAIN-SUFFIX,ytimg.com,赠送节点
+  - DOMAIN,yt3.ggpht.com,赠送节点
+  - DOMAIN,youtubei.googleapis.com,赠送节点
+  - DOMAIN,youtube.googleapis.com,赠送节点
+  - DOMAIN,youtubeembeddedplayer.googleapis.com,赠送节点
+  - DOMAIN,youtube-ui.l.google.com,赠送节点
+  - DOMAIN,ytimg.l.google.com,赠送节点
+  - RULE-SET,YouTube,赠送节点
+
+  # Google Photos 备份和媒体传输流量大，走赠送节点，避免消耗静态住宅节点流量。
+  - DOMAIN,photos.google.com,赠送节点
+  - DOMAIN,photos.googleapis.com,赠送节点
+  - DOMAIN,photoslibrary.googleapis.com,赠送节点
+  - DOMAIN,photosdata-pa.googleapis.com,赠送节点
+  - DOMAIN,photos.fife.usercontent.google.com,赠送节点
+  - DOMAIN,photos-ugc.l.googleusercontent.com,赠送节点
+
+  # Google 宽规则、AI 工具和 GitHub 走静态住宅，优先保证账号信誉、登录稳定性和风控一致性。
+  # g.cn / google.cn 会被 URL Rewrite 到 google.com，但这里仍保持静态住宅出口。
+  - DOMAIN,g.cn,静态住宅
+  - DOMAIN-SUFFIX,google.cn,静态住宅
+  - DOMAIN-SUFFIX,test-googleusercontent.com,静态住宅
+  - DOMAIN-SUFFIX,googleusercontent.com,静态住宅
+  - DOMAIN-SUFFIX,gstatic.com,静态住宅
+  - DOMAIN-SUFFIX,googleapis.com,静态住宅
+  - RULE-SET,OpenAI,静态住宅
+  - RULE-SET,Anthropic,静态住宅
+  - RULE-SET,Claude,静态住宅
+  - RULE-SET,Gemini,静态住宅
+  - RULE-SET,Copilot,静态住宅
+  - RULE-SET,AI_Extra,静态住宅
+  - RULE-SET,GitHub,静态住宅
+  - RULE-SET,Google,静态住宅
+
+  # 国外媒体、社交、支付购物、微软和游戏平台走赠送节点，主要目标是降低高流量服务成本。
+  - RULE-SET,Netflix,赠送节点
+  - RULE-SET,Disney,赠送节点
+  - DOMAIN-SUFFIX,litix.io,赠送节点
+  - DOMAIN-SUFFIX,discomax.com,赠送节点
+  - DOMAIN-SUFFIX,brightline.tv,赠送节点
+  - RULE-SET,HBO,赠送节点
+  - RULE-SET,Spotify,赠送节点
+  - RULE-SET,Telegram,赠送节点
+  - RULE-SET,PayPal,赠送节点
+  - RULE-SET,Twitter,赠送节点
+  - RULE-SET,Facebook,赠送节点
+  - RULE-SET,Amazon,赠送节点
+  - RULE-SET,TikTok,赠送节点
+  - RULE-SET,Sony,赠送节点
+  - RULE-SET,Nintendo,赠送节点
+  - RULE-SET,Epic,赠送节点
+  - RULE-SET,SteamCN,赠送节点
+  - RULE-SET,Steam,赠送节点
+  - RULE-SET,Game,赠送节点
+  - RULE-SET,Microsoft,赠送节点
+
+  # Global 处理常见国外代理域名；最终 MATCH 也交给赠送节点兜底。
+  - RULE-SET,Global,赠送节点
+  - MATCH,赠送节点
