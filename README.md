@@ -1,6 +1,6 @@
 # VPN
 
-最近更新时间：2026-06-28 01:45:54 Asia/Shanghai
+最近更新时间：2026-07-20 23:22:00 Asia/Shanghai
 
 ## Overview
 
@@ -29,7 +29,9 @@
 - `赠送美国` 已拆成美国非静态节点主选和非美非静态节点兜底的 fallback 结构，高流量服务规则继续指向总组 `赠送美国`。
 - 未被更具体规则命中的国外通用流量现在由 Shadowrocket `Global` / `FINAL` 和 Mihomo `Global` / `MATCH` 统一交给 `赠送美国`，不再落到手工 `PROXY` 兜底。
 - Mihomo 中 `机场悠兔` 订阅更新出口已改为 `PROXY`，`机场equaldcdn` 订阅更新出口仍保持 `DIRECT`。
-- 2026-06-28 工作树显示旧 `local_group.conf` 和 `isp_local` 已删除，当前配置拆分为 `r_equ_*` 四份文件；该迁移尚未提交。
+- Android 配置中 rule-providers 更新代理已更改为 `静态住宅`。
+- `bytedance.com` / `zijieapi.com` 已被放宽加入直连规则，并在 Mac 中设置系统 DNS 直连。
+- 配置文件衍生出 `r_equ_all_static` 静态住宅版本和 `r_equ_all_channel_countries`。
 - `.gitignore` 已出现并忽略 `LOGS/`，运行态日志和 SQLite 文件位于 `logs/` 目录；本轮只确认存在性和大小，未读取内容。
 - 项目长期上下文文档已初始化。
 
@@ -37,7 +39,7 @@
 
 - Android 配置从结构看延续了原 Mihomo 配置设计，但本轮没有运行客户端加载验证。
 - Mac 与 Android 的规则语义大体对应，但未逐条做等价性测试。
-- 2026-06-28 检查时，长期上下文文档仍显示为未跟踪 Git 文件，尚未提交；Git 最新提交仍为 `da42b24`，当前有旧配置删除和新配置新增的未提交迁移。
+- 长期上下文文档及最新衍生配置仍显示为未提交文件。
 - `.DS_Store` 仍在仓库根目录显示为未跟踪文件；提交前需要排除。
 
 未完成：
@@ -73,6 +75,7 @@
 - `r_equ_all_countries_mac`: Shadowrocket / Mac 全地区赠送节点配置。
 - `r_equ_onlyUS_android`: Clash Meta for Android / Mihomo 仅美国优先配置。
 - `r_equ_all_countries_android`: Clash Meta for Android / Mihomo 全地区赠送节点配置。
+- `r_equ_all_static_mac` / `android`: 全量静态住宅节点配置。
 - `lazy_group_防DNS泄露去广告后的备份.conf`: Shadowrocket 备份配置。
 - `raymond_direct.list`: GitHub-hosted 自维护直连规则集，被 `r_equ_*_mac` 和 `r_equ_*_android` 引用。
 - `logs/`: 本地客户端运行态产物目录，包含 Clash 日志、SQLite 数据库及系统元数据；可能含敏感运行信息，不应读取内容、直接提交或输出内容。
@@ -141,8 +144,8 @@
 
 ## Known limitations
 
-- 2026-06-28 本轮维护只做静态上下文更新，没有连接外网更新规则集，也没有修改 VPN 配置。
-- 2026-06-28 本轮没有真实启动 Shadowrocket 或 Mihomo 客户端。
+- 2026-07-20 本轮维护只做静态上下文更新，没有连接外网更新规则集，也没有修改 VPN 配置。
+- 2026-07-20 本轮没有真实启动 Shadowrocket 或 Mihomo 客户端。
 - `赠送美国` 的 fallback 结构尚未做主选失败场景实测。
 - `赠送节点` 的全地区节点筛选和兜底行为尚未做真机实测。
 - 国外通用流量改走 `赠送美国` 兜底后，尚未通过真实规则命中日志验证。

@@ -1,6 +1,6 @@
 # Handoff
 
-最近更新时间：2026-06-28 01:45:54 Asia/Shanghai
+最近更新时间：2026-07-20 23:22:00 Asia/Shanghai
 
 ## Current project state
 
@@ -12,6 +12,7 @@
 - `r_equ_all_countries_mac` 是 Shadowrocket / Mac 全地区赠送节点配置。
 - `r_equ_onlyUS_android` 是 Mihomo / Clash Meta for Android 仅美国优先配置。
 - `r_equ_all_countries_android` 是 Mihomo / Clash Meta for Android 全地区赠送节点配置。
+- 已拆分衍生出了 `r_equ_all_static_mac` / `android`（全静态住宅节点配置）及 `r_equ_all_channel_countries_mac` / `android`。
 - `lazy_group_防DNS泄露去广告后的备份.conf` 是 Shadowrocket 备份配置。
 - `raymond_direct.list` 是用户自维护直连规则集，被 Shadowrocket 和 Mihomo 共同引用。
 - 最新提交锚点为 `da42b24 让国外兜底流量走赠送美国`。
@@ -111,6 +112,7 @@
 - `ai-history/codex/2026-06-14-context-maintenance.md`
 - `ai-history/codex/2026-06-15-context-maintenance.md`
 - `ai-history/codex/2026-06-28-配置拆分为多客户端多节点池.md`
+- `ai-history/antigravity/2026-07-20-232200-配置文件扩展及静态住宅代理更新-跨Agent会话归纳.md`
 
 已知历史配置修改：
 
@@ -121,6 +123,10 @@
 - `r_equ_all_countries_mac`
 - `r_equ_onlyUS_android`
 - `r_equ_all_countries_android`
+- `r_equ_all_static_mac`
+- `r_equ_all_static_android`
+- `r_equ_all_channel_countries_mac`
+- `r_equ_all_channel_countries_android`
 
 本轮上下文维护未修改 VPN 配置文件：
 
@@ -258,3 +264,13 @@
 - Verified: Git 状态、四份 `r_equ_*` 配置文件存在性和行数、Mac / Android 顶层结构、`FINAL` / `MATCH` 兜底目标、`RaymondDirect` 引用、运行态文件存在性。
 - Not verified: 客户端导入、节点连通性、远程规则刷新、DNS leak、四份配置真实规则命中、provider 刷新实测。
 - Notes: 未修改 VPN 配置文件；未读取 `logs/` 下 Clash 日志和 SQLite 运行态数据库内容；未自动 commit/push。
+
+### 2026-07-20 - configuration matrix expansion and static proxy update
+
+- Agent: antigravity
+- 更新时间：2026-07-20 23:22:00 Asia/Shanghai
+- Goal: 根据最新未提交的多份配置文件变化和直连域名变化维护项目长期上下文资料。
+- Files touched: `AGENTS.md`、`README.md`、`CHANGELOG.md`、`docs/PROJECT_CONTEXT.md`、`docs/TESTING.md`、`docs/HANDOFF.md`、`ai-history/INDEX.md`、`ai-history/antigravity/2026-07-20-232200-配置文件扩展及静态住宅代理更新-跨Agent会话归纳.md`
+- Verified: 配置拆分及新增的 `r_equ_all_static`、`r_equ_all_channel_countries` 文件，Mac 配置文件中的正则与注释，rule-providers 下载规则变更为静态住宅节点，`raymond_direct.list` 及其关联配置放宽 `bytedance.com` 和 `zijieapi.com` 直连。
+- Not verified: 客户端真实导入情况、节点连通性、通过静态住宅下载外部规则集的稳定性，以及新节点正则匹配效果。
+- Notes: 发现多份重要配置仍在本地属于 untracked 或 modified 状态未被提交，需要在后续操作中提醒用户确认及提交。未运行自动化 commit / push。

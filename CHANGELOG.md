@@ -1,6 +1,40 @@
 # Changelog
 
-最近更新时间：2026-06-28 01:45:54 Asia/Shanghai
+最近更新时间：2026-07-20 23:22:00 Asia/Shanghai
+
+## [0.1.7] - 2026-07-20
+
+更新时间：2026-07-20 23:22:00 Asia/Shanghai
+Git 锚点：6ec9d3b
+锚点工作树状态：dirty
+已覆盖未提交文件：r_equ_all_countries_android, r_equ_all_countries_mac, r_equ_all_static_android, r_equ_all_static_mac, r_equ_onlyUS_android, r_equ_onlyUS_mac, raymond_direct.list
+增量可信度：根据文档与当前工作树重建
+
+### 上下文文档
+
+- 增量更新项目资料，资料维护锚点推进到 2026-07-20 23:22:00。
+- 记录旧单一配置拆分为四份，并新衍生了“静态住宅代理”版本及“所有国家渠道”版本，细化了节点池（仅美国、全地区赠送等）。
+- 记录 Mac 配置增加策略组说明注释。
+- 追加 `ai-history/antigravity/2026-07-20-232200-配置文件扩展及静态住宅代理更新-跨Agent会话归纳.md`，并更新 `ai-history/INDEX.md`。
+
+### 代码 / 已观察行为
+
+- 四份主力配置在不同端间演变为独立文件：`r_equ_onlyUS_*`、`r_equ_all_countries_*`，同时新增了 `r_equ_all_static_*` 配置文件。
+- Android `r_equ_*` 配置文件中将大量基于 rule-providers 的外部规则集（Apple, Google, Microsoft, Telegram, Steam, Game 等）更新时使用的 `proxy` 从 `PROXY` 更改为 `静态住宅`。
+- Mac 配置中增加了关于 `静态住宅`、`赠送美国主选`、`赠送非美兜底` 和 `赠送美国` 等不同级别 Proxy Group 的正则来源与职责分流注释。
+- `raymond_direct.list` 及相应 Mac 配置的 `[Host]` 将语音直连 `openspeech.bytedance.com` 放宽为 `bytedance.com` 及 `zijieapi.com` 体系下的所有域名，并通过系统 DNS 直连。
+
+### 已记录的问题 / 风险
+
+- 大量未提交的修改（`raymond_direct.list`、`r_equ_*` 等文件）仍在工作树中，等待最终提交。
+- `静态住宅` 代理节点用于拉取 GitHub 上的外部分流规则集，如果所用节点供应商到 GitHub 连接异常，可能导致更新失败。
+
+### 未验证
+
+- 未验证 Shadowrocket / Mihomo Android 最新拆分后的节点正则 (`policy-regex-filter`) 及规则命中是否稳定。
+- 未验证静态住宅策略在访问 ChatGPT 等敏感服务时的稳定性。
+
+*(⚠️ 历史改动的详细背景、曾被否决的方案和踩坑记录，统一归档在 `ai-history/INDEX.md` 中。除非当前文档无法解释现有逻辑，否则不要前往该索引进行检索。)*
 
 ## [0.1.6] - 2026-06-28
 

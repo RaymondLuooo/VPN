@@ -1,4 +1,17 @@
 # Clash Meta for Android / Mihomo profile rebuilt from local_group.conf.
+# ==============================================================================
+# 配置文件节点组（proxy-groups）说明：
+#
+# 1. 静态住宅 (url-test 自动测速组)
+#    - 节点来源：来自“机场equaldcdn”订阅，筛选名称包含“静态”且包含“住宅”的节点 (filter: "静态.*住宅|住宅.*静态")。
+#    - 匹配流量：全配置唯一代理组。除 DIRECT 直连规则（如 RaymondDirect、Apple、国内域名、GeoIP CN 等）与 REJECT 去广告拦截外，所有非直连国外代理流量（包含 AI、Google、GitHub、YouTube、媒体、社交、游戏、MATCH 兜底等）均走该组。
+# ==============================================================================
+# DNS 配置说明：
+# - 模式：开启 TUN DNS 劫持与 fake-ip 模式。
+# - 代理解析：默认 DNS 通过代理侧 DoH 解析，防止本地 DNS 泄露。
+# - 直连解析：仅明确指定的直连域名（nameserver-policy 中定义）使用本地系统 DNS。
+# - 注意：建议关闭 Android 系统“私人 DNS”以防绕过劫持。
+# ==============================================================================
 # 设计目标：
 # - 国内、局域网、银行和用户自维护域名尽量直连。
 # - AI、Google、GitHub、YouTube、Google Photos、流媒体、社交、游戏平台等国外代理流量统一走“静态住宅”。
@@ -64,7 +77,7 @@ tun:
 dns:
   # DNS 总策略：
   # - fake-ip 用于让 Mihomo 接管域名解析和后续规则匹配。
-  # - nameserver 和 fallback 都通过 #PROXY 走代理侧 DoH，减少本地 DNS 泄露。
+  # - nameserver 和 fallback 都通过 #静态住宅 走代理侧 DoH，减少本地 DNS 泄露。
   # - respect-rules=false 表示 DNS 查询不按最终分流规则自动选择出口。
   # - 只有 nameserver-policy 明确写出的 RaymondDirect 使用 Android 当前网络的系统 DNS。
   enable: true
@@ -105,13 +118,13 @@ dns:
     "rule-set:RaymondDirect":
       - "dhcp://system"
   nameserver:
-    # 默认 DNS 出口：经 PROXY 访问 Cloudflare / Google DoH，避免普通域名解析落到本地运营商。
-    - "https://cloudflare-dns.com/dns-query#PROXY"
-    - "https://dns.google/dns-query#PROXY"
+    # 默认 DNS 出口：经 静态住宅 访问 Cloudflare / Google DoH，避免普通域名解析落到本地运营商。
+    - "https://cloudflare-dns.com/dns-query#静态住宅"
+    - "https://dns.google/dns-query#静态住宅"
   fallback:
-    # 备用 DoH，同样强制经 PROXY；fallback-filter 用于处理可能污染或异常的返回。
-    - "https://dns.quad9.net/dns-query#PROXY"
-    - "https://cloudflare-dns.com/dns-query#PROXY"
+    # 备用 DoH，同样强制经 静态住宅；fallback-filter 用于处理可能污染或异常的返回。
+    - "https://dns.quad9.net/dns-query#静态住宅"
+    - "https://cloudflare-dns.com/dns-query#静态住宅"
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -145,13 +158,6 @@ proxy-providers:
     override:
       udp: true
 proxy-groups:
-  # PROXY 是未命中特定服务规则后的手工兜底入口。
-  # PROXY 统一指向静态住宅，确保规则更新、代理侧 DNS 和未指定代理入口都使用静态住宅出口。
-  - name: PROXY
-    type: select
-    proxies:
-      - 静态住宅
-
   - name: 静态住宅
     # 静态住宅 IP 更像稳定家庭宽带出口，适合所有非直连代理流量。
     type: url-test
@@ -179,7 +185,7 @@ rule-providers:
     path: ./ruleset/raymond_direct.list
     url: https://raw.githubusercontent.com/RaymondLuooo/VPN/main/raymond_direct.list
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Advertising:
     type: http
     behavior: classical
@@ -187,7 +193,7 @@ rule-providers:
     path: ./ruleset/Advertising.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Advertising/Advertising.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   OpenAI:
     type: http
     behavior: classical
@@ -195,7 +201,7 @@ rule-providers:
     path: ./ruleset/OpenAI.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Anthropic:
     type: http
     behavior: classical
@@ -203,7 +209,7 @@ rule-providers:
     path: ./ruleset/Anthropic.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Anthropic/Anthropic.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Claude:
     type: http
     behavior: classical
@@ -211,7 +217,7 @@ rule-providers:
     path: ./ruleset/Claude.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Claude/Claude.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Gemini:
     type: http
     behavior: classical
@@ -219,7 +225,7 @@ rule-providers:
     path: ./ruleset/Gemini.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Copilot:
     type: http
     behavior: classical
@@ -227,7 +233,7 @@ rule-providers:
     path: ./ruleset/Copilot.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Copilot/Copilot.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   AI_Extra:
     type: http
     behavior: classical
@@ -235,7 +241,7 @@ rule-providers:
     path: ./ruleset/AI_Extra.txt
     url: https://raw.githubusercontent.com/iab0x00/ProxyRules/main/Rule/AI.txt
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   GitHub:
     type: http
     behavior: classical
@@ -243,7 +249,7 @@ rule-providers:
     path: ./ruleset/GitHub.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   YouTube:
     type: http
     behavior: classical
@@ -251,7 +257,7 @@ rule-providers:
     path: ./ruleset/YouTube.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Netflix:
     type: http
     behavior: classical
@@ -259,7 +265,7 @@ rule-providers:
     path: ./ruleset/Netflix.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Disney:
     type: http
     behavior: classical
@@ -267,7 +273,7 @@ rule-providers:
     path: ./ruleset/Disney.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   HBO:
     type: http
     behavior: classical
@@ -275,7 +281,7 @@ rule-providers:
     path: ./ruleset/HBO.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HBO/HBO.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Spotify:
     type: http
     behavior: classical
@@ -283,7 +289,7 @@ rule-providers:
     path: ./ruleset/Spotify.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Telegram:
     type: http
     behavior: classical
@@ -291,7 +297,7 @@ rule-providers:
     path: ./ruleset/Telegram.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   PayPal:
     type: http
     behavior: classical
@@ -299,7 +305,7 @@ rule-providers:
     path: ./ruleset/PayPal.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Twitter:
     type: http
     behavior: classical
@@ -307,7 +313,7 @@ rule-providers:
     path: ./ruleset/Twitter.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Facebook:
     type: http
     behavior: classical
@@ -315,7 +321,7 @@ rule-providers:
     path: ./ruleset/Facebook.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Amazon:
     type: http
     behavior: classical
@@ -323,7 +329,7 @@ rule-providers:
     path: ./ruleset/Amazon.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Amazon/Amazon.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   TikTok:
     type: http
     behavior: classical
@@ -331,7 +337,7 @@ rule-providers:
     path: ./ruleset/TikTok.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Sony:
     type: http
     behavior: classical
@@ -339,7 +345,7 @@ rule-providers:
     path: ./ruleset/Sony.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Sony/Sony.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Nintendo:
     type: http
     behavior: classical
@@ -347,7 +353,7 @@ rule-providers:
     path: ./ruleset/Nintendo.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Epic:
     type: http
     behavior: classical
@@ -355,7 +361,7 @@ rule-providers:
     path: ./ruleset/Epic.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   SteamCN:
     type: http
     behavior: classical
@@ -363,7 +369,7 @@ rule-providers:
     path: ./ruleset/SteamCN.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Steam:
     type: http
     behavior: classical
@@ -371,7 +377,7 @@ rule-providers:
     path: ./ruleset/Steam.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Game:
     type: http
     behavior: classical
@@ -379,7 +385,7 @@ rule-providers:
     path: ./ruleset/Game.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Microsoft:
     type: http
     behavior: classical
@@ -387,7 +393,7 @@ rule-providers:
     path: ./ruleset/Microsoft.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Google:
     type: http
     behavior: classical
@@ -395,7 +401,7 @@ rule-providers:
     path: ./ruleset/Google.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Apple:
     type: http
     behavior: classical
@@ -403,7 +409,7 @@ rule-providers:
     path: ./ruleset/Apple.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   BiliBili:
     type: http
     behavior: classical
@@ -411,7 +417,7 @@ rule-providers:
     path: ./ruleset/BiliBili.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   NetEaseMusic:
     type: http
     behavior: classical
@@ -419,7 +425,7 @@ rule-providers:
     path: ./ruleset/NetEaseMusic.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Baidu:
     type: http
     behavior: classical
@@ -427,7 +433,7 @@ rule-providers:
     path: ./ruleset/Baidu.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Baidu/Baidu.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   DouBan:
     type: http
     behavior: classical
@@ -435,7 +441,7 @@ rule-providers:
     path: ./ruleset/DouBan.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DouBan/DouBan.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   WeChat:
     type: http
     behavior: classical
@@ -443,7 +449,7 @@ rule-providers:
     path: ./ruleset/WeChat.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Sina:
     type: http
     behavior: classical
@@ -451,7 +457,7 @@ rule-providers:
     path: ./ruleset/Sina.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Sina/Sina.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Zhihu:
     type: http
     behavior: classical
@@ -459,7 +465,7 @@ rule-providers:
     path: ./ruleset/Zhihu.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Zhihu/Zhihu.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   XiaoHongShu:
     type: http
     behavior: classical
@@ -467,7 +473,7 @@ rule-providers:
     path: ./ruleset/XiaoHongShu.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/XiaoHongShu/XiaoHongShu.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   DouYin:
     type: http
     behavior: classical
@@ -475,7 +481,7 @@ rule-providers:
     path: ./ruleset/DouYin.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DouYin/DouYin.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Global:
     type: http
     behavior: classical
@@ -483,7 +489,7 @@ rule-providers:
     path: ./ruleset/Global.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   ChinaMax:
     type: http
     behavior: classical
@@ -491,7 +497,7 @@ rule-providers:
     path: ./ruleset/ChinaMax.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
   Lan:
     type: http
     behavior: classical
@@ -499,7 +505,7 @@ rule-providers:
     path: ./ruleset/Lan.yaml
     url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml
     interval: 86400
-    proxy: PROXY
+    proxy: 静态住宅
 
 rules:
   # 规则按顺序匹配；越具体、越需要保护顺序的规则越靠前。

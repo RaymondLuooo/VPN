@@ -1,4 +1,17 @@
 # Shadowrocket: 2026-06-07 01:05:30
+# ==============================================================================
+# 配置文件节点组（Proxy Group）说明：
+#
+# 1. 静态住宅 (url-test 自动测速组)
+#    - 节点来源：筛选所有导入订阅中，名称包含“静态”且包含“住宅”的节点 (policy-regex-filter=静态.*住宅|住宅.*静态)。
+#    - 匹配流量：全配置唯一代理组。除 DIRECT 直连规则（如用户自维护直连、Apple、国内域名、GeoIP CN 等）与 REJECT 去广告拦截外，所有非直连国外代理流量均走该组，优先保证代理出入口稳定与高信誉环境。
+# ==============================================================================
+# DNS 配置说明：
+# - 模式：配置 hijack-dns 接管常见明文 53 端口查询。
+# - 代理解析：默认 dns-server 均经 PROXY 访问 DoH，防止本地 DNS 泄露。
+# - 直连解析：仅明确指定的直连域名（[Host] 块中定义）使用本地系统 DNS。
+# ==============================================================================
+
 [General]
 # Shadowrocket 快速使用方法：
 # 1、首页 > 添加节点。
@@ -147,7 +160,11 @@ FINAL,静态住宅
 # raymond_direct.list 可以作为远程规则集参与 DIRECT 路由，但 Shadowrocket 的 [Host] 不能引用远程 rule-set。
 # 因此需要把适合系统 DNS 的自维护直连域名手动同步到这里，避免国内 CDN 或企业服务被海外 DoH 解析偏移。
 # 不要把 AI、Google、GitHub 或其他敏感海外服务加入 server:system。
-openspeech.bytedance.com = server:system
+# 字节跳动 / 豆包输入法（ByteDance / Doubao IME）使用系统 DNS。
+bytedance.com = server:system
+*.bytedance.com = server:system
+zijieapi.com = server:system
+*.zijieapi.com = server:system
 qq.com = server:system
 *.qq.com = server:system
 dmall.com = server:system

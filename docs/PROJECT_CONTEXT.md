@@ -1,6 +1,6 @@
 # Project Context
 
-最近更新时间：2026-06-28 01:45:54 Asia/Shanghai
+最近更新时间：2026-07-20 23:22:00 Asia/Shanghai
 
 ## Background
 
@@ -37,6 +37,7 @@ Shadowrocket 配置：
 - 使用 `[General]`、`[Proxy Group]`、`[Rule]`、`[Host]`、`[URL Rewrite]`、`[MITM]` 结构。
 - `r_equ_onlyUS_mac` 是仅美国优先的 Mac / Shadowrocket 配置。
 - `r_equ_all_countries_mac` 是全地区赠送节点的 Mac / Shadowrocket 配置。
+- `r_equ_all_static_mac` 是全量静态住宅节点配置。
 - 备份配置保留更通用的区域节点分组。
 - `raymond_direct.list` 通过远程 `RULE-SET` 进入 `DIRECT`。
 - `[Host]` 负责 Shadowrocket 的域名到 DNS 服务器映射；它不能直接引用远程 rule-set，因此 `server:system` 需要手动同步。
@@ -47,6 +48,7 @@ Mihomo 配置：
 - 关键区块包括 `sniffer`、`tun`、`dns`、`proxy-providers`、`proxy-groups`、`rule-providers` 和 `rules`。
 - `r_equ_onlyUS_android` 是仅美国优先的 Android / Mihomo 配置。
 - `r_equ_all_countries_android` 是全地区赠送节点的 Android / Mihomo 配置。
+- `r_equ_all_static_android` 是全量静态住宅节点的 Android / Mihomo 配置。
 - Android 配置包含订阅入口，不能外泄。
 - `RaymondDirect` provider 通过 GitHub raw 拉取 `raymond_direct.list`，并同时用于 `rules` 直连和 `dns.nameserver-policy` 系统 DNS。
 
@@ -91,9 +93,11 @@ Mihomo：
 - 已确认：`5022a34` 已把 `赠送美国` 调整为美国非静态节点主选、非美非静态节点兜底的 fallback 结构。
 - 已确认：`da42b24` 已让 Shadowrocket `Global` / `FINAL` 和 Mihomo `Global` / `MATCH` 统一兜底到 `赠送美国`。
 - 已确认：`da42b24` 已让 Mihomo 中 `机场悠兔` provider 通过 `PROXY` 更新订阅，`机场equaldcdn` provider 仍保持 `DIRECT`。
-- 已确认：2026-06-28 工作树显示旧 `local_group.conf` 和 `isp_local` 已删除，并新增 `r_equ_onlyUS_mac`、`r_equ_all_countries_mac`、`r_equ_onlyUS_android`、`r_equ_all_countries_android`。
-- 已确认：`r_equ_onlyUS_mac` / `r_equ_onlyUS_android` 使用 `赠送美国`，`r_equ_all_countries_mac` / `r_equ_all_countries_android` 使用 `赠送节点`。
-- 已确认：2026-06-28 检查时 `main` 与 `origin/main` 同步，长期上下文文档仍为未跟踪文件。
+- 已确认：2026-06-28 及 2026-07-20 工作树显示旧 `local_group.conf` 和 `isp_local` 已删除，并拆分和新增了多份 `r_equ_*`（如 onlyUS、all_countries、all_static、all_channel_countries）。
+- 已确认：Mac 配置中为策略组增加了说明注释，明确“静态住宅”、“赠送美国主选”、“赠送非美兜底”和“赠送美国”的规则。
+- 已确认：Android 配置中 rule-providers 更新代理已更改为 `静态住宅`。
+- 已确认：`bytedance.com` / `zijieapi.com` 已被放宽加入直连规则，并在 Mac 中设置系统 DNS 直连。
+- 已确认：2026-07-20 检查时，长期上下文文档及最新配置仍为未跟踪文件。
 - 已确认：本地存在 `logs/` 运行态目录和根目录 `.DS_Store`；本轮只确认文件名和大小，未读取内容。
 - 部分确认：Android 配置延续原 Mihomo 配置设计；本轮未验证生成脚本或转换过程。
 - 部分确认：Shadowrocket `[Host]` 已为飞书 / Lark、网易系等自维护直连域名维护 `server:system`；Apple / iCloud / CloudKit 已进入 `raymond_direct.list`，但本轮未把它们同步到 Shadowrocket `[Host]`。
@@ -108,9 +112,9 @@ Mihomo：
 
 ## Open questions
 
-- 四份 `r_equ_*` 配置中哪些是用户当前真实设备正在使用版本，需要用户确认。
+- 多份 `r_equ_*` 配置中哪些是用户当前真实设备正在使用版本，需要用户确认。
 - 旧 `local_group.conf` / `isp_local` 删除是否已经完成迁移确认，需要用户在提交前确认。
-- 2026-06-28 检查时，长期上下文文档仍未被 Git 跟踪提交；是否提交需要用户确认。
+- 2026-07-20 检查时，长期上下文文档仍未被 Git 跟踪提交；是否提交需要用户确认。
 - `.gitignore` 当前只显示 `LOGS/`，是否还需要明确排除 `.DS_Store` 和小写 `logs/`，需要用户确认后再改。
 - 是否需要新增脱敏模板和静态检查脚本，需要用户确认后再改。
 - 是否要把 Apple / iCloud / CloudKit 也同步到 Shadowrocket `[Host]` 的系统 DNS，需要用户确认；当前只确认进入 `raymond_direct.list`。

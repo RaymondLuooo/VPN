@@ -10,6 +10,12 @@
 #    - 节点来源：来自“机场equaldcdn”与“机场悠兔”订阅，筛选排除“静态”的所有节点 (exclude-filter: "静态")，不限国家和地区，自动选取延迟最低的节点。
 #    - 匹配流量：YouTube、Google Photos 媒体传输、国外流媒体 (Netflix, Disney, HBO, Spotify)、社交/平台 (Telegram, Twitter, Facebook, TikTok)、支付/购物 (PayPal, Amazon)、游戏平台 (Sony, Nintendo, Epic, Steam, Game)、Microsoft 服务、Global 规则以及 MATCH 未命中规则的国外通用代理流量，用于降低大流量成本。
 # ==============================================================================
+# DNS 配置说明：
+# - 模式：开启 TUN DNS 劫持与 fake-ip 模式。
+# - 代理解析：默认 DNS 通过代理侧 DoH 解析，防止本地 DNS 泄露。
+# - 直连解析：仅明确指定的直连域名（nameserver-policy 中定义）使用本地系统 DNS。
+# - 注意：建议关闭 Android 系统“私人 DNS”以防绕过劫持。
+# ==============================================================================
 # 设计目标：
 # - 国内、局域网、银行和用户自维护域名尽量直连。
 # - AI、Google、GitHub 等账号或风控敏感服务走"静态住宅"。

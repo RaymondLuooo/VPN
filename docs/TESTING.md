@@ -1,6 +1,6 @@
 # Testing
 
-最近更新时间：2026-06-28 01:45:54 Asia/Shanghai
+最近更新时间：2026-07-20 23:22:00 Asia/Shanghai
 
 ## Test philosophy
 
@@ -11,7 +11,7 @@
 ## Environment checks
 
 - 确认目标客户端：Shadowrocket 或 Mihomo / Clash Meta for Android。
-- 确认目标文件：`r_equ_onlyUS_mac`、`r_equ_all_countries_mac`、`r_equ_onlyUS_android`、`r_equ_all_countries_android`、备份配置或 `raymond_direct.list`。
+- 确认目标文件：`r_equ_onlyUS_mac`、`r_equ_all_countries_mac`、`r_equ_onlyUS_android`、`r_equ_all_countries_android`、`r_equ_all_static_mac` / `android`、`r_equ_all_channel_countries_mac` / `android`、备份配置或 `raymond_direct.list`。
 - 确认没有把订阅 URL、token、节点凭据复制到聊天、文档或公开仓库说明。
 
 ## Static checks
@@ -103,7 +103,9 @@ Mihomo / Clash Meta for Android：
 - 本轮没有 `Global` / `FINAL` / `MATCH` 改走 `赠送美国` 后的真实命中日志。
 - 本轮没有 `赠送节点` 全地区配置的真实命中日志。
 - 本轮没有 `机场悠兔` provider 通过 `PROXY` 刷新订阅的客户端实测。
-- 本轮没有四份 `r_equ_*` 配置的客户端导入验证。
+- 本轮没有四份主力配置及新增衍生配置的客户端导入验证。
+- 本轮没有验证“静态住宅”作为 rule-providers 更新出口是否成功。
+- 本轮没有验证 Mac 上的 `policy-regex-filter` 是否准确区分了静态与非静态节点。
 
 ## Regression cases
 

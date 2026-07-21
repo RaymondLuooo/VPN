@@ -1,5 +1,7 @@
 # Raymond custom DIRECT rules.
-DOMAIN,openspeech.bytedance.com
+# 字节跳动 / 豆包输入法（ByteDance / Doubao IME）直连域名。
+DOMAIN-SUFFIX,bytedance.com
+DOMAIN-SUFFIX,zijieapi.com
 DOMAIN-SUFFIX,qq.com
 DOMAIN-SUFFIX,dmall.com
 
