@@ -149,7 +149,7 @@ proxy-providers:
     url: "https://equaldcdn.com/use/unsafe/sub.php?t=eyJ1dWlkIjoiN0JGNjdBMTktMkU5Qi00MDg5LTk3QTktQUIwRjI5NzYzRDRCIiwic2VydmVyIjoiNjQuMTg2LjIyNC4xNDUiLCJwb3J0IjoiNDQzIiwicHVibGljX2tleSI6IkFsYU9ycnJhSDNLMVRDSHlTWF9yejZleHZ4MFdoQkNYckN2b0xBbFdQMjgiLCJzaG9ydF9pZCI6ImZmYWM1MTliYzkxZDEyYTMiLCJzZXJ2ZXJuYW1lIjoid3d3LmNvb3Blci5lZHUiLCJ0b3RhbCI6MTA3Mzc0MTgyNDAwLCJleHBpcmUiOjE3ODMwNzIxNTV9&s=69bfa134618ebc9a5f880cc055d1cecd1fcafd77de295e446d6bb86234eb07e4"
     path: ./providers/airport.yaml
     interval: 86400
-    proxy: DIRECT
+    proxy: 静态住宅
     header:
       User-Agent:
         - clash.meta
@@ -549,6 +549,10 @@ rule-providers:
 
 rules:
   # 规则按顺序匹配；越具体、越需要保护顺序的规则越靠前。
+  # 机场订阅域名固定走静态住宅，避免直连访问失败。
+  - DOMAIN-SUFFIX,equaldcdn.com,静态住宅
+  - DOMAIN-SUFFIX,youtulink3.top,静态住宅
+
   # 广告和跟踪先 REJECT，避免后续服务规则把广告域名放行。
   - RULE-SET,Advertising,REJECT
   - DOMAIN-SUFFIX,doubleclick.net,REJECT
