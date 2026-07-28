@@ -68,6 +68,10 @@ update-url = https://raw.githubusercontent.com/RaymondLuooo/VPN/main/r_equ_all_c
 
 [Rule]
 # 规则按顺序匹配；广告拦截、用户自维护直连、YouTube / Google Photos 前置规则都依赖当前顺序。
+# 机场订阅域名固定走静态住宅，避免直连访问失败。
+DOMAIN-SUFFIX,equaldcdn.com,静态住宅
+DOMAIN-SUFFIX,youtulink3.top,静态住宅
+
 # 去广告和跟踪拦截，远程规则集会继续更新
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Advertising/Advertising.list,REJECT
 DOMAIN-SUFFIX,doubleclick.net,REJECT
