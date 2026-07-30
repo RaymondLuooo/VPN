@@ -172,7 +172,7 @@ proxy-providers:
       udp: true
   机场悠兔:
     type: http
-    url: "https://b.youtulink3.top/dy/2a30b4b12692f127cf87f39da8378269"
+    url: "https://sub.xeton.dev/sub?target=clash&url=https%3A%2F%2Fb.youtulink3.top%2Fdy%2F2a30b4b12692f127cf87f39da8378269"
     path: ./providers/airport_youtu.yaml
     interval: 86400
     proxy: 静态住宅
