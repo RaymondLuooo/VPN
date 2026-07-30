@@ -610,6 +610,11 @@ rules:
   - DOMAIN-SUFFIX,googleusercontent.com,静态住宅
   - DOMAIN-SUFFIX,gstatic.com,静态住宅
   - DOMAIN-SUFFIX,googleapis.com,静态住宅
+  - DOMAIN-KEYWORD,anthropic,静态住宅
+  - DOMAIN-KEYWORD,claude,静态住宅
+  - DOMAIN-KEYWORD,openai,静态住宅
+  - DOMAIN-KEYWORD,gemini,静态住宅
+  - DOMAIN-KEYWORD,chatgpt,静态住宅
   - RULE-SET,OpenAI,静态住宅
   - RULE-SET,Anthropic,静态住宅
   - RULE-SET,Claude,静态住宅
