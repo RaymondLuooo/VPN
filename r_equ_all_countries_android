@@ -172,9 +172,9 @@ proxy-groups:
     filter: "静态.*住宅|住宅.*静态"
     url: http://www.gstatic.com/generate_204
     interval: 600
-    tolerance: 0
+    tolerance: 50
     timeout: 5000
-    lazy: false
+    lazy: true
     expected-status: 204
 
   - name: 赠送节点
@@ -187,9 +187,9 @@ proxy-groups:
     exclude-filter: "静态"
     url: http://www.gstatic.com/generate_204
     interval: 600
-    tolerance: 0
+    tolerance: 50
     timeout: 5000
-    lazy: false
+    lazy: true
     expected-status: 204
 
 rule-providers:
