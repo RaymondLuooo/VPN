@@ -119,6 +119,11 @@ DOMAIN-SUFFIX,test-googleusercontent.com,静态住宅
 DOMAIN-SUFFIX,googleusercontent.com,静态住宅
 DOMAIN-SUFFIX,gstatic.com,静态住宅
 DOMAIN-SUFFIX,googleapis.com,静态住宅
+DOMAIN-KEYWORD,anthropic,静态住宅
+DOMAIN-KEYWORD,claude,静态住宅
+DOMAIN-KEYWORD,openai,静态住宅
+DOMAIN-KEYWORD,gemini,静态住宅
+DOMAIN-KEYWORD,chatgpt,静态住宅
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,静态住宅
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Anthropic/Anthropic.list,静态住宅
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Claude/Claude.list,静态住宅
