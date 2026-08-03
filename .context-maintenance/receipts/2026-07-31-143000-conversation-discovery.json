@@ -1,0 +1,1027 @@
+{
+  "receipt_version": 1,
+  "generator_id": "r-project-context-maintainer/conversation-discovery-v1",
+  "generated_at": "2026-07-31T14:28:55.857952+08:00",
+  "maintenance_id": "2026-07-31-143000",
+  "project_root": "/Users/Shared/Shared_AI_Workspace/SharedProjects/VPN",
+  "home_root": "/Users/rai",
+  "current_agent": "antigravity",
+  "antigravity_scope": "all",
+  "timezone": "Asia/Taipei",
+  "search_order": [
+    "antigravity",
+    "codex",
+    "claude-code",
+    "openclaw"
+  ],
+  "window": {
+    "start": "2026-07-21T17:06:03+08:00",
+    "end": "2026-07-31T14:30:00+08:00"
+  },
+  "change_markers": [
+    "DOMAIN-KEYWORD",
+    "anytls",
+    "lazy",
+    "r_equ_all_channel_countries_android",
+    "r_equ_all_channel_countries_mac",
+    "r_equ_all_countries_android",
+    "r_equ_all_countries_mac",
+    "r_equ_all_static_android",
+    "r_equ_all_static_mac",
+    "r_equ_onlyUS_android",
+    "r_equ_onlyUS_mac",
+    "sub.xeton.dev",
+    "tolerance"
+  ],
+  "sources": [
+    {
+      "agent": "antigravity",
+      "search_executed": true,
+      "status": "searched_found",
+      "method": "known_method",
+      "checked_roots": [
+        "/Users/rai/.gemini/antigravity/brain",
+        "/Users/rai/.gemini/antigravity-ide/brain"
+      ],
+      "root_status": [
+        {
+          "variant": "antigravity-2.x",
+          "path": "/Users/rai/.gemini/antigravity/brain",
+          "exists": true
+        },
+        {
+          "variant": "antigravity-ide",
+          "path": "/Users/rai/.gemini/antigravity-ide/brain",
+          "exists": true
+        }
+      ],
+      "root_exists": true,
+      "candidate_file_count": 20,
+      "scanned_files": [
+        {
+          "path": "/Users/rai/.gemini/antigravity-ide/brain/8da8b7ba-c655-4108-bd3c-7e438eacd401/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 172200,
+          "mtime_ns": 1785136618749354385,
+          "prefix_sha256": "fd26c86ffef72ebef6d129b38183c87a4f43eefebed244e55464cbbf3b260da9",
+          "source_variant": "antigravity-ide"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity-ide/brain/b7f53e24-cc6e-4e01-a2b6-ee12ff212980/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 350733,
+          "mtime_ns": 1784625694306620023,
+          "prefix_sha256": "fe8b431cff837c38bacb384b69cb5dc52ceb7bfe956c9eefac04e76e82e5b9fc",
+          "source_variant": "antigravity-ide"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity-ide/brain/cb78cec0-ed30-4b2c-9e38-71f4eedffa81/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 35485,
+          "mtime_ns": 1785112537407506731,
+          "prefix_sha256": "02b2f36b9a9fed488cfb0f09a4733b68806ef566c72253f17094cf3465fcb138",
+          "source_variant": "antigravity-ide"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity-ide/brain/d68159a6-1e26-494b-a3f0-57b4b75d1772/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 37854,
+          "mtime_ns": 1785140117513980894,
+          "prefix_sha256": "a470b47acde52bcbeef61f95552cd576bda9cb7c0df49ab12295e80635c6d528",
+          "source_variant": "antigravity-ide"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/121588fe-10ff-4a23-a95e-3d499efd99c8/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 49689,
+          "mtime_ns": 1784874947737490310,
+          "prefix_sha256": "05909b4bcb99efb6ffd73a16ca316d346c6a3ddfed1218d5e99f74a3827940dc",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/1d8d46ff-e992-4d5a-b1aa-e82eab4ba8f4/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 24622,
+          "mtime_ns": 1785404555767544382,
+          "prefix_sha256": "a05b5e16a6d18e84add4dc9670f7d8cb2a613a51983b17a4adbf3552f07f762e",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/206eb1ff-1592-4c59-8a81-8d538904015b/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 60028,
+          "mtime_ns": 1784862532201856922,
+          "prefix_sha256": "9cf12bf03203a1315d186c51488049c73bcc6eac3045f1081cf0edabed5adae2",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/2e2df3c5-0db2-43f0-9157-94a12224f940/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 90192,
+          "mtime_ns": 1785478433509213439,
+          "prefix_sha256": "15889f2e912ff1bf0d115d92c7649799553f38571e7ea5e30b4216c40d090ef9",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/31d1fbbb-5d74-423b-8e7f-77a67b65cf12/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 100560,
+          "mtime_ns": 1785405871042310142,
+          "prefix_sha256": "189cf411b75966c527de28833f796511064df068f8c6a89190d6d6b4b9fb6057",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/3be7e659-c9f2-4e75-91c0-c20bc2d53b42/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 11282,
+          "mtime_ns": 1785378185868626686,
+          "prefix_sha256": "106fa2166ba6b90d20bf660384ef60f0564c502108f8d538e10c1a1d535cacb1",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/56a31881-975e-42a0-80bb-80941022c15d/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 81515,
+          "mtime_ns": 1785230655831642898,
+          "prefix_sha256": "19f6e26fe85aabf56dc42fee1d638290ecc14bc4062d3bd9c8e3479dbeddaca2",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/78c2bca8-2d2e-440f-9e92-408089b244a8/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 441576,
+          "mtime_ns": 1784714923199368068,
+          "prefix_sha256": "ceea4c3e29f3fdbf53b4c235351695d2761a50eccd9820b3083c4569173658f3",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/7ae32748-d6c7-4ffa-8864-32c9f810b3df/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 407816,
+          "mtime_ns": 1785479335437044400,
+          "prefix_sha256": "5fbb720870c95df9fc3018de2283d59e857aae7edc312fc668421094b117c2c9",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/82c1004d-ea94-4d8c-940f-39c13d46465c/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 698029,
+          "mtime_ns": 1785140612697490054,
+          "prefix_sha256": "b5b6ab137099e3027ffd61f4a6ea170990e55b70c44f8db6d65c3a8523f85787",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/a9ec5aac-df79-4ed3-8863-473c2fa90269/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 35053,
+          "mtime_ns": 1785217615901597851,
+          "prefix_sha256": "c3c5956a9fa58a5ce609c312c1f43a69fb58cc5e7069524c6050083eea6e79d1",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/b14381c3-2c71-4825-8db7-deba4290eee9/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 25141,
+          "mtime_ns": 1785404689729660008,
+          "prefix_sha256": "fb084d9736957aa0e5608aae8de27504a6d3d73040bd284e1f766e97493f59c1",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/c44ada94-a2a3-4e1d-b68a-3f35300760e4/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 95972,
+          "mtime_ns": 1784878904247983796,
+          "prefix_sha256": "7e309b54664e3997271ca226b96d3260513123b151b1f1dde612feb9c5458971",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/dc8574f0-2388-4fe5-9430-15fe4ffea63f/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 138235,
+          "mtime_ns": 1784863248089083287,
+          "prefix_sha256": "9dd8ec6a6dea6057538d1e7103b863accd987c81a9865beb8c8d8723c32d16f2",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/f4f3a215-3678-460e-8bd5-646caed592a3/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 69375,
+          "mtime_ns": 1784861873253605622,
+          "prefix_sha256": "2a6c3dee40a4cbb3f59f713bac9d7afd7956255c6dade6ede77ecc95a93fee0c",
+          "source_variant": "antigravity-2.x"
+        },
+        {
+          "path": "/Users/rai/.gemini/antigravity/brain/fd6b9295-0eb6-4815-9936-b999ee251576/.system_generated/logs/transcript.jsonl",
+          "scanned_size": 56386,
+          "mtime_ns": 1784773419874948476,
+          "prefix_sha256": "906ef17183746c44ea090e7d8d1e36cf9d2aa097c87f3003c649e425034631fe",
+          "source_variant": "antigravity-2.x"
+        }
+      ],
+      "schema_record_count": 1365,
+      "invalid_record_count": 0,
+      "project_session_candidate_count": 17,
+      "user_message_count": 92,
+      "assistant_message_count": 96,
+      "message_coverage": "complete",
+      "sessions": [
+        {
+          "session_id": "b7f53e24-cc6e-4e01-a2b6-ee12ff212980",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity-ide/brain/b7f53e24-cc6e-4e01-a2b6-ee12ff212980/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-ide"
+          ],
+          "first_message_at": "2026-07-21T09:06:03+00:00",
+          "last_message_at": "2026-07-21T09:21:26+00:00",
+          "user_message_count": 3,
+          "assistant_message_count": 3,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "lazy",
+            "r_equ_all_channel_countries_android",
+            "r_equ_all_channel_countries_mac",
+            "r_equ_all_countries_android",
+            "r_equ_all_countries_mac",
+            "r_equ_all_static_android",
+            "r_equ_all_static_mac",
+            "r_equ_onlyUS_android",
+            "r_equ_onlyUS_mac"
+          ]
+        },
+        {
+          "session_id": "78c2bca8-2d2e-440f-9e92-408089b244a8",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/78c2bca8-2d2e-440f-9e92-408089b244a8/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-22T03:19:31+00:00",
+          "last_message_at": "2026-07-22T10:08:39+00:00",
+          "user_message_count": 13,
+          "assistant_message_count": 15,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "tolerance"
+          ]
+        },
+        {
+          "session_id": "dc8574f0-2388-4fe5-9430-15fe4ffea63f",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/dc8574f0-2388-4fe5-9430-15fe4ffea63f/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-22T03:21:28+00:00",
+          "last_message_at": "2026-07-24T03:20:46+00:00",
+          "user_message_count": 8,
+          "assistant_message_count": 8,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "fd6b9295-0eb6-4815-9936-b999ee251576",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/fd6b9295-0eb6-4815-9936-b999ee251576/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-23T02:15:49+00:00",
+          "last_message_at": "2026-07-23T02:23:33+00:00",
+          "user_message_count": 2,
+          "assistant_message_count": 2,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "tolerance"
+          ]
+        },
+        {
+          "session_id": "82c1004d-ea94-4d8c-940f-39c13d46465c",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/82c1004d-ea94-4d8c-940f-39c13d46465c/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-23T07:52:51+00:00",
+          "last_message_at": "2026-07-27T08:23:20+00:00",
+          "user_message_count": 29,
+          "assistant_message_count": 34,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "lazy",
+            "tolerance"
+          ]
+        },
+        {
+          "session_id": "f4f3a215-3678-460e-8bd5-646caed592a3",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/f4f3a215-3678-460e-8bd5-646caed592a3/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-23T08:21:25+00:00",
+          "last_message_at": "2026-07-24T02:57:50+00:00",
+          "user_message_count": 6,
+          "assistant_message_count": 6,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "206eb1ff-1592-4c59-8a81-8d538904015b",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/206eb1ff-1592-4c59-8a81-8d538904015b/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-24T01:24:17+00:00",
+          "last_message_at": "2026-07-24T03:08:47+00:00",
+          "user_message_count": 1,
+          "assistant_message_count": 1,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "121588fe-10ff-4a23-a95e-3d499efd99c8",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/121588fe-10ff-4a23-a95e-3d499efd99c8/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-24T06:35:23+00:00",
+          "last_message_at": "2026-07-24T06:35:41+00:00",
+          "user_message_count": 1,
+          "assistant_message_count": 1,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "c44ada94-a2a3-4e1d-b68a-3f35300760e4",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/c44ada94-a2a3-4e1d-b68a-3f35300760e4/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-24T07:39:39+00:00",
+          "last_message_at": "2026-07-24T07:41:31+00:00",
+          "user_message_count": 1,
+          "assistant_message_count": 1,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "cb78cec0-ed30-4b2c-9e38-71f4eedffa81",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity-ide/brain/cb78cec0-ed30-4b2c-9e38-71f4eedffa81/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-ide"
+          ],
+          "first_message_at": "2026-07-27T00:34:18+00:00",
+          "last_message_at": "2026-07-27T00:35:25+00:00",
+          "user_message_count": 2,
+          "assistant_message_count": 2,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "8da8b7ba-c655-4108-bd3c-7e438eacd401",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity-ide/brain/8da8b7ba-c655-4108-bd3c-7e438eacd401/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-ide"
+          ],
+          "first_message_at": "2026-07-27T07:11:32+00:00",
+          "last_message_at": "2026-07-27T07:16:57+00:00",
+          "user_message_count": 2,
+          "assistant_message_count": 2,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "d68159a6-1e26-494b-a3f0-57b4b75d1772",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity-ide/brain/d68159a6-1e26-494b-a3f0-57b4b75d1772/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-ide"
+          ],
+          "first_message_at": "2026-07-27T07:18:47+00:00",
+          "last_message_at": "2026-07-27T08:14:53+00:00",
+          "user_message_count": 3,
+          "assistant_message_count": 3,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "lazy",
+            "r_equ_all_channel_countries_android",
+            "r_equ_all_channel_countries_mac"
+          ]
+        },
+        {
+          "session_id": "a9ec5aac-df79-4ed3-8863-473c2fa90269",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/a9ec5aac-df79-4ed3-8863-473c2fa90269/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-28T05:46:19+00:00",
+          "last_message_at": "2026-07-28T05:46:52+00:00",
+          "user_message_count": 1,
+          "assistant_message_count": 1,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "lazy",
+            "r_equ_all_static_android",
+            "r_equ_all_static_mac",
+            "r_equ_onlyUS_android",
+            "r_equ_onlyUS_mac",
+            "tolerance"
+          ]
+        },
+        {
+          "session_id": "56a31881-975e-42a0-80bb-80941022c15d",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/56a31881-975e-42a0-80bb-80941022c15d/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-28T09:18:27+00:00",
+          "last_message_at": "2026-07-28T09:24:08+00:00",
+          "user_message_count": 2,
+          "assistant_message_count": 2,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "tolerance"
+          ]
+        },
+        {
+          "session_id": "7ae32748-d6c7-4ffa-8864-32c9f810b3df",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/7ae32748-d6c7-4ffa-8864-32c9f810b3df/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-30T07:26:57+00:00",
+          "last_message_at": "2026-07-31T06:28:40+00:00",
+          "user_message_count": 15,
+          "assistant_message_count": 12,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "DOMAIN-KEYWORD",
+            "anytls",
+            "lazy",
+            "r_equ_all_channel_countries_android",
+            "r_equ_all_channel_countries_mac",
+            "r_equ_all_countries_android",
+            "r_equ_all_countries_mac",
+            "r_equ_all_static_android",
+            "r_equ_all_static_mac",
+            "r_equ_onlyUS_android",
+            "r_equ_onlyUS_mac",
+            "sub.xeton.dev",
+            "tolerance"
+          ]
+        },
+        {
+          "session_id": "1d8d46ff-e992-4d5a-b1aa-e82eab4ba8f4",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/1d8d46ff-e992-4d5a-b1aa-e82eab4ba8f4/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-30T09:01:02+00:00",
+          "last_message_at": "2026-07-30T09:42:12+00:00",
+          "user_message_count": 2,
+          "assistant_message_count": 2,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "r_equ_onlyUS_android"
+          ]
+        },
+        {
+          "session_id": "31d1fbbb-5d74-423b-8e7f-77a67b65cf12",
+          "source_files": [
+            "/Users/rai/.gemini/antigravity/brain/31d1fbbb-5d74-423b-8e7f-77a67b65cf12/.system_generated/logs/transcript.jsonl"
+          ],
+          "source_variants": [
+            "antigravity-2.x"
+          ],
+          "first_message_at": "2026-07-30T10:02:33+00:00",
+          "last_message_at": "2026-07-30T10:04:22+00:00",
+          "user_message_count": 1,
+          "assistant_message_count": 1,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "DOMAIN-KEYWORD",
+            "r_equ_all_channel_countries_android",
+            "r_equ_all_channel_countries_mac",
+            "r_equ_all_countries_android",
+            "r_equ_all_countries_mac",
+            "r_equ_all_static_android",
+            "r_equ_all_static_mac",
+            "r_equ_onlyUS_android",
+            "r_equ_onlyUS_mac"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "agent": "codex",
+      "search_executed": true,
+      "status": "searched_found",
+      "method": "known_method",
+      "checked_roots": [
+        "/Users/rai/.codex/sessions"
+      ],
+      "root_status": [
+        {
+          "variant": "codex",
+          "path": "/Users/rai/.codex/sessions",
+          "exists": true
+        }
+      ],
+      "root_exists": true,
+      "candidate_file_count": 24,
+      "scanned_files": [
+        {
+          "path": "/Users/rai/.codex/sessions/2026/06/07/rollout-2026-06-07T17-46-36-019ea17a-2177-7321-a1ca-745856d02bb1.jsonl",
+          "scanned_size": 4052437,
+          "mtime_ns": 1785400470866784492,
+          "prefix_sha256": "d87756007da45c17fef1b71ae0d95292d710a6bdb9cea7c065b081beb445d26e",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/06/14/rollout-2026-06-14T01-20-01-019ec1ff-6931-7ed3-8a6e-f9f4459e459a.jsonl",
+          "scanned_size": 7094153,
+          "mtime_ns": 1784625890133784014,
+          "prefix_sha256": "74c683d5204eb60ee6606b9a781ec880bb8ea3c16fbddea283c9fcea8ac524b3",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/23/rollout-2026-07-23T09-31-12-019f8c99-1bd4-7593-8f63-9154da3bc7e8.jsonl",
+          "scanned_size": 143497,
+          "mtime_ns": 1784770281479229884,
+          "prefix_sha256": "fe30a20f6c266ce55470658fd430a48ffdc7fdfe6484b428576c590b2a35c883",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/23/rollout-2026-07-23T14-38-55-019f8db2-d451-7381-83d6-3c5c73705992.jsonl",
+          "scanned_size": 2043355,
+          "mtime_ns": 1784792162985857059,
+          "prefix_sha256": "46d209e20ea90b431a829304de432a24044ec438792272a11f4000707a373d30",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/23/rollout-2026-07-23T15-00-59-019f8dc7-0b51-7f81-a543-80a064229765.jsonl",
+          "scanned_size": 166600,
+          "mtime_ns": 1784790077277068824,
+          "prefix_sha256": "2dbc722f9ede96d8759b881a636fe7a0820657aa7662be04d7e892a97bf30304",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/24/rollout-2026-07-24T11-22-25-019f9225-4c97-7120-b27e-a54a8c9e731a.jsonl",
+          "scanned_size": 1435350,
+          "mtime_ns": 1784872939322728570,
+          "prefix_sha256": "ca4b9941ec74cc1028e07f55006501dac7a5f9e1fe4f093842707859daff938e",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/24/rollout-2026-07-24T14-46-40-019f92e0-49e6-7661-a3ad-7ad8e7218a18.jsonl",
+          "scanned_size": 223674,
+          "mtime_ns": 1784875683793545334,
+          "prefix_sha256": "bdfd5f0fbfc12d00ee34e43f8bab651989a813b78548a5375c681ff42e531581",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/24/rollout-2026-07-24T15-08-11-019f92f3-fc49-7231-af59-25b8fa0e47c4.jsonl",
+          "scanned_size": 1516543,
+          "mtime_ns": 1785395648413471559,
+          "prefix_sha256": "5349d9b45abc213b909f4b02eb749c5751de89ac69923657949f2bb71ce2b9c4",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/24/rollout-2026-07-24T15-18-54-019f92fd-ccee-72a0-8175-172f36bbffff.jsonl",
+          "scanned_size": 101838,
+          "mtime_ns": 1784877545433422690,
+          "prefix_sha256": "a28998c0ef25b188b722c1ad612738e38933036217159e0ba13b678cfb2870f1",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/24/rollout-2026-07-24T15-21-11-019f92ff-e4e4-7982-a9fc-d03d271ac44c.jsonl",
+          "scanned_size": 106292,
+          "mtime_ns": 1784877681190097456,
+          "prefix_sha256": "8bf5c1d5f51f21b9116aefae7a8d7bf94565944c5a45d981036649bc7254e495",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/27/rollout-2026-07-27T15-51-37-019fa28e-d41a-7b83-a4f1-02552a3e3cfb.jsonl",
+          "scanned_size": 1307043,
+          "mtime_ns": 1785217135964110993,
+          "prefix_sha256": "745dd4d158d00b447f812be07d064bd5611469f95d1c5c5cda01e3f67ca80e7a",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/27/rollout-2026-07-27T15-57-07-019fa293-de1b-77b3-b58d-5f32bde247ac.jsonl",
+          "scanned_size": 128676,
+          "mtime_ns": 1785139087656135106,
+          "prefix_sha256": "3215d2e067b4c8466f295dc54f83c4126bc6fdaa6402511315e408e0652a56ff",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/27/rollout-2026-07-27T17-21-50-019fa2e1-6ebf-7941-8a84-f6c76d7bfd20.jsonl",
+          "scanned_size": 229214,
+          "mtime_ns": 1785206561279317107,
+          "prefix_sha256": "667949e1efc1fb5ae2ca7bd628599993463cee1e96e8d0ac83735520b5f496e8",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/28/rollout-2026-07-28T13-42-33-019fa73f-05be-7810-aee8-47a8997672ef.jsonl",
+          "scanned_size": 540157,
+          "mtime_ns": 1785217681330141432,
+          "prefix_sha256": "e0377ad3d4b403b846b2dd0aa8783433c159f6f50b728f2a945081c55a34976c",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/28/rollout-2026-07-28T13-45-24-019fa741-a4aa-7553-b03c-c22639aac9d9.jsonl",
+          "scanned_size": 179343,
+          "mtime_ns": 1785217569071371156,
+          "prefix_sha256": "1890c02fa69ab3801b48bb6f60cac65f28b8385c1a793ac8dd96a38af87b0ff6",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/28/rollout-2026-07-28T15-16-38-019fa795-29f6-73a1-9fd4-8a27a08ede53.jsonl",
+          "scanned_size": 142872,
+          "mtime_ns": 1785223064272194051,
+          "prefix_sha256": "24ed0ab91567e8a426823a300d2da1cb64444e9880055b555442ae8f1cde085f",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/28/rollout-2026-07-28T17-04-20-019fa7f7-c207-7660-aac2-6415a5679187.jsonl",
+          "scanned_size": 183356,
+          "mtime_ns": 1785229542886337179,
+          "prefix_sha256": "9625f9fb8ee23161cf83cefcf6cc9f33aacd4eca009a133048250031ad730cf8",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/28/rollout-2026-07-28T17-25-16-019fa80a-efd8-7582-a648-99fe63f7c9fc.jsonl",
+          "scanned_size": 1547439,
+          "mtime_ns": 1785478002201482985,
+          "prefix_sha256": "a174855a082ce65ae28b1aa555fd499d96b3ee4f4a752cc8eb2ab58898c75a85",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/29/rollout-2026-07-29T15-02-44-019facae-ca24-7af2-8db4-57939a9c3ecb.jsonl",
+          "scanned_size": 157425,
+          "mtime_ns": 1785308831201113232,
+          "prefix_sha256": "c02c3d698cd48f17a0ded50d99bb87ba2134919629697265d498e6f7fa788801",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/30/rollout-2026-07-30T10-22-21-019fb0d4-758d-7ba2-a294-87767a9fd889.jsonl",
+          "scanned_size": 250412,
+          "mtime_ns": 1785381783832411292,
+          "prefix_sha256": "e1bb37bce9501eb0766764a3d5d66f605eeb8b4bc71ea3c648c79d4ee461740a",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/30/rollout-2026-07-30T15-12-59-019fb1de-887e-73a3-b68c-627b4f6c6fe1.jsonl",
+          "scanned_size": 160011,
+          "mtime_ns": 1785395633384339078,
+          "prefix_sha256": "75abcbcdf6d4c984a7230bf0f98da8ae6882db08f047024fa07d299d4f8b61da",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/30/rollout-2026-07-30T15-41-42-019fb1f8-d686-7e51-89a8-2755b5bc39ff.jsonl",
+          "scanned_size": 856747,
+          "mtime_ns": 1785399706684722300,
+          "prefix_sha256": "8fb248403a7df4867be16ddcb3a7d9206cef7a1323647fa3d111b5609138d82f",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/30/rollout-2026-07-30T16-33-41-019fb228-6d20-7141-901b-ff2b316155b7.jsonl",
+          "scanned_size": 160832,
+          "mtime_ns": 1785400464165593952,
+          "prefix_sha256": "6bed98d3a1d8560ece8b03179d175de096e51286644ab6799fa18862ecc0b659",
+          "source_variant": "codex"
+        },
+        {
+          "path": "/Users/rai/.codex/sessions/2026/07/30/rollout-2026-07-30T17-58-20-019fb275-eacb-7872-bd8d-d2562cc64c1c.jsonl",
+          "scanned_size": 386507,
+          "mtime_ns": 1785405620524467829,
+          "prefix_sha256": "ce73024b98049c484a514d10cb76c68b6f09137c65c0490766d0b3ca02f48457",
+          "source_variant": "codex"
+        }
+      ],
+      "schema_record_count": 3279,
+      "invalid_record_count": 0,
+      "project_session_candidate_count": 10,
+      "user_message_count": 98,
+      "assistant_message_count": 174,
+      "message_coverage": "complete",
+      "sessions": [
+        {
+          "session_id": "019ec1ff-6931-7ed3-8a6e-f9f4459e459a",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/06/14/rollout-2026-06-14T01-20-01-019ec1ff-6931-7ed3-8a6e-f9f4459e459a.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-21T09:12:04.815000+00:00",
+          "last_message_at": "2026-07-21T09:24:50.032000+00:00",
+          "user_message_count": 4,
+          "assistant_message_count": 5,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "DOMAIN-KEYWORD",
+            "lazy",
+            "r_equ_all_countries_android",
+            "r_equ_all_countries_mac",
+            "r_equ_onlyUS_android",
+            "r_equ_onlyUS_mac"
+          ]
+        },
+        {
+          "session_id": "019ea17a-2177-7321-a1ca-745856d02bb1",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/06/07/rollout-2026-06-07T17-46-36-019ea17a-2177-7321-a1ca-745856d02bb1.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-23T01:28:25.417000+00:00",
+          "last_message_at": "2026-07-30T08:34:30.710000+00:00",
+          "user_message_count": 20,
+          "assistant_message_count": 47,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "lazy",
+            "r_equ_all_channel_countries_android",
+            "r_equ_all_channel_countries_mac",
+            "r_equ_all_countries_android",
+            "r_equ_all_countries_mac",
+            "r_equ_all_static_android",
+            "r_equ_all_static_mac",
+            "r_equ_onlyUS_android",
+            "r_equ_onlyUS_mac",
+            "tolerance"
+          ]
+        },
+        {
+          "session_id": "019f8db2-d451-7381-83d6-3c5c73705992",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/07/23/rollout-2026-07-23T14-38-55-019f8db2-d451-7381-83d6-3c5c73705992.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-23T06:39:49.627000+00:00",
+          "last_message_at": "2026-07-23T07:36:02.678000+00:00",
+          "user_message_count": 14,
+          "assistant_message_count": 26,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "019f9225-4c97-7120-b27e-a54a8c9e731a",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/07/24/rollout-2026-07-24T11-22-25-019f9225-4c97-7120-b27e-a54a8c9e731a.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-24T03:22:30.430000+00:00",
+          "last_message_at": "2026-07-24T06:02:19.114000+00:00",
+          "user_message_count": 8,
+          "assistant_message_count": 20,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "019f92f3-fc49-7231-af59-25b8fa0e47c4",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/07/24/rollout-2026-07-24T15-08-11-019f92f3-fc49-7231-af59-25b8fa0e47c4.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-24T07:12:46.009000+00:00",
+          "last_message_at": "2026-07-30T07:14:08.381000+00:00",
+          "user_message_count": 19,
+          "assistant_message_count": 14,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "019fa28e-d41a-7b83-a4f1-02552a3e3cfb",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/07/27/rollout-2026-07-27T15-51-37-019fa28e-d41a-7b83-a4f1-02552a3e3cfb.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-27T07:51:43.110000+00:00",
+          "last_message_at": "2026-07-28T05:38:55.909000+00:00",
+          "user_message_count": 13,
+          "assistant_message_count": 22,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "lazy",
+            "r_equ_all_channel_countries_android",
+            "r_equ_all_channel_countries_mac",
+            "r_equ_all_countries_android",
+            "r_equ_all_countries_mac",
+            "r_equ_all_static_android",
+            "r_equ_all_static_mac",
+            "r_equ_onlyUS_android",
+            "r_equ_onlyUS_mac",
+            "tolerance"
+          ]
+        },
+        {
+          "session_id": "019fa73f-05be-7810-aee8-47a8997672ef",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/07/28/rollout-2026-07-28T13-42-33-019fa73f-05be-7810-aee8-47a8997672ef.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-28T05:42:39.206000+00:00",
+          "last_message_at": "2026-07-28T05:48:01.261000+00:00",
+          "user_message_count": 2,
+          "assistant_message_count": 4,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "r_equ_all_channel_countries_android",
+            "r_equ_all_channel_countries_mac",
+            "r_equ_all_countries_android",
+            "r_equ_all_countries_mac",
+            "r_equ_all_static_android",
+            "r_equ_all_static_mac",
+            "r_equ_onlyUS_android",
+            "r_equ_onlyUS_mac"
+          ]
+        },
+        {
+          "session_id": "019fa80a-efd8-7582-a648-99fe63f7c9fc",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/07/28/rollout-2026-07-28T17-25-16-019fa80a-efd8-7582-a648-99fe63f7c9fc.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-28T09:25:24.755000+00:00",
+          "last_message_at": "2026-07-31T06:06:42.119000+00:00",
+          "user_message_count": 10,
+          "assistant_message_count": 21,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": []
+        },
+        {
+          "session_id": "019fb1f8-d686-7e51-89a8-2755b5bc39ff",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/07/30/rollout-2026-07-30T15-41-42-019fb1f8-d686-7e51-89a8-2755b5bc39ff.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-30T07:42:04.455000+00:00",
+          "last_message_at": "2026-07-30T08:21:46.611000+00:00",
+          "user_message_count": 6,
+          "assistant_message_count": 12,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "r_equ_all_channel_countries_android",
+            "r_equ_all_channel_countries_mac",
+            "r_equ_all_countries_android",
+            "r_equ_all_static_android",
+            "r_equ_onlyUS_android"
+          ]
+        },
+        {
+          "session_id": "019fb275-eacb-7872-bd8d-d2562cc64c1c",
+          "source_files": [
+            "/Users/rai/.codex/sessions/2026/07/30/rollout-2026-07-30T17-58-20-019fb275-eacb-7872-bd8d-d2562cc64c1c.jsonl"
+          ],
+          "source_variants": [
+            "codex"
+          ],
+          "first_message_at": "2026-07-30T09:58:25.379000+00:00",
+          "last_message_at": "2026-07-30T10:00:20.448000+00:00",
+          "user_message_count": 2,
+          "assistant_message_count": 3,
+          "project_evidence": [
+            "structured_cwd_or_tool_path"
+          ],
+          "change_marker_hits": [
+            "r_equ_all_channel_countries_android",
+            "r_equ_onlyUS_mac"
+          ]
+        }
+      ],
+      "errors": []
+    },
+    {
+      "agent": "claude-code",
+      "search_executed": true,
+      "status": "searched_no_relevant_sessions",
+      "method": "known_method",
+      "checked_roots": [
+        "/Users/rai/.claude/projects"
+      ],
+      "root_status": [
+        {
+          "variant": "claude-code",
+          "path": "/Users/rai/.claude/projects",
+          "exists": true
+        }
+      ],
+      "root_exists": true,
+      "candidate_file_count": 0,
+      "scanned_files": [],
+      "schema_record_count": 0,
+      "invalid_record_count": 0,
+      "project_session_candidate_count": 0,
+      "user_message_count": 0,
+      "assistant_message_count": 0,
+      "message_coverage": "none",
+      "sessions": [],
+      "errors": []
+    },
+    {
+      "agent": "openclaw",
+      "search_executed": true,
+      "status": "searched_no_relevant_sessions",
+      "method": "known_method",
+      "checked_roots": [
+        "/Users/rai/.openclaw/agents"
+      ],
+      "root_status": [
+        {
+          "variant": "openclaw",
+          "path": "/Users/rai/.openclaw/agents",
+          "exists": true
+        }
+      ],
+      "root_exists": true,
+      "candidate_file_count": 0,
+      "scanned_files": [],
+      "schema_record_count": 0,
+      "invalid_record_count": 0,
+      "project_session_candidate_count": 0,
+      "user_message_count": 0,
+      "assistant_message_count": 0,
+      "message_coverage": "none",
+      "sessions": [],
+      "errors": []
+    }
+  ],
+  "receipt_sha256": "382a2325aa707614fc65b42fedd7c358a55f2c06b4c302c459f3f48e67f707ca"
+}

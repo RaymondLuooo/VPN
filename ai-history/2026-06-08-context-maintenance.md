@@ -27,7 +27,7 @@ Metadata:
 
 新增：
 
-- `ai-history/codex/2026-06-08-context-maintenance.md`
+- `ai-history/2026-06-08-context-maintenance.md`
 
 更新：
 

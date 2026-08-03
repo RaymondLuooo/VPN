@@ -108,7 +108,7 @@
 ## 输出结果
 
 - 更新长期上下文文档。
-- 新增 `ai-history/codex/2026-06-14-context-maintenance.md`。
+- 新增 `ai-history/2026-06-14-context-maintenance.md`。
 
 ## 后续事项
 

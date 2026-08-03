@@ -1,0 +1,235 @@
+maintenance_id: "2026-07-31-143000"
+receipt_sha256: "382a2325aa707614fc65b42fedd7c358a55f2c06b4c302c459f3f48e67f707ca"
+sources:
+  antigravity:
+    receipt_status: "searched_found"
+    receipt_session_count: 17
+    sessions:
+      - id: "b7f53e24-cc6e-4e01-a2b6-ee12ff212980"
+        source_file: "~/.gemini/antigravity-ide/brain/b7f53e24-cc6e-4e01-a2b6-ee12ff212980/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-21T09:06:03+00:00", "2026-07-21T09:21:26+00:00"]
+        user_msg_count: 3
+        assistant_msg_count: 3
+        read_completed: true
+        disposition: "排除"
+        reason: "属于前一维护轮次的已知修改，已包含在上次资料中"
+      - id: "78c2bca8-2d2e-440f-9e92-408089b244a8"
+        source_file: "~/.gemini/antigravity/brain/78c2bca8-2d2e-440f-9e92-408089b244a8/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-22T03:19:31+00:00", "2026-07-22T10:08:39+00:00"]
+        user_msg_count: 13
+        assistant_msg_count: 15
+        read_completed: true
+        disposition: "排除"
+        reason: "常规排查与调试对话，未形成新的项目结构变更"
+      - id: "dc8574f0-2388-4fe5-9430-15fe4ffea63f"
+        source_file: "~/.gemini/antigravity/brain/dc8574f0-2388-4fe5-9430-15fe4ffea63f/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-22T03:21:28+00:00", "2026-07-24T03:20:46+00:00"]
+        user_msg_count: 8
+        assistant_msg_count: 8
+        read_completed: true
+        disposition: "排除"
+        reason: "属于通用咨询与临时日志排查，无持久化配置改动"
+      - id: "fd6b9295-0eb6-4815-9936-b999ee251576"
+        source_file: "~/.gemini/antigravity/brain/fd6b9295-0eb6-4815-9936-b999ee251576/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-23T02:15:49+00:00", "2026-07-23T02:23:33+00:00"]
+        user_msg_count: 2
+        assistant_msg_count: 2
+        read_completed: true
+        disposition: "排除"
+        reason: "简短确认对话，未涉及新配置更改"
+      - id: "82c1004d-ea94-4d8c-940f-39c13d46465c"
+        source_file: "~/.gemini/antigravity/brain/82c1004d-ea94-4d8c-940f-39c13d46465c/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-23T07:52:51+00:00", "2026-07-27T08:23:20+00:00"]
+        user_msg_count: 29
+        assistant_msg_count: 34
+        read_completed: true
+        disposition: "排除"
+        reason: "主要为其他工具或概念探讨，非本轮核心变更"
+      - id: "f4f3a215-3678-460e-8bd5-646caed592a3"
+        source_file: "~/.gemini/antigravity/brain/f4f3a215-3678-460e-8bd5-646caed592a3/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-23T08:21:25+00:00", "2026-07-24T02:57:50+00:00"]
+        user_msg_count: 6
+        assistant_msg_count: 6
+        read_completed: true
+        disposition: "排除"
+        reason: "无配置更改与项目变更"
+      - id: "206eb1ff-1592-4c59-8a81-8d538904015b"
+        source_file: "~/.gemini/antigravity/brain/206eb1ff-1592-4c59-8a81-8d538904015b/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-24T01:24:17+00:00", "2026-07-24T03:08:47+00:00"]
+        user_msg_count: 1
+        assistant_msg_count: 1
+        read_completed: true
+        disposition: "排除"
+        reason: "无有效修改"
+      - id: "121588fe-10ff-4a23-a95e-3d499efd99c8"
+        source_file: "~/.gemini/antigravity/brain/121588fe-10ff-4a23-a95e-3d499efd99c8/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-24T06:35:23+00:00", "2026-07-24T06:35:41+00:00"]
+        user_msg_count: 1
+        assistant_msg_count: 1
+        read_completed: true
+        disposition: "排除"
+        reason: "单步指令无配置改动"
+      - id: "c44ada94-a2a3-4e1d-b68a-3f35300760e4"
+        source_file: "~/.gemini/antigravity/brain/c44ada94-a2a3-4e1d-b68a-3f35300760e4/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-24T07:39:39+00:00", "2026-07-24T07:41:31+00:00"]
+        user_msg_count: 1
+        assistant_msg_count: 1
+        read_completed: true
+        disposition: "排除"
+        reason: "无配置修改"
+      - id: "cb78cec0-ed30-4b2c-9e38-71f4eedffa81"
+        source_file: "~/.gemini/antigravity-ide/brain/cb78cec0-ed30-4b2c-9e38-71f4eedffa81/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-27T00:34:18+00:00", "2026-07-27T00:35:25+00:00"]
+        user_msg_count: 2
+        assistant_msg_count: 2
+        read_completed: true
+        disposition: "排除"
+        reason: "开发体验微调未更改 VPN 配置"
+      - id: "8da8b7ba-c655-4108-bd3c-7e438eacd401"
+        source_file: "~/.gemini/antigravity-ide/brain/8da8b7ba-c655-4108-bd3c-7e438eacd401/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-27T07:11:32+00:00", "2026-07-27T07:16:57+00:00"]
+        user_msg_count: 2
+        assistant_msg_count: 2
+        read_completed: true
+        disposition: "排除"
+        reason: "简短问答"
+      - id: "d68159a6-1e26-494b-a3f0-57b4b75d1772"
+        source_file: "~/.gemini/antigravity-ide/brain/d68159a6-1e26-494b-a3f0-57b4b75d1772/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-27T07:18:47+00:00", "2026-07-27T08:14:53+00:00"]
+        user_msg_count: 3
+        assistant_msg_count: 3
+        read_completed: true
+        disposition: "排除"
+        reason: "调试记录未形成独立版本提交"
+      - id: "a9ec5aac-df79-4ed3-8863-473c2fa90269"
+        source_file: "~/.gemini/antigravity/brain/a9ec5aac-df79-4ed3-8863-473c2fa90269/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-28T05:46:19+00:00", "2026-07-28T05:46:52+00:00"]
+        user_msg_count: 1
+        assistant_msg_count: 1
+        read_completed: true
+        disposition: "排除"
+        reason: "无配置更改"
+      - id: "56a31881-975e-42a0-80bb-80941022c15d"
+        source_file: "~/.gemini/antigravity/brain/56a31881-975e-42a0-80bb-80941022c15d/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-28T09:18:27+00:00", "2026-07-28T09:24:08+00:00"]
+        user_msg_count: 2
+        assistant_msg_count: 2
+        read_completed: true
+        disposition: "排除"
+        reason: "探讨问题未产生改动"
+      - id: "7ae32748-d6c7-4ffa-8864-32c9f810b3df"
+        source_file: "~/.gemini/antigravity/brain/7ae32748-d6c7-4ffa-8864-32c9f810b3df/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-30T07:26:57+00:00", "2026-07-31T06:28:40+00:00"]
+        user_msg_count: 15
+        assistant_msg_count: 12
+        read_completed: true
+        disposition: "全部纳入"
+        reason: "包含本轮核心配置修补：Mihomo exclude-filter 解析空列表 bug 修复、url-test 容差与懒惰测速调整、悠兔 anytls 到 trojan 的 subconverter 转换、全量 8 份配置加入 AI 域名关键字路由规则"
+      - id: "1d8d46ff-e992-4d5a-b1aa-e82eab4ba8f4"
+        source_file: "~/.gemini/antigravity/brain/1d8d46ff-e992-4d5a-b1aa-e82eab4ba8f4/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-30T09:01:02+00:00", "2026-07-30T09:42:12+00:00"]
+        user_msg_count: 2
+        assistant_msg_count: 2
+        read_completed: true
+        disposition: "排除"
+        reason: "临时验证询问"
+      - id: "31d1fbbb-5d74-423b-8e7f-77a67b65cf12"
+        source_file: "~/.gemini/antigravity/brain/31d1fbbb-5d74-423b-8e7f-77a67b65cf12/.system_generated/logs/transcript.jsonl"
+        message_range: ["2026-07-30T10:02:33+00:00", "2026-07-30T10:04:22+00:00"]
+        user_msg_count: 1
+        assistant_msg_count: 1
+        read_completed: true
+        disposition: "排除"
+        reason: "临时问答"
+  codex:
+    receipt_status: "searched_found"
+    receipt_session_count: 10
+    sessions:
+      - id: "019ec1ff-6931-7ed3-8a6e-f9f4459e459a"
+        source_file: "~/.codex/sessions/2026/06/14/rollout-2026-06-14T01-20-01-019ec1ff-6931-7ed3-8a6e-f9f4459e459a.jsonl"
+        message_range: ["2026-07-21T09:12:04.815000+00:00", "2026-07-21T09:24:50.032000+00:00"]
+        user_msg_count: 4
+        assistant_msg_count: 5
+        read_completed: true
+        disposition: "排除"
+        reason: "属于前一维护轮次的记录"
+      - id: "019ea17a-2177-7321-a1ca-745856d02bb1"
+        source_file: "~/.codex/sessions/2026/06/07/rollout-2026-06-07T17-46-36-019ea17a-2177-7321-a1ca-745856d02bb1.jsonl"
+        message_range: ["2026-07-23T01:28:25.417000+00:00", "2026-07-30T08:34:30.710000+00:00"]
+        user_msg_count: 20
+        assistant_message_count: 47
+        read_completed: true
+        disposition: "排除"
+        reason: "长时效基础探索会话，本轮修改由 Antigravity 完成"
+      - id: "019f8db2-d451-7381-83d6-3c5c73705992"
+        source_file: "~/.codex/sessions/2026/07/23/rollout-2026-07-23T14-38-55-019f8db2-d451-7381-83d6-3c5c73705992.jsonl"
+        message_range: ["2026-07-23T06:39:49.627000+00:00", "2026-07-23T07:36:02.678000+00:00"]
+        user_msg_count: 14
+        assistant_msg_count: 26
+        read_completed: true
+        disposition: "排除"
+        reason: "属于非相关辅助会话"
+      - id: "019f9225-4c97-7120-b27e-a54a8c9e731a"
+        source_file: "~/.codex/sessions/2026/07/24/rollout-2026-07-24T11-22-25-019f9225-4c97-7120-b27e-a54a8c9e731a.jsonl"
+        message_range: ["2026-07-24T03:22:30.430000+00:00", "2026-07-24T06:02:19.114000+00:00"]
+        user_msg_count: 8
+        assistant_msg_count: 20
+        read_completed: true
+        disposition: "排除"
+        reason: "属于非相关代码辅助讨论"
+      - id: "019f92f3-fc49-7231-af59-25b8fa0e47c4"
+        source_file: "~/.codex/sessions/2026/07/24/rollout-2026-07-24T15-08-11-019f92f3-fc49-7231-af59-25b8fa0e47c4.jsonl"
+        message_range: ["2026-07-24T07:12:46.009000+00:00", "2026-07-30T07:14:08.381000+00:00"]
+        user_msg_count: 19
+        assistant_msg_count: 14
+        read_completed: true
+        disposition: "排除"
+        reason: "属于非相关开发咨询"
+      - id: "019fa28e-d41a-7b83-a4f1-02552a3e3cfb"
+        source_file: "~/.codex/sessions/2026/07/27/rollout-2026-07-27T15-51-37-019fa28e-d41a-7b83-a4f1-02552a3e3cfb.jsonl"
+        message_range: ["2026-07-27T07:51:43.110000+00:00", "2026-07-28T05:38:55.909000+00:00"]
+        user_msg_count: 13
+        assistant_msg_count: 22
+        read_completed: true
+        disposition: "排除"
+        reason: "探索性会话无配置提交"
+      - id: "019fa73f-05be-7810-aee8-47a8997672ef"
+        source_file: "~/.codex/sessions/2026/07/28/rollout-2026-07-28T13-42-33-019fa73f-05be-7810-aee8-47a8997672ef.jsonl"
+        message_range: ["2026-07-28T05:42:39.206000+00:00", "2026-07-28T05:48:01.261000+00:00"]
+        user_msg_count: 2
+        assistant_msg_count: 4
+        read_completed: true
+        disposition: "排除"
+        reason: "属于常规咨询"
+      - id: "019fa80a-efd8-7582-a648-99fe63f7c9fc"
+        source_file: "~/.codex/sessions/2026/07/28/rollout-2026-07-28T17-25-16-019fa80a-efd8-7582-a648-99fe63f7c9fc.jsonl"
+        message_range: ["2026-07-28T09:25:24.755000+00:00", "2026-07-31T06:06:42.119000+00:00"]
+        user_msg_count: 10
+        assistant_msg_count: 21
+        read_completed: true
+        disposition: "排除"
+        reason: "无关工具讨论"
+      - id: "019fb1f8-d686-7e51-89a8-2755b5bc39ff"
+        source_file: "~/.codex/sessions/2026/07/30/rollout-2026-07-30T15-41-42-019fb1f8-d686-7e51-89a8-2755b5bc39ff.jsonl"
+        message_range: ["2026-07-30T07:42:04.455000+00:00", "2026-07-30T08:21:46.611000+00:00"]
+        user_msg_count: 6
+        assistant_msg_count: 12
+        read_completed: true
+        disposition: "排除"
+        reason: "常规修改无独立提交"
+      - id: "019fb275-eacb-7872-bd8d-d2562cc64c1c"
+        source_file: "~/.codex/sessions/2026/07/30/rollout-2026-07-30T17-58-20-019fb275-eacb-7872-bd8d-d2562cc64c1c.jsonl"
+        message_range: ["2026-07-30T09:58:25.379000+00:00", "2026-07-30T10:00:20.448000+00:00"]
+        user_msg_count: 2
+        assistant_msg_count: 3
+        read_completed: true
+        disposition: "排除"
+        reason: "简短问答"
+  claude-code:
+    receipt_status: "searched_no_relevant_sessions"
+    receipt_session_count: 0
+    sessions: []
+  openclaw:
+    receipt_status: "searched_no_relevant_sessions"
+    receipt_session_count: 0
+    sessions: []

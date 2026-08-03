@@ -1,6 +1,6 @@
 # AGENTS.md
 
-最近更新时间：2026-07-20 23:22:00 Asia/Shanghai
+最近更新时间：2026-07-31 14:30:00 Asia/Shanghai
 
 ## Project identity
 
@@ -16,8 +16,6 @@
 - `r_equ_all_channel_countries_mac` / `android`: 所有国家渠道衍生配置。
 - `lazy_group_防DNS泄露去广告后的备份.conf`: Shadowrocket 备份配置，保留更接近通用区域节点分组的规则结构。
 - `raymond_direct.list`: 用户自维护的直连规则集，被 Shadowrocket 和 Mihomo 共同引用；在 Mihomo 中同时参与 `nameserver-policy`，影响对应域名的 DNS 解析出口。
-
-Git 当前仍跟踪旧文件名 `local_group.conf` 和 `isp_local`，但 2026-07-20 工作树显示它们已被删除并由多份 `r_equ_*` 配置替代；提交前必须确认这是用户预期的迁移。
 
 ## Required reading order
 

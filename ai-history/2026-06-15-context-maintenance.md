@@ -111,7 +111,7 @@
 
 #### 发现的问题
 
-旧项目已有多个 `ai-history/codex/*.md` 文件，但没有统一索引。
+旧项目已有多个 `ai-history/*.md` 文件，但没有统一索引。
 
 #### 解决方案
 
@@ -121,7 +121,7 @@
 
 - `AGENTS.md`
 - `ai-history/INDEX.md`
-- `ai-history/codex/2026-06-15-context-maintenance.md`
+- `ai-history/2026-06-15-context-maintenance.md`
 
 #### 验证情况
 
@@ -146,7 +146,7 @@
 
 - 更新长期上下文文档。
 - 新增 `ai-history/INDEX.md`。
-- 新增 `ai-history/codex/2026-06-15-context-maintenance.md`。
+- 新增 `ai-history/2026-06-15-context-maintenance.md`。
 
 ## 后续事项
 

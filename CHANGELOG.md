@@ -1,6 +1,63 @@
 # Changelog
 
-最近更新时间：2026-07-20 23:22:00 Asia/Shanghai
+最近更新时间：2026-07-31 14:30:00 Asia/Shanghai
+
+## [0.1.9] - 2026-07-31
+
+更新时间：2026-07-31 14:30:00 Asia/Shanghai
+维护 ID：2026-07-31-143000
+Git 锚点：d26e6cd
+锚点工作树状态：dirty
+已覆盖未提交文件：AGENTS.md, CHANGELOG.md, README.md, ai-history/INDEX.md, docs/HANDOFF.md, docs/PROJECT_CONTEXT.md, docs/TESTING.md
+增量可信度：精确
+
+### 上下文文档
+
+- 增量更新项目资料，资料维护锚点推进到 2026-07-31 14:30:00。
+- 记录 Mihomo 语法瑕疵修复（`exclude-filter` 补全 `filter: ".*"`）。
+- 记录接入 `sub.xeton.dev` 云端订阅转换成功解决“机场悠兔” `anytls` 私有协议在 Clash Meta 报错解析为 0 节点的 bug。
+- 记录 Android 配置文件 `url-test` 参数调优（`tolerance: 50`, `lazy: true`）。
+- 记录全量 8 份 `r_equ_*` 配置文件新增 AI 服务域名关键字路由规则（`anthropic` / `claude` / `openai` / `gemini` / `chatgpt`）并已 commit/push 至 GitHub。
+- 追加 `ai-history/2026-07-31-143000-修复Mihomo语法瑕疵与接入转换器及AI关键字路由-跨Agent会话归纳.md`，并更新 `ai-history/INDEX.md`。
+
+### 代码 / 已观察行为
+
+- 在 `r_equ_all_channel_countries_android` 中补充 `filter: ".*"`，解决多订阅下单独使用 `exclude-filter` 导致内核解析出的底层节点列表为空的问题。
+- 将 Android 配置中 `机场悠兔` 的订阅 URL 改为通过 `sub.xeton.dev` 转换拉取，成功将 `type: anytls` 转为标准的 `type: trojan`。
+- 将所有 Android 配置中的 `url-test` 策略组参数修改为 `tolerance: 50` 和 `lazy: true`。
+- 在全部 8 份 `r_equ_*` 配置文件中加入了 `DOMAIN-KEYWORD,anthropic`、`claude`、`openai`、`gemini`、`chatgpt` 导向 `静态住宅`。
+
+### 已记录的问题 / 风险
+
+- 依赖外部公共订阅转换服务 `sub.xeton.dev`，长效稳定性需保持观察。
+
+### 验证确认
+
+- 用户实测确认：通过 `sub.xeton.dev` 转换后，“机场悠兔”在安卓端 Clash Meta / Mihomo 中节点已可正常连接与测速。
+- 8 份配置文件已全部 commit 并成功 push 至 GitHub 远端 `main` 分支。
+
+*(⚠️ 历史改动的详细背景、曾被否决的方案和踩坑记录，统一归档在 `ai-history/INDEX.md` 中。除非当前文档无法解释现有逻辑，否则不要前往该索引进行检索。)*
+
+## [0.1.8] - 2026-07-21
+
+更新时间：2026-07-21 17:06:03 Asia/Shanghai
+维护 ID：2026-07-21-170603
+Git 锚点：e01a8ee
+锚点工作树状态：clean
+已覆盖未提交文件：无
+增量可信度：精确
+
+### 上下文文档
+
+- 增量更新项目资料，资料维护锚点推进到 2026-07-21 17:06:03。
+- 记录 8 份主配置增加了开头 DNS 配置说明。
+- 记录项目之前大量的未提交文件与配置已完成 git commit 提交。
+- 追加 `ai-history/2026-07-21-170603-完善DNS配置注释-跨Agent会话归纳.md`，并更新 `ai-history/INDEX.md`。
+
+### 代码 / 已观察行为
+
+- `r_equ_all_countries_android` 等 8 份主配置文件在开头“配置文件节点组说明”后增加了统一的 `# DNS 配置说明：` 块。对 Android 说明了 TUN 劫持和 fake-ip，对 Mac 说明了 hijack-dns 和默认 DoH 解析。
+- 项目配置和长效文档已通过 `e01a8ee` commit 被纳入 Git，解决之前大量 untracked 和 modified 的累积状态。
 
 ## [0.1.7] - 2026-07-20
 
@@ -15,7 +72,7 @@ Git 锚点：6ec9d3b
 - 增量更新项目资料，资料维护锚点推进到 2026-07-20 23:22:00。
 - 记录旧单一配置拆分为四份，并新衍生了“静态住宅代理”版本及“所有国家渠道”版本，细化了节点池（仅美国、全地区赠送等）。
 - 记录 Mac 配置增加策略组说明注释。
-- 追加 `ai-history/antigravity/2026-07-20-232200-配置文件扩展及静态住宅代理更新-跨Agent会话归纳.md`，并更新 `ai-history/INDEX.md`。
+- 追加 `ai-history/2026-07-20-232200-配置文件扩展及静态住宅代理更新-跨Agent会话归纳.md`，并更新 `ai-history/INDEX.md`。
 
 ### 代码 / 已观察行为
 
@@ -46,7 +103,7 @@ Git 锚点：6ec9d3b
 - 记录工作树中旧 `local_group.conf` 和 `isp_local` 已删除，新增 `r_equ_onlyUS_mac`、`r_equ_all_countries_mac`、`r_equ_onlyUS_android`、`r_equ_all_countries_android` 四份配置。
 - 记录配置矩阵从“单 Mac / 单 Android 主配置”迁移为 Mac / Android × 仅美国优先 / 全地区赠送节点。
 - 记录 `logs/` 目录承载 Clash 日志和 SQLite 运行态文件，根目录和 `logs/` 均存在 `.DS_Store`；本轮只确认文件名和大小，未读取内容。
-- 追加 `ai-history/codex/2026-06-28-配置拆分为多客户端多节点池.md`，并更新 `ai-history/INDEX.md`。
+- 追加 `ai-history/2026-06-28-配置拆分为多客户端多节点池.md`，并更新 `ai-history/INDEX.md`。
 
 ### Code / behavior observed
 
@@ -80,7 +137,7 @@ Git 锚点：6ec9d3b
 - 记录 Shadowrocket `Global` 规则和 `FINAL` 最终兜底已从 `PROXY` 改为 `赠送美国`。
 - 记录 Mihomo `Global` 规则和 `MATCH` 最终兜底已从 `PROXY` 改为 `赠送美国`。
 - 记录 Mihomo 中 `机场悠兔` provider 的订阅更新出口已从 `DIRECT` 改为 `PROXY`，`机场equaldcdn` 仍保持 `DIRECT`。
-- 创建 `ai-history/INDEX.md`，并追加 `ai-history/codex/2026-06-15-context-maintenance.md`。
+- 创建 `ai-history/INDEX.md`，并追加 `ai-history/2026-06-15-context-maintenance.md`。
 
 ### Code / behavior observed
 
@@ -110,7 +167,7 @@ Git 锚点：6ec9d3b
 - 记录 `赠送美国` 已调整为美国非静态节点主选、非美非静态节点兜底的两层策略结构；高流量业务规则仍指向总组 `赠送美国`。
 - 记录 `main` 当前与 `origin/main` 同步，旧文档中的 `ahead 1` 和需要用户手动 push 的状态已过期。
 - 记录本地存在未跟踪的 Clash 日志和 SQLite 运行态文件；本轮只确认文件名和大小，未读取内容。
-- 追加 `ai-history/codex/2026-06-14-context-maintenance.md`。
+- 追加 `ai-history/2026-06-14-context-maintenance.md`。
 
 ### Code / behavior observed
 
@@ -139,7 +196,7 @@ Git 锚点：6ec9d3b
 - 增量更新项目资料，锚点从 `ca06385 Apple 和 iCloud 加入自定义直连规则` 更新为 `41ee9d7 增加apple一个API 为直连， 增加代码注释`。
 - 记录 `apple-cloudkit.com` 已加入 `raymond_direct.list`，作为 Apple CloudKit 相关 API 的直连规则。
 - 记录 `isp_local` 和 `local_group.conf` 新增注释，解释 DNS 策略、`RaymondDirect`、`静态住宅`、`赠送美国`、规则集意义和规则顺序。
-- 追加 `ai-history/codex/2026-06-10-apple-cloudkit-comments.md`。
+- 追加 `ai-history/2026-06-10-apple-cloudkit-comments.md`。
 
 ### Code / behavior observed
 
@@ -168,7 +225,7 @@ Git 锚点：6ec9d3b
 - 记录 `raymond_direct.list` 已成为两端共享的用户自维护直连规则源。
 - 记录 Mihomo `dns.nameserver-policy` 通过 `rule-set:RaymondDirect` 控制系统 DNS 的当前设计。
 - 记录 Shadowrocket 需要在 `[Host]` 中手动同步 `server:system` 域名，不能直接引用远程 rule-set 做 DNS policy。
-- 追加 `ai-history/codex/2026-06-10-context-maintenance.md`。
+- 追加 `ai-history/2026-06-10-context-maintenance.md`。
 
 ### Code / behavior observed
 
@@ -196,7 +253,7 @@ Git 锚点：6ec9d3b
 - 增量更新项目资料，锚点从 `f8b098e Initial commit` 更新为 `45deae4 Enable Mihomo sniffer for pure IP traffic`。
 - 记录 `2e94fb9` 中 YouTube App / 媒体域名与 Google Photos 备份流量改走 `赠送美国` 的分流意图。
 - 记录 `45deae4` 中 Mihomo sniffer 针对纯 IP 流量的配置变化。
-- 追加 `ai-history/codex/2026-06-08-context-maintenance.md`。
+- 追加 `ai-history/2026-06-08-context-maintenance.md`。
 
 ### Code / behavior observed
 
@@ -220,7 +277,7 @@ Git 锚点：6ec9d3b
 ### Context documents
 
 - 初始化 `AGENTS.md`、`README.md`、`docs/PROJECT_CONTEXT.md`、`docs/TESTING.md`、`docs/HANDOFF.md`。
-- 初始化 `ai-history/codex/2026-06-07-context-maintenance.md`。
+- 初始化 `ai-history/2026-06-07-context-maintenance.md`。
 - 明确 Shadowrocket 与 Mihomo 配置文件职责。
 - 记录敏感订阅入口处理规则。
 

@@ -34,7 +34,7 @@ Metadata:
 - `docs/PROJECT_CONTEXT.md`
 - `docs/TESTING.md`
 - `docs/HANDOFF.md`
-- `ai-history/codex/2026-06-07-context-maintenance.md`
+- `ai-history/2026-06-07-context-maintenance.md`
 
 未修改：
 

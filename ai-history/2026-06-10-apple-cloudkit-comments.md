@@ -33,7 +33,7 @@ Metadata:
 - `docs/PROJECT_CONTEXT.md`
 - `docs/TESTING.md`
 - `docs/HANDOFF.md`
-- `ai-history/codex/2026-06-10-apple-cloudkit-comments.md`
+- `ai-history/2026-06-10-apple-cloudkit-comments.md`
 
 ## Bugs Encountered
 
