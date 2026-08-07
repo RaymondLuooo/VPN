@@ -72,6 +72,16 @@ DOMAIN-SUFFIX,googlesyndication.com,REJECT
 # 放在原手写域名位置以保留匹配顺序；如果新增域名需要系统 DNS，还要同步维护 [Host]。
 RULE-SET,https://raw.githubusercontent.com/RaymondLuooo/VPN/main/raymond_direct.list,DIRECT
 
+# 股票行情数据源分流：
+# Yahoo、Nasdaq、FRED 使用静态住宅出口，避免赠送节点的 TLS 异常、限流或出口 IP 风控。
+DOMAIN-SUFFIX,yahoo.com,静态住宅
+DOMAIN-SUFFIX,nasdaq.com,静态住宅
+DOMAIN-SUFFIX,stlouisfed.org,静态住宅
+
+# 国内实时行情接口必须直连，避免海外出口导致 TLS WRONG_VERSION_NUMBER。
+DOMAIN,hq.sinajs.cn,DIRECT
+DOMAIN,qt.gtimg.cn,DIRECT
+
 # YouTube App / 流媒体域名放在 Google 宽规则前，避免被 googleapis / googleusercontent / gstatic 提前命中到静态住宅。
 # 这些域名在本配置中统一走静态住宅出口。
 DOMAIN-SUFFIX,youtube.com,静态住宅
@@ -165,6 +175,9 @@ FINAL,静态住宅
 # raymond_direct.list 可以作为远程规则集参与 DIRECT 路由，但 Shadowrocket 的 [Host] 不能引用远程 rule-set。
 # 因此需要把适合系统 DNS 的自维护直连域名手动同步到这里，避免国内 CDN 或企业服务被海外 DoH 解析偏移。
 # 不要把 AI、Google、GitHub 或其他敏感海外服务加入 server:system。
+# 国内股票行情接口直连时使用系统 DNS，避免代理 DoH 返回海外或异常地址。
+hq.sinajs.cn = server:system
+qt.gtimg.cn = server:system
 # 字节跳动 / 豆包输入法（ByteDance / Doubao IME）使用系统 DNS。
 bytedance.com = server:system
 *.bytedance.com = server:system

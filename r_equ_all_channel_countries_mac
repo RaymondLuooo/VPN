@@ -7,7 +7,7 @@
 #    - 匹配流量：Google 宽规则、AI 工具 (OpenAI, Anthropic, Claude, Gemini, Copilot 等)、GitHub，优先保证账号稳定与风控一致性。
 #
 # 2. 赠送节点 (url-test 自动测速组)
-#    - 节点来源：筛选所有导入订阅中，名称不含“静态”的所有节点 (policy-regex-filter=^(?!.*静态).*$)，不限国家和地区，自动选取延迟最低的节点。
+#    - 节点来源：筛选所有导入订阅中，名称不含“静态”且包含“台湾”、“日本”、“新加坡”、“美国”或“韩国”的节点 (policy-regex-filter=^(?!.*静态).*(台湾|日本|新加坡|美国|韩国))，自动选取延迟最低的节点。
 #    - 匹配流量：YouTube、Google Photos 媒体传输、国外流媒体 (Netflix, Disney, HBO, Spotify)、社交/平台 (Telegram, Twitter, Facebook, TikTok)、支付/购物 (PayPal, Amazon)、游戏平台 (Sony, Nintendo, Epic, Steam, Game)、Microsoft 服务、Global 规则以及 FINAL 未命中规则的国外通用代理流量，用于降低大流量成本。
 # ==============================================================================
 # DNS 配置说明：
@@ -62,9 +62,9 @@ update-url = https://raw.githubusercontent.com/RaymondLuooo/VPN/main/r_equ_all_c
 
 [Proxy Group]
 # 静态住宅：用于 AI、Google、GitHub 等账号或风控敏感服务，优先稳定住宅出口和账号信誉。
-# 赠送节点：从所有已导入订阅中选名字不包含"静态"的节点，按延迟自动测速选最快节点。
+# 赠送节点：从所有已导入订阅中选名字不包含"静态"且包含"台湾|日本|新加坡|美国|韩国"的节点，按延迟自动测速选最快节点。
 静态住宅 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=0,timeout=5,select=0,policy-regex-filter=静态.*住宅|住宅.*静态
-赠送节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=0,timeout=5,select=0,policy-regex-filter=^(?!.*静态).*$
+赠送节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=0,timeout=5,select=0,policy-regex-filter=^(?!.*静态).*(台湾|日本|新加坡|美国|韩国)
 
 [Rule]
 # 规则按顺序匹配；广告拦截、用户自维护直连、YouTube / Google Photos 前置规则都依赖当前顺序。
@@ -77,6 +77,16 @@ DOMAIN-SUFFIX,googlesyndication.com,REJECT
 # raymond_direct.list 是用户自维护直连规则集，包含 Apple / iCloud、飞书 / Lark、网易系、QQ、多点等明确要直连的域名。
 # 放在原手写域名位置以保留匹配顺序；如果新增域名需要系统 DNS，还要同步维护 [Host]。
 RULE-SET,https://raw.githubusercontent.com/RaymondLuooo/VPN/main/raymond_direct.list,DIRECT
+
+# 股票行情数据源分流：
+# Yahoo、Nasdaq、FRED 使用静态住宅出口，避免赠送节点的 TLS 异常、限流或出口 IP 风控。
+DOMAIN-SUFFIX,yahoo.com,静态住宅
+DOMAIN-SUFFIX,nasdaq.com,静态住宅
+DOMAIN-SUFFIX,stlouisfed.org,静态住宅
+
+# 国内实时行情接口必须直连，避免海外出口导致 TLS WRONG_VERSION_NUMBER。
+DOMAIN,hq.sinajs.cn,DIRECT
+DOMAIN,qt.gtimg.cn,DIRECT
 
 # YouTube App / 流媒体域名放在 Google 宽规则前，避免被 googleapis / googleusercontent / gstatic 提前命中到静态住宅。
 # 这些域名流量大，优先走赠送节点，减少住宅节点消耗。
@@ -171,6 +181,9 @@ FINAL,赠送节点
 # raymond_direct.list 可以作为远程规则集参与 DIRECT 路由，但 Shadowrocket 的 [Host] 不能引用远程 rule-set。
 # 因此需要把适合系统 DNS 的自维护直连域名手动同步到这里，避免国内 CDN 或企业服务被海外 DoH 解析偏移。
 # 不要把 AI、Google、GitHub 或其他敏感海外服务加入 server:system。
+# 国内股票行情接口直连时使用系统 DNS，避免代理 DoH 返回海外或异常地址。
+hq.sinajs.cn = server:system
+qt.gtimg.cn = server:system
 # 字节跳动 / 豆包输入法（ByteDance / Doubao IME）使用系统 DNS。
 bytedance.com = server:system
 *.bytedance.com = server:system

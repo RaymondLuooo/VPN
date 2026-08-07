@@ -7,7 +7,7 @@
 #    - 匹配流量：Google 宽规则、AI 工具 (OpenAI, Anthropic, Claude, Gemini, Copilot, AI_Extra 等)、GitHub，优先保证账号稳定与风控一致性。
 #
 # 2. 赠送节点 (url-test 自动测速组)
-#    - 节点来源：来自“机场equaldcdn”与“机场悠兔”订阅，筛选排除“静态”的所有节点 (exclude-filter: "静态")，不限国家和地区，自动选取延迟最低的节点。
+#    - 节点来源：来自“机场equaldcdn”与“机场悠兔”订阅，筛选排除“静态”且名称包含“台湾”、“日本”、“新加坡”、“美国”或“韩国”的节点 (filter: "台湾|日本|新加坡|美国|韩国", exclude-filter: "静态")，选取延迟最低的节点。
 #    - 匹配流量：YouTube、Google Photos 媒体传输、国外流媒体 (Netflix, Disney, HBO, Spotify)、社交/平台 (Telegram, Twitter, Facebook, TikTok)、支付/购物 (PayPal, Amazon)、游戏平台 (Sony, Nintendo, Epic, Steam, Game)、Microsoft 服务、Global 规则以及 MATCH 未命中规则的国外通用代理流量，用于降低大流量成本。
 # ==============================================================================
 # DNS 配置说明：
@@ -197,12 +197,12 @@ proxy-groups:
     expected-status: 204
 
   - name: 赠送节点
-    # 赠送节点：从两个机场的所有非静态节点中，按延迟自动测速选最快节点，不限地区。
+    # 赠送节点：从两个机场的所有非静态节点中，筛选节点名字包含“台湾”、“日本”、“新加坡”、“美国”或“韩国”的节点，按延迟自动测速选最快节点。
     type: url-test
     use:
       - 机场equaldcdn
       - 机场悠兔
-    filter: ".*"
+    filter: "台湾|日本|新加坡|美国|韩国"
     exclude-filter: "静态"
     url: http://www.gstatic.com/generate_204
     interval: 600
