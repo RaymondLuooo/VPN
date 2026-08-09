@@ -170,6 +170,8 @@ proxy-providers:
       expected-status: 204
     override:
       udp: true
+      override-expr:
+        - '.client-fingerprint = "chrome"'
   机场悠兔:
     type: http
     url: "https://b.youtulink3.top/dy/2a30b4b12692f127cf87f39da8378269"

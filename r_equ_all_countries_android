@@ -162,6 +162,8 @@ proxy-providers:
       expected-status: 204
     override:
       udp: true
+      override-expr:
+        - '.client-fingerprint = "chrome"'
 proxy-groups:
   - name: 静态住宅
     # 静态住宅 IP 更像稳定家庭宽带出口，适合 AI、Google、GitHub 等更看重账号信誉和风控一致性的服务。
