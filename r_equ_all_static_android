@@ -150,7 +150,7 @@ proxy-providers:
         - clash.meta
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 600
       timeout: 5000
       lazy: true
@@ -164,7 +164,7 @@ proxy-groups:
     use:
       - 机场equaldcdn
     filter: "静态.*住宅|住宅.*静态"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 600
     tolerance: 0
     timeout: 5000

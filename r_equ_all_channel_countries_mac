@@ -63,8 +63,8 @@ update-url = https://raw.githubusercontent.com/RaymondLuooo/VPN/main/r_equ_all_c
 [Proxy Group]
 # 静态住宅：用于 AI、Google、GitHub 等账号或风控敏感服务，优先稳定住宅出口和账号信誉。
 # 赠送节点：从所有已导入订阅中选名字不包含"静态"且包含"台湾|日本|新加坡|美国|韩国"的节点，按延迟自动测速选最快节点。
-静态住宅 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=0,timeout=5,select=0,policy-regex-filter=静态.*住宅|住宅.*静态
-赠送节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=0,timeout=5,select=0,policy-regex-filter=^(?!.*静态).*(台湾|日本|新加坡|美国|韩国)
+静态住宅 = url-test,url=https://www.gstatic.com/generate_204,interval=600,tolerance=0,timeout=5,select=0,policy-regex-filter=静态.*住宅|住宅.*静态
+赠送节点 = url-test,url=https://www.gstatic.com/generate_204,interval=600,tolerance=0,timeout=5,select=0,policy-regex-filter=^(?!.*静态).*(台湾|日本|新加坡|美国|韩国)
 
 [Rule]
 # 规则按顺序匹配；广告拦截、用户自维护直连、YouTube / Google Photos 前置规则都依赖当前顺序。

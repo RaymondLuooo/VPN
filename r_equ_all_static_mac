@@ -58,7 +58,7 @@ update-url = https://raw.githubusercontent.com/RaymondLuooo/VPN/main/r_equ_all_s
 
 [Proxy Group]
 # 静态住宅：用于所有非直连代理流量，优先稳定住宅出口和账号信誉。
-静态住宅 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=0,timeout=5,select=0,policy-regex-filter=静态.*住宅|住宅.*静态
+静态住宅 = url-test,url=https://www.gstatic.com/generate_204,interval=600,tolerance=0,timeout=5,select=0,policy-regex-filter=静态.*住宅|住宅.*静态
 
 [Rule]
 # 规则按顺序匹配；广告拦截、用户自维护直连、YouTube / Google Photos 前置规则都依赖当前顺序。

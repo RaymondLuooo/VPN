@@ -163,7 +163,7 @@ proxy-providers:
         - clash.meta
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 600
       timeout: 5000
       lazy: true
@@ -181,7 +181,7 @@ proxy-providers:
         - clash.meta
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
+      url: https://www.gstatic.com/generate_204
       interval: 600
       timeout: 5000
       lazy: true
@@ -197,7 +197,7 @@ proxy-groups:
     use:
       - 机场equaldcdn
     filter: "静态.*住宅|住宅.*静态"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 600
     tolerance: 0
     timeout: 5000
@@ -212,7 +212,7 @@ proxy-groups:
       - 机场悠兔
     filter: "美国"
     exclude-filter: "静态"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 600
     tolerance: 0
     timeout: 5000
@@ -227,7 +227,7 @@ proxy-groups:
       - 机场悠兔
     filter: "日本|台湾|台灣|新加坡"
     exclude-filter: "静态"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 600
     tolerance: 0
     timeout: 5000
@@ -241,7 +241,7 @@ proxy-groups:
     proxies:
       - 赠送美国主选
       - 赠送非美兜底
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 600
     timeout: 5000
     lazy: false
