@@ -109,13 +109,13 @@ dns:
     - "ntp.*.com"
     - "ntp.*.org"
   default-nameserver:
-    # 用于解析 DoH 服务器本身等 bootstrap 场景；这里是 IP，避免 bootstrap 再依赖域名。
-    - 1.1.1.1
-    - 8.8.8.8
+    # 仅用于解析 DoH 服务器自身等 bootstrap 场景；使用中国大陆可直连 DNS，避免代理建立前依赖境外 DNS。
+    - 223.5.5.5
+    - 119.29.29.29
   proxy-server-nameserver:
-    # 代理节点、远程规则和 provider 相关域名优先用可信 DoH 解析。
-    - https://cloudflare-dns.com/dns-query
-    - https://dns.google/dns-query
+    # 仅用于解析代理节点服务器域名；使用中国大陆可直连的加密 DNS。
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
   nameserver-policy:
     # RaymondDirect 是用户自维护直连域名集合。
     # 这些域名通常需要国内 CDN、企业服务或系统服务的本地化解析，所以使用当前网络的系统 DNS。

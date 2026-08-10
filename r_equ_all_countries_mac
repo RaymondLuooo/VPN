@@ -184,6 +184,13 @@ FINAL,赠送节点
 # 国内股票行情接口直连时使用系统 DNS，避免代理 DoH 返回海外或异常地址。
 hq.sinajs.cn = server:system
 qt.gtimg.cn = server:system
+# 欧路词典 / 法语助手（Eudic / Frdic）使用系统 DNS。
+api.frdic.com = server:system
+dict.eudic.net = server:system
+eudic.net = server:system
+*.eudic.net = server:system
+frdic.com = server:system
+*.frdic.com = server:system
 # 字节跳动 / 豆包输入法（ByteDance / Doubao IME）使用系统 DNS。
 bytedance.com = server:system
 *.bytedance.com = server:system

@@ -42,3 +42,10 @@ DOMAIN-SUFFIX,yodao.com
 DOMAIN-SUFFIX,lofter.com
 DOMAIN-SUFFIX,icourse163.org
 DOMAIN-SUFFIX,yun-app.net
+
+# 欧路词典 / 法语助手（Eudic / Frdic）直连域名。
+DOMAIN,api.frdic.com
+DOMAIN,dict.eudic.net
+DOMAIN-SUFFIX,eudic.net
+DOMAIN-SUFFIX,frdic.com
+
