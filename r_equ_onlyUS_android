@@ -681,6 +681,27 @@ rules:
   - RULE-SET,GitHub,静态住宅
   - RULE-SET,Google,静态住宅
 
+  # 美股券商与金融交易（Firstrade & Charles Schwab / thinkorswim）走静态住宅，保障登录 IP 一致性与风控信誉。
+  # Firstrade 及其清算所（Apex Clearing）
+  - DOMAIN-SUFFIX,firstrade.com,静态住宅
+  - DOMAIN-SUFFIX,firstrade.info,静态住宅
+  - DOMAIN-SUFFIX,apexclearing.com,静态住宅
+  - DOMAIN-SUFFIX,apexfintechdocuments.com,静态住宅
+  - DOMAIN-SUFFIX,apexfintechsolutions.com,静态住宅
+  # Charles Schwab & thinkorswim
+  - DOMAIN-SUFFIX,schwab.com,静态住宅
+  - DOMAIN-SUFFIX,schwabcdn.com,静态住宅
+  - DOMAIN-SUFFIX,thinkorswim.com,静态住宅
+  - DOMAIN-SUFFIX,tdameritrade.com,静态住宅
+  - DOMAIN-SUFFIX,schwabplan.com,静态住宅
+  - DOMAIN-SUFFIX,charlesschwab.com,静态住宅
+  - DOMAIN-SUFFIX,schwabassetmanagement.com,静态住宅
+  - DOMAIN-SUFFIX,schwabintelligentportfolios.com,静态住宅
+  - DOMAIN-SUFFIX,aboutschwab.com,静态住宅
+  - DOMAIN-SUFFIX,schwab.net,静态住宅
+  - DOMAIN-SUFFIX,schwab.co.uk,静态住宅
+  - DOMAIN-SUFFIX,schwab.com.hk,静态住宅
+
   # 国外媒体、社交、支付购物、微软和游戏平台走赠送美国，主要目标是降低高流量服务成本。
   - RULE-SET,Netflix,赠送美国
   - RULE-SET,Disney,赠送美国
