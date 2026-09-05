@@ -171,7 +171,7 @@ proxy-providers:
     override:
       udp: true
       override-expr:
-        - '.client-fingerprint = "chrome"'
+        - '.client-fingerprint = "random"'
   机场悠兔:
     type: http
     url: "https://sub.youtulink3.top/dy/81a360a697602bb82cbb3660e41fa006"
