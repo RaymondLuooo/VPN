@@ -124,6 +124,21 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 RULE-SET,https://raw.githubusercontent.com/iab0x00/ProxyRules/main/Rule/AI.txt,静态住宅
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/GitHub/GitHub.list,静态住宅
 
+# ==============================================================================
+# Language Reactor 双语学习插件及后端依赖服务（统一聚合管理）
+# ==============================================================================
+# Dioco 核心后端：负责划词翻译、词典查词、词频与统计 API（用户指定直连）
+DOMAIN-SUFFIX,dioco.io,DIRECT
+
+# Language Reactor 官方站点：网页阅读器、影视剧目、短语训练及社区论坛
+DOMAIN-SUFFIX,languagereactor.com,静态住宅
+DOMAIN-SUFFIX,languagelearningwithnetflix.com,静态住宅
+
+# Google Cloud / Firebase 基础设施：用户登录鉴权与 Pro 许可验证云函数
+DOMAIN-SUFFIX,cloudfunctions.net,静态住宅
+DOMAIN-SUFFIX,firebaseio.com,静态住宅
+DOMAIN-SUFFIX,firebaseapp.com,静态住宅
+
 # 美股券商与金融交易（Firstrade & Charles Schwab / thinkorswim）走静态住宅，保障登录 IP 一致性与风控信誉。
 # Firstrade 及其清算所（Apex Clearing）
 DOMAIN-SUFFIX,firstrade.com,静态住宅
