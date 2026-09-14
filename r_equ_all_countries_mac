@@ -190,6 +190,8 @@ RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/r
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Game/Game.list,赠送节点
 
 # 系统和常用平台：Microsoft 当前按高流量国外服务走赠送节点；Google 宽规则走静态住宅；Apple 通用规则直连。
+# 微软翻译 API 走静态住宅，避免赠送节点出口 IP 风控导致 TLS 握手异常（SSL_ERROR_SYSCALL，退出码 35）
+DOMAIN-SUFFIX,microsofttranslator.com,静态住宅
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Microsoft/Microsoft.list,赠送节点
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Google/Google.list,静态住宅
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Apple/Apple.list,DIRECT
@@ -227,6 +229,12 @@ eudic.net = server:system
 *.eudic.net = server:system
 frdic.com = server:system
 *.frdic.com = server:system
+esdict.cn = server:system
+*.esdict.cn = server:system
+francochinois.com = server:system
+*.francochinois.com = server:system
+eusoft.net = server:system
+*.eusoft.net = server:system
 # 字节跳动 / 豆包输入法（ByteDance / Doubao IME）使用系统 DNS。
 bytedance.com = server:system
 *.bytedance.com = server:system

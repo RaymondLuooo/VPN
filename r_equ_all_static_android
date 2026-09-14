@@ -660,6 +660,8 @@ rules:
   - RULE-SET,SteamCN,静态住宅
   - RULE-SET,Steam,静态住宅
   - RULE-SET,Game,静态住宅
+  # 微软翻译 API 走静态住宅
+  - DOMAIN-SUFFIX,microsofttranslator.com,静态住宅
   - RULE-SET,Microsoft,静态住宅
 
   # Global 处理常见国外代理域名；最终 MATCH 也交给静态住宅兜底。

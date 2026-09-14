@@ -737,6 +737,8 @@ rules:
   - RULE-SET,SteamCN,赠送节点
   - RULE-SET,Steam,赠送节点
   - RULE-SET,Game,赠送节点
+  # 微软翻译 API 走静态住宅，避免赠送节点出口 IP 风控导致 TLS 握手异常（SSL_ERROR_SYSCALL，退出码 35）
+  - DOMAIN-SUFFIX,microsofttranslator.com,静态住宅
   - RULE-SET,Microsoft,赠送节点
 
   # Global 处理常见国外代理域名；最终 MATCH 也交给赠送节点兜底。

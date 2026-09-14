@@ -43,9 +43,13 @@ DOMAIN-SUFFIX,lofter.com
 DOMAIN-SUFFIX,icourse163.org
 DOMAIN-SUFFIX,yun-app.net
 
-# 欧路词典 / 法语助手（Eudic / Frdic）直连域名。
+# 欧路词典 / 法语助手 / 西语助手等全系基础设施直连域名。
+# 包含查词、发音与同步核心接口，以及国内 CNAME 终点与公共资源站，避免走海外代理导致发音与同步延迟。
 DOMAIN,api.frdic.com
 DOMAIN,dict.eudic.net
 DOMAIN-SUFFIX,eudic.net
 DOMAIN-SUFFIX,frdic.com
+DOMAIN-SUFFIX,esdict.cn
+DOMAIN-SUFFIX,francochinois.com
+DOMAIN-SUFFIX,eusoft.net
 
