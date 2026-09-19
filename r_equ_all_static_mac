@@ -81,6 +81,8 @@ DOMAIN-SUFFIX,stlouisfed.org,静态住宅
 # 国内实时行情接口必须直连，避免海外出口导致 TLS WRONG_VERSION_NUMBER。
 DOMAIN,hq.sinajs.cn,DIRECT
 DOMAIN,qt.gtimg.cn,DIRECT
+# 东方财富主域名及所有子域名使用国内 DNS 并直连。
+DOMAIN-SUFFIX,eastmoney.com,DIRECT
 
 # YouTube App / 流媒体域名放在 Google 宽规则前，避免被 googleapis / googleusercontent / gstatic 提前命中到静态住宅。
 # 这些域名在本配置中统一走静态住宅出口。
@@ -216,6 +218,9 @@ FINAL,静态住宅
 # 国内股票行情接口直连时使用系统 DNS，避免代理 DoH 返回海外或异常地址。
 hq.sinajs.cn = server:system
 qt.gtimg.cn = server:system
+# 东方财富主域名及所有子域名交给阿里云国内公共 DNS 解析。
+eastmoney.com = server:223.5.5.5
+*.eastmoney.com = server:223.5.5.5
 # 欧路词典 / 法语助手（Eudic / Frdic）使用系统 DNS。
 api.frdic.com = server:system
 dict.eudic.net = server:system

@@ -117,6 +117,9 @@ dns:
     # 新增 RaymondDirect 域名时，需要同时判断它是否适合暴露给系统 DNS。
     "rule-set:RaymondDirect":
       - "dhcp://system"
+    # 东方财富主域名及所有子域名使用阿里云国内公共 DNS。
+    "+.eastmoney.com":
+      - 223.5.5.5
   nameserver:
     # 默认 DNS 出口：经 静态住宅 访问 Cloudflare / Google DoH，避免普通域名解析落到本地运营商。
     - "https://cloudflare-dns.com/dns-query#静态住宅"
@@ -541,6 +544,8 @@ rules:
 
   # 用户自维护直连域名先命中 RaymondDirect，再进入通用 Apple / 国内规则。
   # RaymondDirect 同时影响 DNS policy，所以只放确定适合直连和系统 DNS 的域名。
+  # 东方财富主域名及所有子域名直连，优先于远程规则集。
+  - DOMAIN-SUFFIX,eastmoney.com,DIRECT
   - RULE-SET,RaymondDirect,DIRECT
   - RULE-SET,Apple,DIRECT
   - RULE-SET,BiliBili,DIRECT
