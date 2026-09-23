@@ -42,7 +42,7 @@
 # - 只有 [Host] 中明确写出的自维护直连域名使用 server:system，用于国内 CDN 或企业服务本地化解析。
 
 bypass-system = true
-skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,captive.apple.com,*.ccb.com,*.abchina.com.cn,*.psbc.com
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,captive.apple.com,*.ccb.com,*.abchina.com.cn,*.psbc.com,*.eastmoney.com,*.sinajs.cn,*.gtimg.cn
 tun-excluded-routes = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32,239.255.255.250/32
 dns-server = https://cloudflare-dns.com/dns-query#proxy=PROXY,https://dns.google/dns-query#proxy=PROXY
 fallback-dns-server = https://dns.quad9.net/dns-query#proxy=PROXY,https://cloudflare-dns.com/dns-query#proxy=PROXY
@@ -224,9 +224,9 @@ FINAL,赠送节点
 # 国内股票行情接口直连时使用系统 DNS，避免代理 DoH 返回海外或异常地址。
 hq.sinajs.cn = server:system
 qt.gtimg.cn = server:system
-# 东方财富主域名及所有子域名交给阿里云国内公共 DNS 解析。
-eastmoney.com = server:223.5.5.5
-*.eastmoney.com = server:223.5.5.5
+# 东方财富主域名及所有子域名直连时使用系统 DNS。
+eastmoney.com = server:system
+*.eastmoney.com = server:system
 # 欧路词典 / 法语助手（Eudic / Frdic）使用系统 DNS。
 api.frdic.com = server:system
 dict.eudic.net = server:system

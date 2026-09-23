@@ -99,6 +99,9 @@ dns:
     - "*.ccb.com"
     - "*.abchina.com.cn"
     - "*.psbc.com"
+    - "+.eastmoney.com"
+    - "+.sinajs.cn"
+    - "+.gtimg.cn"
     - "time.*.com"
     - "time.*.gov"
     - "ntp.*.com"
@@ -117,9 +120,9 @@ dns:
     # 新增 RaymondDirect 域名时，需要同时判断它是否适合暴露给系统 DNS。
     "rule-set:RaymondDirect":
       - "dhcp://system"
-    # 东方财富主域名及所有子域名使用阿里云国内公共 DNS。
+    # 东方财富主域名及所有子域名直连时使用系统 DNS。
     "+.eastmoney.com":
-      - 223.5.5.5
+      - "dhcp://system"
   nameserver:
     # 默认 DNS 出口：经 静态住宅 访问 Cloudflare / Google DoH，避免普通域名解析落到本地运营商。
     - "https://cloudflare-dns.com/dns-query#静态住宅"
