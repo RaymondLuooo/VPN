@@ -1,68 +1,119 @@
 # AGENTS.md
 
-最近更新时间：2026-07-31 14:30:00 Asia/Shanghai
+最近更新时间：2026-10-01 14:32:00 Asia/Shanghai
 
-## Project identity
+## 项目身份与资料入口
 
-本项目是个人 VPN / 代理分流配置仓库，当前包含 Shadowrocket / Mac 配置和 Clash Meta / Mihomo Android 配置。
+项目名称：VPN
 
-当前已确认文件：
+共享工作规则、知识读取方法和写入权限以本文件为准。项目核心诉求、Scope、完成标准、当前分流架构、目录与模块职责及公共接口见 `docs/architecture.md`，不在此重复维护。项目知识清单见 `docs/INDEX.md`。
 
-- `r_equ_onlyUS_mac`: Shadowrocket / Mac 仅美国优先配置，包含 DNS、防泄露、广告拦截、AI/媒体/国内直连等分流规则。
-- `r_equ_all_countries_mac`: Shadowrocket / Mac 全地区赠送节点配置，使用 `赠送节点` 作为高流量与国外兜底策略组。
-- `r_equ_onlyUS_android`: Clash Meta for Android / Mihomo 仅美国优先配置，包含 sniffer、TUN、fake-ip DNS、proxy provider、rule providers、proxy groups 和 rules。
-- `r_equ_all_countries_android`: Clash Meta for Android / Mihomo 全地区赠送节点配置，使用 `赠送节点` 作为高流量与国外兜底策略组。
-- `r_equ_all_static_mac` / `android`: 全量静态住宅节点配置。
-- `r_equ_all_channel_countries_mac` / `android`: 所有国家渠道衍生配置。
-- `lazy_group_防DNS泄露去广告后的备份.conf`: Shadowrocket 备份配置，保留更接近通用区域节点分组的规则结构。
-- `raymond_direct.list`: 用户自维护的直连规则集，被 Shadowrocket 和 Mihomo 共同引用；在 Mihomo 中同时参与 `nameserver-policy`，影响对应域名的 DNS 解析出口。
+本项目是个人 VPN / 代理分流配置仓库，当前包含 Shadowrocket / Mac 配置和 Clash Meta / Mihomo Android 配置。可能由多个 AI Agent 接力维护，沿用已确认的设计和局部实现风格。
 
-## Required reading order
+## 文档边界与知识地图
 
-1. `README.md`
-2. `docs/PROJECT_CONTEXT.md`
-3. `docs/TESTING.md`
-4. `docs/HANDOFF.md`
-5. `CHANGELOG.md`
-6. 目标配置文件本身
-7. **历史与踩坑上下文检索**：不用先读 `ai-history/`。在需要排查复杂 Bug、追溯历史决策、理解特定配置的动机或遇到当前文档无法解释的逻辑冲突时，再去阅读 `ai-history/INDEX.md`。
+| 路径 | 唯一职责 | 不应放入 |
+|---|---|---|
+| `AGENTS.md` | Agent 工作规则、授权边界、阅读与知识维护策略、业务安全红线 | 项目设计正文、逐项 Decision、聊天历史 |
+| `docs/architecture.md` | 当前核心诉求、Scope、完成标准、架构分流矩阵、目录与模块职责、公共接口 | Agent 工作规则、局部实现说明、完整 Decision 或 Lesson |
+| `README.md` | 项目概览、导入运行入口和面向使用者的当前状态；存在时维护 | 详细架构、完整 Decision、逐次变更历史 |
+| `CHANGELOG.md` | 阶段性变更索引、维护时间和 Git 锚点；只能由合法触发的 `r-project-context-maintainer` 创建或修改 | 当前规则的唯一来源、完整历史叙事、普通任务直接写入 |
+| `docs/HANDOFF.md` | 未完成工作、已验证边界和下一位维护者的恢复入口 | 完整项目历史、架构正文的副本 |
+| `docs/INDEX.md` | 当前文档的稳定 ID、类型、状态、Scope / 匹配线索、读取触发和链接 | 知识正文、完整历史清单 |
+| `docs/decisions/` | 已批准（含待实施）且存在真实取舍的跨文件长期决定；按需创建 | 普通局部实现、未接受建议、完整聊天记录 |
+| `docs/lessons/` | 被多个 Decision 或模块复用的已验证经验；按需创建 | 只服务于单个 Decision 的经验 |
+| `docs/TESTING.md` | 静态检查、客户端真机检查清单、长期测试策略与已知缺口 | 测试实现全文、一次性运行日志 |
+| `docs/ai-history/INDEX.md` | 历史 ID、状态、摘要、Scope / 匹配线索、读取触发、当前资料引用和链接 | 历史正文、当前规则 |
+| `docs/ai-history/` | 选择性保存目标与顾虑演变、关键方案转折、复杂事故证据链和未完成工作足迹 | 当前规范或当前事实的唯一来源、完整聊天转录 |
+| `logs/` | 客户端生成的本地日志与临时 SQLite 数据库；严禁读取内容，严禁提交 Git | 任何持久化配置或文档 |
+| `.context-maintenance/receipts/` | 上下文维护批次、阶段状态和断点恢复使用的机器可读凭据；由维护 Skill 按需创建 | 普通项目资料、日常任务默认阅读内容 |
+| `.context-maintenance/knowledge-candidates.jsonl` | 证据不足、权威冲突、缺少实质性选择或落点不明时的临时候选；首次需要时创建 | 已确认的长期知识正文、聊天转录 |
 
-## Allowed work
+## 知识维护规则
 
+- 讨论、分析、方案和只读 review 不修改长期文档，也不创建 Candidate。
+- 用户要求修改、实现、修复、创建或执行时，该请求本身已授权当前任务所需的项目写入，以及该项已确认变化直接影响的 `AGENTS.md`、`docs/architecture.md`、正式知识文档和索引同步；Agent 在同一任务内自动完成，不再索取一次笼统的“项目修改”或“更新文档”确认。
+- 所有项目写入任务——包括规则配置修改、文档调整、策略组增减和迁移——完成前都执行 Knowledge Impact Review。只有本次已确认变化形成或改变 Decision、Lesson、项目术语、领域模型、数据源、字段语义或已索引知识时，才调用 `r-project-knowledge-maintainer`；执行请求本身不会机械产生文档。
+- 证据充分、落点明确且没有未决用户选择时直接维护正式文档。只有证据不足、权威冲突、缺少实质性选择或落点不明时才创建 Candidate。
+- 上述同任务同步不扩大到未确认设计、无关资料、整体重写、README、CHANGELOG、AI History、handoff、阶段性全量维护、破坏性操作或对外操作；这些事项继续遵守各自的触发和确认规则。
+
+## 阅读要求
+
+- 所有项目任务先读取最近作用域的本文件。不同对话或 AI Agent 接力时重新读取，不仅依赖会话记忆。
+- 任务涉及项目目的、Scope、完成标准、架构、分流拓扑、目录职责或关键接口时，读取 `docs/architecture.md` 的相关章节；普通局部规则调整不默认全文读取。
+- 首次接手项目、寻找运行入口或确认面向使用者的当前状态时，读取现有 `README.md`。
+- 追踪某项行为何时改变、阶段性维护范围或确定 Git 锚点时，读取现有 `CHANGELOG.md`；它不替代当前配置、Decision 或架构资料。
+- 接手未完成任务或恢复中断工作时，读取当前 `docs/HANDOFF.md`；只读取与本次工作相关的条目。
+- `.context-maintenance/receipts/` 只供上下文维护 Skill、维护流水线和断点恢复读取。普通编码、问答和只读 review 不扫描该目录。
+- 需要恢复 Decision、Lesson、术语、分流领域知识或历史依据时先读取 `docs/INDEX.md`，按稳定文档 ID、Scope / 匹配线索和读取触发筛选当前资料。
+- 相关度顺序为：配置文件或注释直接引用的文档 ID > 目标路径、配置节、策略组、字段或术语直接命中匹配线索 > 明确读取触发 > 间接依赖。只读取会影响当前判断的文档或章节，取得足够证据后停止扩大范围。
+- 任务涉及配置项行为、分流规则或局部约束时，读取目标配置及相邻注释；注释需与实现、测试和当前文档核对，不因存在就自动作为最高权威。与任务无关时不扫描全部配置注释。
+- 当前资料存在 `history_refs`，或任务命中 `docs/ai-history/INDEX.md` 的 Scope / 匹配线索或读取触发时，可以选择性读取匹配的 AI History；不要求先发生异常。先读索引摘要，再读相关记录或章节，取得足够依据后停止。
+- 只有当前资料与相关 AI History 仍不足或冲突，且缺失内容会实质改变实现、注释或验收时，才读取有界原始会话。禁止默认通读全部 `.md`、整个 `docs/`、完整 AI History 或全部会话。
+- 文档与实际配置不一致时指出差异，不擅自选择一方，不直接修改文档掩盖差异。
+- 发现项目规则与其他有效指令冲突时，指出具体冲突并澄清，不按个人偏好选择。
+
+## 修改范围与审批
+
+- 只做用户明确要求的工作，匹配现有配置风格；不因个人偏好重构为认为“更好”的模式。用户要求修改、实现、修复、创建或执行时，该请求本身就是当前任务的写入授权。
+- 新增、移动、重命名或删除目录，改变策略组结构、分流依赖方向、架构模式或技术栈，以及新增、调整或删除关键规则集接口，需先获得用户明确批准。
+- 需要上述调整时，先简短说明具体问题、拟议变化和影响范围；未经批准不实施。
+- 用户已经要求实施或明确批准的变更，在该范围内执行，不重复索取同一项确认。普通分流调整或 bug 修复不自动授权未包含在请求中的架构调整。
+- 在既有目录和策略组职责内新增普通文件或规则，按当前任务授权执行，不因新增本身要求架构审批。
+- 未经明确授权不增加外部网络依赖；数据写入、权限变更、安装、删除、系统设置、发布和对外发送等操作遵守用户及平台的授权要求。
+- 不得通过修改本文件或架构文档，为自己的变更补充授权。
+- `CHANGELOG.md` 只能由用户合法触发的 `r-project-context-maintainer`，或已授权维护流水线中的该 Skill 创建或修改。用户直接要求创建或更新 CHANGELOG 时也必须路由到该 Skill；普通开发、普通文档任务及其他知识、历史或注释 Skill 均不得写入。
+
+## 代码风格与配置维护规范
+
+- 通用编码护栏：严格遵循 `r-coding-guidelines` Skill。在执行编写代码、修改脚本、调整配置、修复 Bug、添加测试或重构任务前，必须读取并遵循其规则（最小改动、不顺手改、测试验真）。
+- 本项目专属约定：本仓库目前以分流配置文件为主，没有大型业务代码脚本。若未来新增脚本，按对应语言 reference 执行。配置文件保持节段分明、注释清晰；修改规则时精确到行，不破坏现有策略组命名和引用顺序。
+
+## 项目执行边界与安全红线
+
+### 允许工作
 - 维护项目文档、交接记录和已知风险。
 - 检查配置结构、规则分组、注释和明显冲突。
 - 在用户明确确认后，修改 Shadowrocket 或 Mihomo 配置。
 - 在用户明确确认后，生成新配置或兼容格式转换。
 
-## Forbidden work
-
+### 禁止工作
 - 未经用户确认，不得修改现有 VPN 配置逻辑、节点分组、订阅地址、DNS 策略、规则顺序或 MITM 设置。
 - 不得读取、输出、提交或复制代理订阅 URL、token、cookie、密码、证书私钥、节点凭据。
 - 不得访问 `/Users/raymond/`、个人 Chrome profile、钥匙串、SSH 私钥、浏览器 cookie / 历史 / 密码数据库。
 - 不得执行破坏性命令、强制推送、删除文件、安装依赖或修改系统网络设置。
 
-## Coding rules
-
-本仓库目前没有业务代码脚本。若未来新增脚本，修改代码或脚本注释前必须先读取 `/Users/rai/.agents/skills/r-coding-guidelines/SKILL.md`，并按对应语言 reference 执行。
-
-## Testing rules
-
-- 当前没有自动化测试。
-- 配置修改后至少做静态检查：节标题、规则引用、策略组名称、DNS 字段、敏感值是否泄露。
-- 修改 `raymond_direct.list` 后必须同时检查 `r_equ_*_mac` 的远程 `RULE-SET` 引用、`r_equ_*_android` 的 `RaymondDirect` provider 引用，以及是否需要同步 Shadowrocket / Mac `[Host]` 中的 `server:system` 条目。
-- 修改 `赠送美国`、`赠送美国主选`、`赠送非美兜底` 或 `赠送节点` 后必须同时检查 Shadowrocket / Mac `[Proxy Group]` 和 Mihomo `proxy-groups` 的引用关系，并把真实客户端 fallback / url-test 行为标注为 `待验证`，直到完成真机验证。
-- 真机验证必须在目标客户端中完成：Shadowrocket 用 iOS 客户端导入验证，Mihomo 用 Android / Clash Meta 兼容客户端验证。
-- 若未做真机验证，必须在回复和文档中标注 `待验证`。
-
-## Data safety rules
-
+### 数据安全规则
 - `r_equ_*_android` 包含代理订阅入口或 provider 配置，按敏感信息处理。
 - 文档只能写“存在订阅入口”或“需要订阅 URL”，不能写真实 URL 或可还原片段。
 - `logs/` 下的 `clash-*.log.txt`、`proxy-*.db*` 和 `.DS_Store` 等客户端日志、SQLite 运行态文件或系统元数据可能包含节点、连接、访问痕迹或本地环境信息；默认只记录存在性和用途，不读取内容，不提交。
 - `.env`、证书、私钥、账号凭据如出现，只能记录存在性和用途，不能读取真实值。
 
-## Git rules
+### 测试规则
+- 当前没有自动化测试。
+- 配置修改后至少做静态检查：节标题、规则引用、策略组名称、DNS 字段、敏感值是否泄露。
+- 修改 `raymond_direct.list` 后必须同时检查 `r_equ_*_mac` 的远程 `RULE-SET` 引用、`r_equ_*_android` 的 `RaymondDirect` provider 引用，以及是否需要同步 Shadowrocket / Mac `[Host]` 中的 `server:system` 条目。
+- 修改 `赠送美国`、`赠送美国主选`、`赠送非美兜底` 或 `赠送节点` 后必须同时检查 Shadowrocket / Mac `[Proxy Group]` 和 Mihomo `proxy-groups` 的引用关系，并把真实客户端 fallback / url-test 行为标注为 `待验证`，直到完成真机验证。
+- 真机验证必须在目标客户端中完成：Shadowrocket 用 iOS/Mac 客户端导入验证，Mihomo 用 Android / Clash Meta 兼容客户端验证。
+- 若未做真机验证，必须在回复和文档中标注 `待验证`。
 
+### Git 规则
 - 默认只做本地修改，不自动 commit、push 或发布。
 - 发现用户已有改动时，不得回滚；必须先区分本次改动和既有改动。
 - 不使用 `git reset --hard`、`git clean`、`git push --force`。
+
+## 文档更新规则
+
+| 已确认的变化 | 更新位置 |
+|---|---|
+| 核心诉求、Scope 或完成标准 | `docs/architecture.md` |
+| 目录、策略组职责、分流拓扑、架构、外部转换服务或关键规则接口 | `docs/architecture.md` |
+| 代码风格、阅读要求、工作流程或审批边界 | 本文件 |
+| 当前文档清单、状态、Scope / 匹配线索、读取触发或稳定链接 | `docs/INDEX.md` |
+| 已批准且存在真实方案取舍的跨文件长期决定（含已批准待实施） | `docs/decisions/<ID>-<slug>.md` |
+| 只服务于单个决定的已验证经验 | 对应 Decision 的 `Lessons` 章节 |
+| 被多个 Decision 或模块复用的已验证经验 | `docs/lessons/<ID>-<slug>.md`，并从原 Decision 改为稳定链接 |
+| 阶段性变更索引、维护时间或 Git 锚点 | `CHANGELOG.md`；仅由 `r-project-context-maintainer` 维护 |
+| 目标/顾虑重要演变、关键方案转折、复杂事故证据链或未完成工作足迹 | `AI_HISTORY_CANDIDATE`；由历史维护 Skill 生成 `docs/ai-history/` 记录 |
+| 设计和工作规则同时受影响 | 分别更新两份文件的相关部分 |
+| 不改变上述约定的局部规则调整或细节参数微调 | 通常无需更新这两份文档 |

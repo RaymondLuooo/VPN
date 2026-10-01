@@ -53,7 +53,7 @@
 
 ## Main workflow
 
-1. 修改前先阅读 `AGENTS.md` 和 `docs/PROJECT_CONTEXT.md`。
+1. 修改前先阅读 `AGENTS.md`，并按需查阅 `docs/INDEX.md` 检索相关资料（如 `docs/architecture.md`）。
 2. 判断目标客户端是 Shadowrocket 还是 Mihomo。
 3. 只修改目标配置对应的最小范围。
 4. 修改后检查策略组名称是否被规则引用、DNS 策略是否被意外放宽、敏感 URL 是否未被输出。
@@ -70,10 +70,12 @@
 - `lazy_group_防DNS泄露去广告后的备份.conf`: Shadowrocket 备份配置。
 - `raymond_direct.list`: GitHub-hosted 自维护直连规则集，被 `r_equ_*_mac` 和 `r_equ_*_android` 引用。
 - `logs/`: 本地客户端运行态产物目录，包含 Clash 日志、SQLite 数据库及系统元数据；可能含敏感运行信息，不应读取内容、直接提交或输出内容。
-- `docs/PROJECT_CONTEXT.md`: 项目背景、核心概念和数据流。
+- `docs/architecture.md`: 项目核心诉求、分流架构、策略组与模块职责。
+- `docs/INDEX.md`: 现行知识索引枢纽。
 - `docs/TESTING.md`: 静态检查和真机验证清单。
 - `docs/HANDOFF.md`: 给下一个 agent 的交接文档。
-- `ai-history/`: 跨 Agent 历史维护记录与索引。
+- `docs/decisions/`: 长期架构决策落点目录。
+- `docs/ai-history/`: 跨 Agent 历史维护记录与索引。
 
 ## How to run
 

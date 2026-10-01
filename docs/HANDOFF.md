@@ -1,10 +1,10 @@
 # Handoff
 
-最近更新时间：2026-07-31 14:30:00 Asia/Shanghai
+最近更新时间：2026-10-01 14:32:00 Asia/Shanghai
 
 ## Current project state
 
-当前项目是一个轻量 VPN / 代理配置仓库。仓库根目录当前有 8 份 `r_equ_*` 矩阵配置文件、1 份 Shadowrocket 备份配置和 1 份共享直连规则集，本轮继续维护长期上下文文档。
+当前项目是一个轻量 VPN / 代理配置仓库。仓库根目录当前有 8 份 `r_equ_*` 矩阵配置文件、1 份 Shadowrocket 备份配置和 1 份共享直连规则集，本轮已将上下文与治理体系全面对齐 `r-project-kickoff` 与 `r-project-knowledge-maintainer` 规范。
 
 已确认：
 
@@ -22,6 +22,7 @@
 - 2026-07-30 已在 Android 配置中将“机场悠兔”订阅 URL 升格为 `sub.xeton.dev` 云端转换，解决了 `type: anytls` 私有协议类型被 Clash Meta 核心丢弃的问题。
 - 2026-07-30 已将所有 Android 配置文件中的 `url-test` 策略组参数更新为 `tolerance: 50`（防延迟波动频繁切节点）及 `lazy: true`（降低后台耗电）。
 - 2026-07-30 ~ 2026-07-31 已将 `DOMAIN-KEYWORD`（`anthropic`、`claude`、`openai`、`gemini`、`chatgpt`）全量部署至 8 份 `r_equ_*` 配置文件中，定向锁死至 `静态住宅` 策略组，并推送至 GitHub 远端仓库。
+- 2026-10-01 已将 `docs/PROJECT_CONTEXT.md` 升格规范化为 `docs/architecture.md`，新建 `docs/INDEX.md`，更新 `AGENTS.md` Knowledge Map，并重整 `docs/ai-history/INDEX.md` 路由表。
 - 本地 `logs/` 目录存在 Clash 日志和 SQLite 运行态文件；只记录存在性，不读取内容，不直接提交。
 
 待验证：
@@ -31,7 +32,7 @@
 
 ## What previous agents did
 
-2026-06-07 至 2026-07-21 历次上下文维护由 Codex 及 Antigravity 整理完成，建成了包括 `AGENTS.md`、`README.md`、`docs/` 及 `ai-history/` 在内的完整交接文档链条。
+2026-06-07 至 2026-07-21 历次上下文维护由 Codex 及 Antigravity 整理完成，建成了包括 `AGENTS.md`、`README.md`、`docs/` 及 `docs/ai-history/` 在内的完整交接文档链条。
 
 2026-07-31 Antigravity 进行了第八次增量上下文维护：
 
@@ -39,7 +40,14 @@
 - 梳理并记录了 Mihomo 底层 `exclude-filter` 导致的空节点列表 bug 修复（补充 `filter: ".*"`）。
 - 梳理并记录了“机场悠兔”在 Clash Meta 模式下通过 `sub.xeton.dev` 解决 `anytls` 协议兼容性问题的实测结论。
 - 梳理并记录了 `url-test` 策略组中 `tolerance: 50` 及 `lazy: true` 的参数调优。
-- 生成了符合规范的凭证文件及 YAML 读取日志，并在 `ai-history/` 追加了新的跨 Agent 会话归纳。
+- 生成了符合规范的凭证文件及 YAML 读取日志，并在 `docs/ai-history/` 追加了新的跨 Agent 会话归纳。
+
+2026-10-01 Antigravity 执行了上下文架构对齐与治理重构：
+
+- 将 `docs/PROJECT_CONTEXT.md` 升格并规范化为 `docs/architecture.md`。
+- 创建现行知识索引中枢 `docs/INDEX.md`，注册 `ARCH-ROOT`、`TEST-ROOT` 与 `HANDOFF-ROOT`。
+- 更新 `AGENTS.md`，注入标准 Knowledge Map、知识维护规则、按需检索路由，并完整保留所有既有 VPN 安全与测试规则。
+- 规整 `docs/ai-history/INDEX.md` 为标准结构化路由表，创建预留决策目录 `docs/decisions/`。
 
 ## Files created or modified
 
@@ -48,13 +56,15 @@
 - `AGENTS.md`
 - `README.md`
 - `CHANGELOG.md`
-- `docs/PROJECT_CONTEXT.md`
+- `docs/architecture.md`（由 `docs/PROJECT_CONTEXT.md` 升格）
+- `docs/INDEX.md`
 - `docs/TESTING.md`
 - `docs/HANDOFF.md`
-- `ai-history/INDEX.md`
+- `docs/decisions/`（空目录）
+- `docs/ai-history/INDEX.md`
 - `.context-maintenance/receipts/2026-07-31-143000-conversation-discovery.json`
 - `.context-maintenance/receipts/2026-07-31-143000-session-reading-log.yaml`
-- `ai-history/2026-07-31-143000-修复Mihomo语法瑕疵与接入转换器及AI关键字路由-跨Agent会话归纳.md`
+- `docs/ai-history/2026-07-31-143000-修复Mihomo语法瑕疵与接入转换器及AI关键字路由-跨Agent会话归纳.md`
 
 已提交的 VPN 配置文件修改：
 
@@ -109,3 +119,13 @@
 - Verified: 所有 8 份 `r_equ_*` 配置均已更新 `DOMAIN-KEYWORD`；`r_equ_*_android` 完成了 exclude-filter 补全及 url-test 优化；悠兔订阅通过 `sub.xeton.dev` 转换且已在安卓端实测成功；Git commit/push 已全部同步到远端 main 分支。
 - Not verified: `sub.xeton.dev` 服务的长期网络连通波动。
 - Notes: 项目资料维护包含对此前已提交推送的配置变动的完整追溯与交接归纳。
+
+### 2026-10-01 - Align with r-project-kickoff & context-maintenance skills architecture
+
+- Agent: Antigravity
+- 更新时间：2026-10-01 14:32:00 Asia/Shanghai
+- Goal: 将项目上下文与工作规则全量对齐 r-project-kickoff 与 r-project-knowledge-maintainer 等 7 个技能的新规范。
+- Files touched: `AGENTS.md`、`README.md`、`docs/architecture.md`（由 `docs/PROJECT_CONTEXT.md` 升格重命名）、`docs/INDEX.md`（新建）、`docs/decisions/`（新建空目录）、`docs/HANDOFF.md`、`ai-history/INDEX.md`
+- Verified: `docs/INDEX.md` 索引登记了实际存在的 3 个文档条目；`AGENTS.md` 包含标准 Knowledge Map 与知识维护规则；`ai-history/INDEX.md` 完成结构化表格对齐；Git 跟踪正常，未触碰任何 VPN 配置文件或运行态日志。
+- Not verified: 待用户在后续日常配置维护中实测 `r-project-knowledge-maintainer` 与 `r-coding-guidelines` 的按需索引检索体验。
+- Notes: 保持 100% 业务规则与历史事实继承，完成了治理中枢与知识索引的现代化升级。

@@ -605,6 +605,12 @@ rules:
   - DOMAIN-KEYWORD,chatgpt,静态住宅
   - DOMAIN-KEYWORD,grok,静态住宅
   - DOMAIN-KEYWORD,muse,静态住宅
+  # Claude & OpenAI 等 AI 服务的人机验证与反爬防护，必须与 AI 保持同出口
+  - DOMAIN-SUFFIX,challenges.cloudflare.com,静态住宅
+  - DOMAIN-SUFFIX,cloudflareinsights.com,静态住宅
+  # Claude Pro / Team 绑卡支付防风控
+  - DOMAIN-SUFFIX,stripe.com,静态住宅
+  - DOMAIN-SUFFIX,stripe.network,静态住宅
   - RULE-SET,OpenAI,静态住宅
   - RULE-SET,Anthropic,静态住宅
   - RULE-SET,Claude,静态住宅
@@ -629,14 +635,17 @@ rules:
   - DOMAIN-SUFFIX,firebaseio.com,静态住宅
   - DOMAIN-SUFFIX,firebaseapp.com,静态住宅
 
-  # 美股券商与金融交易（Firstrade & Charles Schwab / thinkorswim）走静态住宅，保障登录 IP 一致性与风控信誉。
-  # Firstrade 及其清算所（Apex Clearing）
+  # 美股券商、海外银行与跨境金融交易（Firstrade、Schwab、BBAE、HSBC HK、N26、Wise）走静态住宅，保障登录 IP 一致性与风控信誉。
+  # Firstrade 第一证券及其清算所（Apex Clearing）
+  - DOMAIN-KEYWORD,firstrade,静态住宅
   - DOMAIN-SUFFIX,firstrade.com,静态住宅
   - DOMAIN-SUFFIX,firstrade.info,静态住宅
   - DOMAIN-SUFFIX,apexclearing.com,静态住宅
   - DOMAIN-SUFFIX,apexfintechdocuments.com,静态住宅
   - DOMAIN-SUFFIX,apexfintechsolutions.com,静态住宅
-  # Charles Schwab & thinkorswim
+  # Charles Schwab 嘉信理财 & thinkorswim
+  - DOMAIN-KEYWORD,schwab,静态住宅
+  - DOMAIN-KEYWORD,thinkorswim,静态住宅
   - DOMAIN-SUFFIX,schwab.com,静态住宅
   - DOMAIN-SUFFIX,schwabcdn.com,静态住宅
   - DOMAIN-SUFFIX,thinkorswim.com,静态住宅
@@ -649,6 +658,34 @@ rules:
   - DOMAIN-SUFFIX,schwab.net,静态住宅
   - DOMAIN-SUFFIX,schwab.co.uk,静态住宅
   - DOMAIN-SUFFIX,schwab.com.hk,静态住宅
+  # BBAE 必贝证券 (BBAE Pro)
+  - DOMAIN-KEYWORD,bbae,静态住宅
+  - DOMAIN-SUFFIX,bbae.com,静态住宅
+  - DOMAIN-SUFFIX,bbaepro.com,静态住宅
+  # HSBC 汇丰银行（香港主站、手机银行与投资全数易 Easy Invest）
+  - DOMAIN-SUFFIX,hsbc.com.hk,静态住宅
+  - DOMAIN-SUFFIX,hsbchongkong.com,静态住宅
+  - DOMAIN-SUFFIX,hsbc.com,静态住宅
+  - DOMAIN-SUFFIX,hsbcnet.com,静态住宅
+  # N26 银行（移动端 API、网页银行与开放银行基础设施）
+  - DOMAIN-SUFFIX,n26.com,静态住宅
+  - DOMAIN-SUFFIX,n26.de,静态住宅
+  - DOMAIN-SUFFIX,tech26.de,静态住宅
+  - DOMAIN-SUFFIX,number26.de,静态住宅
+  # Wise (TransferWise 跨境支付与账户)
+  - DOMAIN-KEYWORD,transferwise,静态住宅
+  - DOMAIN-SUFFIX,wise.com,静态住宅
+  - DOMAIN-SUFFIX,transferwise.com,静态住宅
+  # 金融级反欺诈设备指纹与行为风控探针（ThreatMetrix & BioCatch: HSBC、Firstrade、Schwab 等）
+  - DOMAIN-SUFFIX,online-metrix.net,静态住宅
+  - DOMAIN-SUFFIX,biocatch.com,静态住宅
+  # 美国银行账户绑定与 ACH 出入金认证（Firstrade、BBAE、Wise 等）
+  - DOMAIN-SUFFIX,plaid.com,静态住宅
+  # 跨国开户认证与证件身份核验（KYC: N26、Wise 等）
+  - DOMAIN-SUFFIX,idnow.de,静态住宅
+  - DOMAIN-SUFFIX,fourthline.com,静态住宅
+  - DOMAIN-SUFFIX,onfido.com,静态住宅
+  - DOMAIN-SUFFIX,veriff.com,静态住宅
 
   # 国外媒体、社交、支付购物、微软和游戏平台统一走静态住宅出口。
   - RULE-SET,Netflix,静态住宅
