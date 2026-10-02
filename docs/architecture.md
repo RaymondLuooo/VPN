@@ -102,7 +102,7 @@
   - 职责：作为 `raymond_direct.list` 远程规则集与配置文件的云端拉取端点。
 
 ### 3. DNS 分流机制
-- **Shadowrocket**：通过 `[General]` 配置 DoH 与 hijack-dns；通过 `[Host]` 配置特定域名的 `server:system`，使 Apple、飞书、网易等服务使用本地 DNS 解析。
+- **Shadowrocket**：通过 `[General]` 将默认与备用 DoH 固定经 `静态住宅` 访问，并配置 hijack-dns；通过 `[Host]` 配置特定域名的 `server:system`，使 Apple、飞书、网易等服务使用本地 DNS 解析。
 - **Mihomo**：开启 TUN 与 fake-ip DNS；通过 `nameserver-policy` 绑定 `rule-set:RaymondDirect` 至 `dhcp://system`，确保直连流量与 CDN 节点正确对应。
 
 ## 当前架构约束与关键技术选择

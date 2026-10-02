@@ -640,6 +640,9 @@ rules:
   - DOMAIN-SUFFIX,googleapis.com,静态住宅
   - DOMAIN-KEYWORD,anthropic,静态住宅
   - DOMAIN-KEYWORD,claude,静态住宅
+  # Claude Code 可选运行遥测与错误报告保持同一静态住宅出口
+  - DOMAIN,http-intake.logs.us5.datadoghq.com,静态住宅
+  - DOMAIN,browser-intake-us5-datadoghq.com,静态住宅
   - DOMAIN-KEYWORD,openai,静态住宅
   - DOMAIN-KEYWORD,gemini,静态住宅
   - DOMAIN-KEYWORD,chatgpt,静态住宅

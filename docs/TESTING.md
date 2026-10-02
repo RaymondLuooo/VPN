@@ -26,6 +26,7 @@ Shadowrocket 配置：
 - 检查 `Global` 规则和 `FINAL` 最终兜底是否仍指向目标配置对应的赠送策略组。
 - 检查最终规则是否仍有兜底策略。
 - 检查 DNS 相关字段是否被意外改成系统直连。
+- 检查全部 `r_equ_*_mac` 的 `dns-server` 与 `fallback-dns-server` 都明确绑定 `静态住宅`，不能回退为跟随首页默认节点的 `PROXY`。
 - 检查 MITM 是否仍处于用户预期范围。
 - 修改 `raymond_direct.list` 后，检查两份 `r_equ_*_mac` 是否仍在原顺序位置引用远程规则集。
 - 若新增域名需要系统 DNS，检查 `[Host]` 是否同时覆盖裸域和通配子域，例如 `example.com` 与 `*.example.com`。
