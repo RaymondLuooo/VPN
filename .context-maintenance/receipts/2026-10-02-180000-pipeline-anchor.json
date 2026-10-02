@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "maintenance_id": "2026-10-02-180000",
+  "maintenance_time": "2026-10-02T18:00:00+08:00",
+  "previous_batch": {
+    "maintenance_id": "2026-07-31-143000",
+    "maintenance_time": "2026-07-31T14:30:00+08:00",
+    "source_marker": "CHANGELOG.md [0.1.9] & HIST-20260731-01",
+    "head_commit": "d26e6cd"
+  },
+  "coverage_window": {
+    "start_exclusive": "2026-07-31T14:30:00+08:00",
+    "end_inclusive": "2026-10-02T18:00:00+08:00"
+  },
+  "git_boundary": {
+    "base_commit": "d26e6cd",
+    "head_commit": "8bc56ec3011be09c8786376c58db419a3173a0de",
+    "branch": "main",
+    "worktree_status": "dirty"
+  },
+  "invocation_mode": "pipeline"
+}

@@ -1,6 +1,38 @@
 # Changelog
 
-最近更新时间：2026-07-31 14:30:00 Asia/Shanghai
+最近更新时间：2026-10-02 18:00:00 Asia/Shanghai
+
+## [0.2.0] - 2026-10-02
+
+更新时间：2026-10-02 18:00:00 Asia/Shanghai
+维护 ID：2026-10-02-180000
+Git 锚点：8bc56ec
+锚点工作树状态：dirty
+已覆盖未提交文件：AGENTS.md, CHANGELOG.md, README.md, docs/architecture.md, docs/index.md, docs/ai-history/index.md, docs/HANDOFF.md, docs/TESTING.md
+增量可信度：精确
+
+### 上下文文档与架构规范升级
+
+- 依据现行 D-004 决策全面升级四层上下文架构：确立 `docs/architecture.md` 为系统唯一法定当前真相（L1），废除 `docs/project.md` 等变体；将 `docs/index.md` 与 `docs/ai-history/index.md` 重命名为小写规范。
+- 废除运行期交接文档 `docs/HANDOFF.md` 与候选队列文件，运行期状态完全交由 Git、真实代码与会话上下文承载。
+- 废除独立测试文档 `docs/TESTING.md`，将 Shadowrocket 与 Mihomo 完整双端静态检查清单与真机验证 Checklist 无损合并至 `README.md` 的 `## Testing` 章节。
+- 更新 `AGENTS.md`，升级技能为 `r-p-*` 体系，引入用户诉求与顾虑承接机制、有效性审查三原则，同时 100% 严格继承全部 VPN 业务安全红线与测试规则。
+
+### 代码 / 规则配置变更
+
+- **券商与金融风控分流**：将美股券商（Firstrade、Charles Schwab 嘉信理财）全量域名划归 `静态住宅` 策略组，保障登录 IP 纯净度与风控信誉；将东方财富（Eastmoney）全量域名及国内金融服务加入系统跳过代理列表（Skip-Proxy List），并将东财 DNS 解析策略修正为系统 DNS。
+- **AI 平台域名与规则扩充**：新增 `grok`、`muse` 两个 AI 平台的域名关键字导向 `静态住宅`；增加欧路词典 AI 翻译走静态住宅；重新审核加固 Claude 规则。
+- **自维护直连规则集扩充 (`raymond_direct.list`)**：新增欧路软件、YouTube 字幕翻译插件（Dioco 直连）以及国内金融直连规则。
+- **内核与 Provider 调优**：
+  - Android 配置文件中悠兔机场 provider 调整为原始订阅直连与大陆可直连 DNS，测速目标从 HTTP 升级为 HTTPS。
+  - 四份 Android 配置的 EqualDCN provider 注入 UDP override，并优化客户端指纹测试（`chrome` → `random`）。
+  - 安卓赠送节点策略微调（仅取悠兔节点）。
+
+### 验证确认
+
+- Shadowrocket 与 Mihomo 配置文件静态检查通过（节标题、策略组引用、DNS 策略、无凭据泄露）。
+- 安卓 YAML 配置文件经语法解析器验证合法无误。
+- 流水线统一状态检查脚本 `verify_pipeline_state.py` 校验通过。
 
 ## [0.1.9] - 2026-07-31
 

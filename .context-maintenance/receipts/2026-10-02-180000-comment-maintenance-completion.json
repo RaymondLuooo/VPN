@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "maintenance_id": "2026-10-02-180000",
+  "completed_at": "2026-10-02T18:03:00+08:00",
+  "summary_path": ".context-maintenance/receipts/2026-10-02-180000-maintenance-summary.json",
+  "target_files": [],
+  "validation_passed": true,
+  "validation": {
+    "python_comment_equivalence": "not_applicable",
+    "language_toolchains": [
+      "VPN 配置静态检查：已核验 r_equ_*_mac、r_equ_*_android、raymond_direct.list 中关于东财系统DNS、美股券商静态住宅及AI关键词注释，与实际分流规则100%一致，无需文本改动"
+    ],
+    "docstring_or_directive_checks": [
+      "not_applicable"
+    ],
+    "project_tests": "passed"
+  },
+  "knowledge_maintenance_needed": false
+}

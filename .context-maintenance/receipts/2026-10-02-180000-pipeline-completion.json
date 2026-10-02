@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "maintenance_id": "2026-10-02-180000",
+  "completed_at": "2026-10-02T18:04:00+08:00",
+  "summary_path": ".context-maintenance/receipts/2026-10-02-180000-maintenance-summary.json",
+  "ai_history_status": "completed",
+  "ai_history_completion_path": ".context-maintenance/receipts/2026-10-02-180000-ai-history-completion.json",
+  "comment_completion_path": ".context-maintenance/receipts/2026-10-02-180000-comment-maintenance-completion.json",
+  "final_knowledge_result": "no_op",
+  "validation_passed": true
+}

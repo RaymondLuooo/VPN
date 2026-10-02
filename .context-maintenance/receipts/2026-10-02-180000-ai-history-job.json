@@ -1,0 +1,105 @@
+{
+  "schema_version": 2,
+  "job_status": "ready_for_ai_history",
+  "maintenance_id": "2026-10-02-180000",
+  "maintenance_time": "2026-10-02T18:00:00+08:00",
+  "project_root": "/Users/Shared/Shared_AI_Workspace/SharedProjects/VPN",
+  "history_reason": "记录美股券商进静态住宅、国内金融系统DNS改造、AI平台规则扩充以及四层上下文D-004治理对齐的重大方案演进",
+  "qualifying_signals": [
+    "goal_evolution",
+    "decision_reversal"
+  ],
+  "scope": {
+    "topics": [
+      "金融券商分流",
+      "国内金融系统DNS",
+      "AI平台关键词",
+      "D-004治理对齐"
+    ],
+    "related_paths": [
+      "r_equ_*_mac",
+      "r_equ_*_android",
+      "raymond_direct.list",
+      "AGENTS.md",
+      "docs/architecture.md"
+    ],
+    "symbols": [
+      "静态住宅",
+      "Skip-Proxy",
+      "nameserver-policy"
+    ],
+    "current_refs": [
+      "ARCH-ROOT"
+    ]
+  },
+  "evidence_hints": [
+    "Git 提交 5d0cbfd, c306586, 6da6e3a, 408360b, 463e630, 8bc56ec",
+    "CHANGELOG [0.2.0]"
+  ],
+  "conversation_scope": null,
+  "receipt_path": null,
+  "receipt_sha256": null,
+  "change_inventory": [
+    {
+      "path": "AGENTS.md",
+      "change_type": "modified",
+      "summary": "更新为 D-004 治理控制面规范，对齐 r-p-* 技能体系，保留业务红线与测试规则",
+      "symbols_affected": []
+    },
+    {
+      "path": "README.md",
+      "change_type": "modified",
+      "summary": "更新目录索引，合入完整的双端静态检查与真机验证 Checklist",
+      "symbols_affected": []
+    },
+    {
+      "path": "CHANGELOG.md",
+      "change_type": "modified",
+      "summary": "追加 [0.2.0] 版本阶段性变更索引",
+      "symbols_affected": []
+    },
+    {
+      "path": "docs/architecture.md",
+      "change_type": "modified",
+      "summary": "升格为单一法定真相，更新目录树与设计变更说明",
+      "symbols_affected": []
+    },
+    {
+      "path": "docs/index.md",
+      "change_type": "renamed",
+      "summary": "小写化重命名并对齐 D-004 现行条目，更新历史索引路径",
+      "symbols_affected": []
+    },
+    {
+      "path": "docs/ai-history/index.md",
+      "change_type": "renamed",
+      "summary": "小写化重命名",
+      "symbols_affected": []
+    },
+    {
+      "path": "r_equ_onlyUS_mac",
+      "change_type": "modified",
+      "summary": "金融券商 Firstrade/Schwab 进静态住宅，Eastmoney 系统 DNS 映射，AI 规则加固",
+      "symbols_affected": ["静态住宅", "Host"]
+    },
+    {
+      "path": "r_equ_onlyUS_android",
+      "change_type": "modified",
+      "summary": "金融券商 Firstrade/Schwab 进静态住宅，Eastmoney 系统 DNS 映射，AI 规则加固",
+      "symbols_affected": ["静态住宅", "dns"]
+    },
+    {
+      "path": "raymond_direct.list",
+      "change_type": "modified",
+      "summary": "新增欧路软件、YouTube 字幕翻译插件及国内金融直连域名",
+      "symbols_affected": []
+    }
+  ],
+  "new_ai_history_path": "docs/ai-history/2026-10-02-180000-金融券商风控分流与上下文体系现代化-跨Agent演进归纳.md",
+  "completion_marker_path": ".context-maintenance/receipts/2026-10-02-180000-ai-history-completion.json",
+  "index_path": "docs/ai-history/index.md",
+  "producer": {
+    "skill": "r-p-context-maintainer",
+    "version_note": "ai-history-job-v2"
+  }
+}
