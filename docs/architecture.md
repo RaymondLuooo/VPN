@@ -4,7 +4,7 @@
 
 设计状态：已确认、长期维护中。当前已包含 8 份矩阵式分流配置文件（Mac Shadowrocket 与 Android Mihomo 各 4 份）及自维护直连规则集，持续进行规则调优与客户端兼容性维护。
 
-本文件只描述项目当前要实现什么以及系统当前如何组织。Agent 工作方法、授权边界、知识路径和读取规则见根目录 `AGENTS.md`；具体方案取舍见 `docs/decisions/`；可复用经验见按需创建的 `docs/lessons/`；项目术语、领域模型、数据源和字段语义按需维护在 Knowledge Map 指定文档；文档清单见 `docs/INDEX.md`。不要在本文件复制这些内容。
+本文件只描述项目当前要实现什么以及系统当前如何组织。Agent 工作方法、授权边界、知识路径和读取规则见根目录 `AGENTS.md`（L0）；具体方案取舍见 `docs/decisions/`（L2，内嵌 Lessons 与 Validation）；业务主题域知识见按需创建的 `docs/domains/<topic>.md`；项目术语、领域模型、数据源和字段语义按需维护在 Knowledge Map 指定文档；文档清单见 `docs/index.md`。不要在本文件复制这些内容。
 
 ## 项目目的与 Scope
 
@@ -52,17 +52,15 @@
 
 ```text
 /Users/Shared/Shared_AI_Workspace/SharedProjects/VPN/
-├── AGENTS.md                  # Agent 共享工作规范、Knowledge Map、权限与阅读规则
-├── CHANGELOG.md               # 阶段性变更索引与 Git 锚点（由 r-project-context-maintainer 独占维护）
-├── README.md                  # 面向使用者的快速概览与工作流说明
-├── docs/                      # 当前知识与测试文档
-│   ├── architecture.md        # 当前核心诉求、Scope、架构分流矩阵与模块职责
-│   ├── INDEX.md               # 现行知识索引（稳定 ID、匹配线索、读取触发）
-│   ├── TESTING.md             # 静态检查、真机测试与回归验证清单
-│   ├── HANDOFF.md             # 跨 Agent 交接记录、未完成工作与断点恢复
-│   ├── decisions/             # 长期架构决策归档落点（按需创建记录）
-│   └── ai-history/            # 选择性历史演进与事故证据链
-│       ├── INDEX.md           # 紧凑历史路由索引
+├── AGENTS.md                  # Agent 共享工作规范、Knowledge Map、权限与阅读规则（L0）
+├── CHANGELOG.md               # 阶段性变更索引与 Git 锚点（由 r-p-context-maintainer 独占维护）
+├── README.md                  # 面向使用者的快速概览与测试/工作流说明
+├── docs/                      # 当前知识与历史证据文档
+│   ├── architecture.md        # 当前核心诉求、Scope、架构分流矩阵与模块职责（当前唯一法定真相，L1）
+│   ├── index.md               # 现行知识索引（稳定 ID、匹配线索、读取触发，L0）
+│   ├── decisions/             # 长期架构决策归档落点（内嵌 Lessons 与 Validation，按需创建，L2）
+│   └── ai-history/            # 选择性历史演进与事故证据链（L3）
+│       ├── index.md           # 紧凑历史路由索引
 │       └── *.md               # 跨 Agent 历史会话归纳与转折记录
 ├── r_equ_*_mac                # Shadowrocket / Mac 4 份矩阵配置文件
 ├── r_equ_*_android            # Clash Meta / Mihomo Android 4 份矩阵配置文件
@@ -78,11 +76,13 @@
 | `r_equ_*_mac` | Mac / Shadowrocket 分流配置文件 | 负责 Mac 端规则、DNS DoH、Host 映射与策略组；不包含私有密钥 |
 | `r_equ_*_android` | Android / Mihomo YAML 配置文件 | 负责 Android 端 sniffer、TUN、fake-ip、provider 与策略组；包含订阅入口（按敏感信息处理） |
 | `raymond_direct.list` | 用户自定义直连域名与规则清单 | 纯域名/规则列表，供 Mac 和 Android 共同引用直连及系统 DNS 解析 |
-| `docs/` | 现行架构、索引、测试与交接文档 | 存放当前有效的事实、契约与验证边界；不存放历史会话记录 |
-| `docs/decisions/` | 跨文件的重大长期架构决策 | 存放存在真实取舍的架构决策（由 `r-project-knowledge-maintainer` 维护） |
+| `docs/` | 现行架构与知识索引文档 | 存放当前有效的事实、契约与验证边界；不存放运行期交接或候选队列 |
+| `docs/decisions/` | 跨文件的重大长期架构决策 | 存放存在真实取舍的架构决策（内嵌 Lessons 与 Validation，由 `r-p-knowledge-maintainer` 维护） |
 | `docs/ai-history/` | 选择性历史演进与会话复盘归纳 | 记录目标演变、方案推翻、复杂事故证据链；不是当前规则的权威来源 |
 | `logs/` | 客户端生成的本地日志与临时 SQLite 数据库 | 仅作本地调试参考，严禁提交 Git，严禁 Agent 读取内容 |
 | `.context-maintenance/` | 上下文维护机器凭证与临时收据 | 供 maintenance-pipeline 及其子技能读取和断点恢复，日常任务不扫描 |
+
+历史证据统一放在项目根目录下的 `docs/ai-history/`（L3），索引为 `docs/ai-history/index.md`。历史证据不替代当前架构或正式知识。
 
 ## 模块职责与关键接口
 
@@ -121,3 +121,5 @@
 ## 设计变更
 
 变更审批、文档写入权限和读取规则见根目录 `AGENTS.md`。本文件在用户确认相关变化后只更新受影响部分；已批准、待实施的设计与已完成实现保持区分。局部实现 Decision、专属 Lesson 和历史演变不在这里展开。
+
+用户新诉求、方向和重点顾虑的识别与同步流程见 AGENTS 的“用户诉求、方向与重点顾虑的承接”。本文件按该流程保存相关目标、约束、完成标准及必要的待验证风险，标明已确认、待实施或待验证状态，不复制 Agent 工作规则。
