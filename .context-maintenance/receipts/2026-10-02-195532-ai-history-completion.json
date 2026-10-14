@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "maintenance_id": "2026-10-02-195532",
+  "completed_at": "2026-10-02T19:59:50+08:00",
+  "job_path": ".context-maintenance/receipts/2026-10-02-195532-ai-history-job.json",
+  "compatibility_source_schema": null,
+  "ai_history_path": "docs/ai-history/2026-10-02-195532-金融券商风控分流与上下文体系现代化-跨Agent演进归纳.md",
+  "index_path": "docs/ai-history/index.md",
+  "validation_passed": true,
+  "hashes": {
+    "job_sha256": "4b2c0d51f63229294acc2e68d357ebbe4e55bb83e25835ee9b8fe209253d7753",
+    "ai_history_sha256": "2e664a7e0f3b484f3ff745c2c3272e6289c9d300d612aeecf66e2ec612e2ff52",
+    "index_sha256": "2a87c6b98c333afbeed316b81ad80a61d16891008ffa811e82139c45d9d6f4ed"
+  }
+}

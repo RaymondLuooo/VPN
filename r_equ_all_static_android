@@ -90,6 +90,9 @@ dns:
   use-system-hosts: false
   respect-rules: false
   fake-ip-filter:
+    # Stardesk 使用系统 DNS 的真实地址，避免远程连接拿到虚拟 IP。
+    - "+.stardesk.net"
+    - "adl.guinfra.com"
     # 下列域名不分配 fake-ip，保持真实解析或本地语义，避免局域网、NTP、银行和 captive portal 异常。
     - "*.lan"
     - "*.local"
@@ -115,6 +118,11 @@ dns:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
   nameserver-policy:
+    # Stardesk 系统 DNS 例外直接写入本地配置，避免依赖远程列表刷新。
+    "+.stardesk.net":
+      - "dhcp://system"
+    "adl.guinfra.com":
+      - "dhcp://system"
     # RaymondDirect 是用户自维护直连域名集合。
     # 这些域名通常需要国内 CDN、企业服务或系统服务的本地化解析，所以使用当前网络的系统 DNS。
     # 新增 RaymondDirect 域名时，需要同时判断它是否适合暴露给系统 DNS。
@@ -549,6 +557,9 @@ rules:
   # RaymondDirect 同时影响 DNS policy，所以只放确定适合直连和系统 DNS 的域名。
   # 东方财富主域名及所有子域名直连，优先于远程规则集。
   - DOMAIN-SUFFIX,eastmoney.com,DIRECT
+  # Stardesk 本地直连规则，避免依赖远程列表刷新。
+  - DOMAIN-SUFFIX,stardesk.net,DIRECT
+  - DOMAIN,adl.guinfra.com,DIRECT
   - RULE-SET,RaymondDirect,DIRECT
   - RULE-SET,Apple,DIRECT
   - RULE-SET,BiliBili,DIRECT

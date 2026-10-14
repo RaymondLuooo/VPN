@@ -1,0 +1,60 @@
+{
+  "schema_version": 2,
+  "maintenance_id": "2026-10-02-195532",
+  "maintenance_time": "2026-10-02T19:55:32+08:00",
+  "invocation_mode": "pipeline",
+  "coverage_window": {
+    "start_exclusive": "2026-07-31T14:30:00+08:00",
+    "end_inclusive": "2026-10-02T19:55:32+08:00"
+  },
+  "git_boundary": {
+    "base_commit": "d26e6cd",
+    "head_commit": "8d3cee8349e15da1d5355d67e30bf0f6a31e2d24",
+    "branch": "main",
+    "worktree_status": "dirty"
+  },
+  "change_inventory": [
+    "r_equ_*_mac: 券商规则加入静态住宅；欧路直连/静态住宅；Claude 规则审查",
+    "r_equ_*_android: EqualDCN UDP override 与指纹调整；悠兔直连与 DNS 优化；券商与 AI 静态住宅",
+    "raymond_direct.list: 扩充欧路、YouTube 字幕翻译插件及国内金融直连",
+    "docs/architecture.md: 确立唯一法定当前真相（L1）",
+    "README.md: 内嵌 Testing 规范与真机验证清单",
+    "AGENTS.md: 升级至 r-p-* 技能体系并遵循 D-004 治理",
+    "CHANGELOG.md: 发布 0.2.0 版本"
+  ],
+  "comment_maintenance_candidates": [],
+  "ai_history_job_created": true,
+  "ai_history_job_path": ".context-maintenance/receipts/2026-10-02-195532-ai-history-job.json",
+  "knowledge_maintenance": {
+    "audit": {
+      "scope": "full_audit",
+      "discovered_paths": [
+        "docs/architecture.md",
+        "docs/index.md",
+        "docs/ai-history/index.md"
+      ],
+      "review_results": [
+        {
+          "path": "docs/architecture.md",
+          "result": "unchanged",
+          "evidence": "核对分流拓扑、8份矩阵配置职责与D-004当前唯一真相规范",
+          "reason": "现行架构描述准确有效"
+        },
+        {
+          "path": "docs/index.md",
+          "result": "unchanged",
+          "evidence": "核对现有知识清单与路由规则",
+          "reason": "索引项 ARCH-ROOT 指向准确"
+        },
+        {
+          "path": "docs/ai-history/index.md",
+          "result": "updated",
+          "evidence": "更新历史路由条目链接至本次批次产物 2026-10-02-195532-*.md",
+          "reason": "历史正文同步更新"
+        }
+      ],
+      "coverage_complete": true,
+      "blocking_conflicts": []
+    }
+  }
+}

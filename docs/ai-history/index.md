@@ -1,6 +1,6 @@
 # AI History Index
 
-最近更新时间：2026-10-01 14:32:00 Asia/Shanghai
+最近更新时间：2026-10-02 19:55:32 Asia/Shanghai
 
 ## 用途与边界
 
@@ -22,7 +22,7 @@
 | HIST-20260720-01 | Active | 配置文件扩展至 8 份矩阵及 rule-providers 代理策略变更为静态住宅节点 | 8 份矩阵, 全渠道, 全静态, rule-providers, 静态住宅 | 查阅全渠道与全静态衍生配置演进时 | `2026-07-20-232200-配置文件扩展及静态住宅代理更新-跨Agent会话归纳.md` |
 | HIST-20260721-01 | Active | 8 份配置文件开头统一补充 DNS 配置说明，提交 untracked 项目文件 | DNS 注释, Git 提交, 配置注释 | 查阅 DNS 开头说明注释背景或 Git 历史时 | `2026-07-21-170603-完善DNS配置注释-跨Agent会话归纳.md` |
 | HIST-20260731-01 | Active | 修复 Mihomo exclude-filter 空列表 bug、sub.xeton.dev 转换 anytls、url-test 参数优化及全量增加 AI 关键字分流 | `exclude-filter`, `filter: ".*"`, `sub.xeton.dev`, `anytls`, `tolerance`, `DOMAIN-KEYWORD`, AI | 排查订阅转换、Mihomo 内核 filter bug 或 AI 路由时 | `2026-07-31-143000-修复Mihomo语法瑕疵与接入转换器及AI关键字路由-跨Agent会话归纳.md` |
-| HIST-20261002-01 | Active | 美股券商（Firstrade/Schwab）进静态住宅、国内金融系统DNS闭环、AI平台扩充与D-004治理体系对齐 | `Firstrade`, `Schwab`, `Eastmoney`, `grok`, `muse`, 金融分流, 系统DNS, D-004 | 排查券商分流、国内金融直连/系统DNS配置或上下文治理架构演进时 | `2026-10-02-180000-金融券商风控分流与上下文体系现代化-跨Agent演进归纳.md` |
+| HIST-20261002-01 | Active | 美股券商（Firstrade/Schwab）进静态住宅、国内金融系统DNS闭环、AI平台扩充与D-004治理体系对齐 | `Firstrade`, `Schwab`, `Eastmoney`, `grok`, `muse`, 金融分流, 系统DNS, D-004 | 排查券商分流、国内金融直连/系统DNS配置或上下文治理架构演进时 | `2026-10-02-195532-金融券商风控分流与上下文体系现代化-跨Agent演进归纳.md` |
 
 ## 状态说明
 

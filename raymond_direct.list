@@ -53,3 +53,8 @@ DOMAIN-SUFFIX,esdict.cn
 DOMAIN-SUFFIX,francochinois.com
 DOMAIN-SUFFIX,eusoft.net
 
+# Stardesk 官网 / API 等子域及官方公开下载入口直连并使用系统 DNS。
+# 来源：https://www.stardesk.net/ 与官网公开下载脚本；完整信令 / 中继域名待客户端验证。
+DOMAIN-SUFFIX,stardesk.net
+DOMAIN,adl.guinfra.com
+

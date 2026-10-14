@@ -1,0 +1,74 @@
+{
+  "schema_version": 2,
+  "job_status": "ready_for_ai_history",
+  "maintenance_id": "2026-10-02-195532",
+  "maintenance_time": "2026-10-02T19:55:32+08:00",
+  "project_root": "/Users/Shared/Shared_AI_Workspace/SharedProjects/VPN",
+  "history_reason": "记录金融券商（Firstrade/Schwab/Eastmoney）风控分流、AI多平台策略加固与D-004文档治理体系重构的跨Agent演进历程与核心决策",
+  "qualifying_signals": [
+    "goal_evolution",
+    "concern_evolution",
+    "multi_session_turning_point"
+  ],
+  "scope": {
+    "topics": [
+      "金融券商风控分流",
+      "国内金融直连与系统DNS",
+      "AI服务域名策略加固",
+      "D-004上下文治理体系现代化"
+    ],
+    "related_paths": [
+      "r_equ_all_channel_countries_android",
+      "r_equ_all_channel_countries_mac",
+      "r_equ_all_countries_android",
+      "r_equ_all_countries_mac",
+      "r_equ_all_static_android",
+      "r_equ_all_static_mac",
+      "r_equ_onlyUS_android",
+      "r_equ_onlyUS_mac",
+      "raymond_direct.list",
+      "docs/architecture.md",
+      "AGENTS.md",
+      "README.md"
+    ],
+    "symbols": [
+      "静态住宅",
+      "raymond_direct.list",
+      "Firstrade",
+      "Charles Schwab",
+      "Eastmoney",
+      "grok",
+      "muse",
+      "claude"
+    ],
+    "current_refs": [
+      "docs/architecture.md",
+      "AGENTS.md"
+    ]
+  },
+  "evidence_hints": [
+    "美股券商（Firstrade、Schwab）风控敏感，登录 IP 需保持高度一致性，故归入静态住宅",
+    "国内金融（Eastmoney）进入 Skip-Proxy 与系统 DNS，防止国内合规服务被代理接管",
+    "grok、muse 与欧路词典 AI 翻译加入静态住宅，加固多平台 AI 访问体验",
+    "D-004 治理：废除 HANDOFF.md 和独立 TESTING.md，确立 docs/architecture.md 为系统唯一法定当前真相，无损收敛测试规程至 README.md"
+  ],
+  "change_inventory": [
+    "r_equ_*_mac: 券商规则加入静态住宅；欧路直连/静态住宅；Claude 规则审查",
+    "r_equ_*_android: EqualDCN UDP override 与指纹调整；悠兔直连与 DNS 优化；券商与 AI 静态住宅",
+    "raymond_direct.list: 扩充欧路、YouTube 字幕翻译插件及国内金融直连",
+    "docs/architecture.md: 确立唯一法定当前真相（L1）",
+    "README.md: 内嵌 Testing 规范与真机验证清单",
+    "AGENTS.md: 升级至 r-p-* 技能体系并遵循 D-004 治理",
+    "CHANGELOG.md: 发布 0.2.0 版本"
+  ],
+  "conversation_scope": null,
+  "receipt_path": null,
+  "receipt_sha256": null,
+  "new_ai_history_path": "docs/ai-history/2026-10-02-195532-金融券商风控分流与上下文体系现代化-跨Agent演进归纳.md",
+  "completion_marker_path": ".context-maintenance/receipts/2026-10-02-195532-ai-history-completion.json",
+  "index_path": "docs/ai-history/index.md",
+  "producer": {
+    "skill": "r-p-context-maintainer",
+    "invocation_mode": "pipeline"
+  }
+}

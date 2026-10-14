@@ -1,22 +1,22 @@
 # Changelog
 
-最近更新时间：2026-10-02 18:00:00 Asia/Shanghai
+最近更新时间：2026-10-02 19:55:32 Asia/Shanghai
 
 ## [0.2.0] - 2026-10-02
 
-更新时间：2026-10-02 18:00:00 Asia/Shanghai
-维护 ID：2026-10-02-180000
-Git 锚点：8bc56ec
+更新时间：2026-10-02 19:55:32 Asia/Shanghai
+维护 ID：2026-10-02-195532
+Git 锚点：8d3cee8
 锚点工作树状态：dirty
-已覆盖未提交文件：AGENTS.md, CHANGELOG.md, README.md, docs/architecture.md, docs/index.md, docs/ai-history/index.md, docs/HANDOFF.md, docs/TESTING.md
+已覆盖未提交文件：AGENTS.md, CHANGELOG.md, README.md, docs/architecture.md, docs/index.md, docs/ai-history/index.md
 增量可信度：精确
 
 ### 上下文文档与架构规范升级
 
-- 依据现行 D-004 决策全面升级四层上下文架构：确立 `docs/architecture.md` 为系统唯一法定当前真相（L1），废除 `docs/project.md` 等变体；将 `docs/index.md` 与 `docs/ai-history/index.md` 重命名为小写规范。
+- 依据现行 D-004 决策全面升级四层上下文架构：确立 `docs/architecture.md` 为系统唯一法定当前真相（L1），废除 `docs/project.md` 等变体；将 `docs/index.md` 与 `docs/ai-history/index.md` 规范化为全小写。
 - 废除运行期交接文档 `docs/HANDOFF.md` 与候选队列文件，运行期状态完全交由 Git、真实代码与会话上下文承载。
 - 废除独立测试文档 `docs/TESTING.md`，将 Shadowrocket 与 Mihomo 完整双端静态检查清单与真机验证 Checklist 无损合并至 `README.md` 的 `## Testing` 章节。
-- 更新 `AGENTS.md`，升级技能为 `r-p-*` 体系，引入用户诉求与顾虑承接机制、有效性审查三原则，同时 100% 严格继承全部 VPN 业务安全红线与测试规则。
+- 更新 `AGENTS.md`，升级技能为 `r-p-*` 体系，引入用户诉求与顾虑承接机制、有效性审查三原则，同时严格继承全部 VPN 业务安全红线与测试规则。
 
 ### 代码 / 规则配置变更
 

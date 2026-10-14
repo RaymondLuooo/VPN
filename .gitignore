@@ -1,2 +1,8 @@
+.DS_Store
+.env
+tmp/
+tests/
 LOGS/
+logs/
+*.db*
 悠兔默认配置文件.yaml

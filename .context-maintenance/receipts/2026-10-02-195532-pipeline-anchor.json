@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "maintenance_id": "2026-10-02-180000",
-  "maintenance_time": "2026-10-02T18:00:00+08:00",
+  "maintenance_id": "2026-10-02-195532",
+  "maintenance_time": "2026-10-02T19:55:32+08:00",
   "previous_batch": {
     "maintenance_id": "2026-07-31-143000",
     "maintenance_time": "2026-07-31T14:30:00+08:00",
@@ -10,11 +10,11 @@
   },
   "coverage_window": {
     "start_exclusive": "2026-07-31T14:30:00+08:00",
-    "end_inclusive": "2026-10-02T18:00:00+08:00"
+    "end_inclusive": "2026-10-02T19:55:32+08:00"
   },
   "git_boundary": {
     "base_commit": "d26e6cd",
-    "head_commit": "8bc56ec3011be09c8786376c58db419a3173a0de",
+    "head_commit": "8d3cee8349e15da1d5355d67e30bf0f6a31e2d24",
     "branch": "main",
     "worktree_status": "dirty"
   },

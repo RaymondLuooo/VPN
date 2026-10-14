@@ -86,6 +86,10 @@ DOMAIN-SUFFIX,doubleclick.net,REJECT
 DOMAIN-SUFFIX,googleadservices.com,REJECT
 DOMAIN-SUFFIX,googlesyndication.com,REJECT
 
+# Stardesk 本地直连规则，避免依赖远程列表刷新。
+DOMAIN-SUFFIX,stardesk.net,DIRECT
+DOMAIN,adl.guinfra.com,DIRECT
+
 # raymond_direct.list 是用户自维护直连规则集，包含 Apple / iCloud、飞书 / Lark、网易系、QQ、多点等明确要直连的域名。
 # 放在原手写域名位置以保留匹配顺序；如果新增域名需要系统 DNS，还要同步维护 [Host]。
 RULE-SET,https://raw.githubusercontent.com/RaymondLuooo/VPN/main/raymond_direct.list,DIRECT
@@ -275,6 +279,10 @@ FINAL,赠送节点
 # raymond_direct.list 可以作为远程规则集参与 DIRECT 路由，但 Shadowrocket 的 [Host] 不能引用远程 rule-set。
 # 因此需要把适合系统 DNS 的自维护直连域名手动同步到这里，避免国内 CDN 或企业服务被海外 DoH 解析偏移。
 # 不要把 AI、Google、GitHub 或其他敏感海外服务加入 server:system。
+# Stardesk 主域及子域、官方公开下载入口使用当前网络的系统 DNS。
+stardesk.net = server:system
+*.stardesk.net = server:system
+adl.guinfra.com = server:system
 # 国内股票行情接口直连时使用系统 DNS，避免代理 DoH 返回海外或异常地址。
 hq.sinajs.cn = server:system
 qt.gtimg.cn = server:system

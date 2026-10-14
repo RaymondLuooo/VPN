@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "maintenance_id": "2026-10-02-195532",
+  "completed_at": "2026-10-02T20:00:55+08:00",
+  "summary_path": ".context-maintenance/receipts/2026-10-02-195532-maintenance-summary.json",
+  "target_files": [],
+  "validation_passed": true,
+  "validation": {
+    "python_comment_equivalence": "not_applicable",
+    "language_toolchains": [
+      "ruby -ryaml: 4 份 Android YAML 配置解析通过",
+      "python3: 4 份 Mac Shadowrocket 配置文件核心节校验通过"
+    ],
+    "docstring_or_directive_checks": [
+      "not_applicable"
+    ],
+    "project_tests": "not_available"
+  },
+  "knowledge_maintenance_needed": false
+}
