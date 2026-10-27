@@ -168,7 +168,7 @@ proxy-providers:
   # health-check 只用于确认节点连通性，不改变分流规则本身。
   机场equaldcdn:
     type: http
-    url: "https://equald.com/use/unsafe/sub.php?t=eyJ1dWlkIjoiN0JGNjdBMTktMkU5Qi00MDg5LTk3QTktQUIwRjI5NzYzRDRCIiwic2VydmVyIjoiNjQuMTg2LjIyNC4xNDUiLCJwb3J0IjoiNDU2MSIsInB1YmxpY19rZXkiOiJBbGFPcnJyYUgzSzFUQ0h5U1hfcno2ZXh2eDBXaEJDWHJDdm9MQWxXUDI4Iiwic2hvcnRfaWQiOiJmZmFjNTE5YmM5MWQxMmEzIiwic2VydmVybmFtZSI6Ind3dy5jb29wZXIuZWR1IiwidG90YWwiOjE1MDMyMzg1NTM2MCwiZXhwaXJlIjoxODAyNDI1NzU1fQ&s=0496e160488169e23082f204f27b7de56937c33e1eb9d40392b57eb5dc894861"
+    url: "https://equaldcdn.com/use/unsafe/sub.php?t=eyJ1dWlkIjoiN0JGNjdBMTktMkU5Qi00MDg5LTk3QTktQUIwRjI5NzYzRDRCIiwic2VydmVyIjoiNjQuMTg2LjIyNC4xNDUiLCJwb3J0IjoiNDU2MSIsInB1YmxpY19rZXkiOiJBbGFPcnJyYUgzSzFUQ0h5U1hfcno2ZXh2eDBXaEJDWHJDdm9MQWxXUDI4Iiwic2hvcnRfaWQiOiJmZmFjNTE5YmM5MWQxMmEzIiwic2VydmVybmFtZSI6Ind3dy5jb29wZXIuZWR1IiwidG90YWwiOjE1MDMyMzg1NTM2MCwiZXhwaXJlIjoxODAyNDI1NzU1fQ&s=0496e160488169e23082f204f27b7de56937c33e1eb9d40392b57eb5dc894861"
     path: ./providers/airport.yaml
     interval: 86400
     proxy: DIRECT
