@@ -188,7 +188,7 @@ proxy-providers:
         - '.client-fingerprint = "random"'
   机场悠兔:
     type: http
-    url: "https://sub.youtulink3.top/dy/5ae78e6b53b6ab56f4e607769b4bb3ef"
+    url: "https://sub.youtulink3.top/dy/a729ccf4770f616f44f0e8a0a8490236"
     path: ./providers/airport_youtu.yaml
     interval: 86400
     proxy: DIRECT

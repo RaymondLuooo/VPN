@@ -9,6 +9,7 @@
 | ID | 类型 | 状态 | Scope / 匹配线索 | 读取触发 | 文档 |
 |---|---|---|---|---|---|
 | ARCH-ROOT | Architecture | Active | 全项目；`r_equ_*`、`raymond_direct.list`；分流矩阵、策略组、DNS、外部依赖 | 涉及项目目的、Scope、架构、分流规则、策略组职责或公共接口时 | `architecture.md` |
+| D-001 | Decision | Active | `机场悠兔`；`r_equ_onlyUS_android`；`r_equ_all_channel_countries_android`；Mihomo 订阅兼容性 | 修改悠兔 Android provider、排查节点加载失败或评估订阅转换服务时 | `decisions/D-001-youtu-direct-subscription.md` |
 
 ## 历史证据入口
 

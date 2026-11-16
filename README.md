@@ -1,6 +1,6 @@
 # VPN
 
-最近更新时间：2026-07-31 14:30:00 Asia/Shanghai
+最近更新时间：2026-11-16 Asia/Taipei
 
 ## Overview
 
@@ -24,7 +24,7 @@
 - `r_equ_all_channel_countries_*` / `r_equ_all_static_*` 已作为渠道衍生和全静态住宅衍生配置完备维护。
 - 全量 8 份 `r_equ_*` 配置文件均已加入 `DOMAIN-KEYWORD` 规则（`anthropic`、`claude`、`openai`、`gemini`、`chatgpt`）强行锁死进入 `静态住宅` 策略组。
 - 修复了 Mihomo 下 `exclude-filter` 缺少 `filter` 导致解析出的底层节点列表为空的严重兼容性 bug。
-- 解决了“机场悠兔”下发 `type: anytls` 私有协议导致的 Mihomo 核心报错，配置中已接入 `sub.xeton.dev` 云端订阅转换清洗为 `type: trojan`。
+- 含“机场悠兔” provider 的 Android 配置当前直接使用上游订阅入口；真实地址仅保留在配置中。
 - 优化了 Android 下所有 `url-test` 策略组的测速策略：`tolerance: 50`（防延迟抖动频频横跳）、`lazy: true`（减少后台无意义唤醒和耗电）。
 - `lazy_group_防DNS泄露去广告后的备份.conf` 已作为 Shadowrocket 备份配置保留。
 - `raymond_direct.list` 已作为用户自维护直连规则集被两端配置引用，用于维护 Apple / iCloud / CloudKit、飞书、网易系、QQ、多点等明确要直连的域名。
@@ -33,7 +33,7 @@
 
 部分完成：
 
-- “机场悠兔”订阅转换在真实 Android 客户端上经用户实测可正常加载和测速。
+- 悠兔订阅曾通过转换服务在真实 Android 客户端验证可正常加载和测速；当前直接入口尚未完成真机验证。
 - Mac 与 Android 的规则语义大体对应，已补充关键词对齐。
 
 未完成：
@@ -43,7 +43,7 @@
 
 待验证：
 
-- 持续观察 `sub.xeton.dev` 转换链接的长期稳定情况。
+- 在目标 Android 客户端验证悠兔直接订阅的拉取、节点数量与连通性。
 
 ## Project goals
 
@@ -111,7 +111,7 @@
 - 检查 YAML 顶层键：`sniffer`、`tun`、`dns`、`proxy-providers`、`proxy-groups`、`rule-providers`、`rules`。
 - 检查 `proxy-groups` 中的 `url-test` 策略组参数是否为 `tolerance: 50` 且 `lazy: true`。
 - 检查 `赠送节点` 等组合使用 `exclude-filter` 的策略组是否明确包含 `filter: ".*"`，避免出现解构节点列表为空的内核 bug。
-- 检查 `proxy-providers` 中的“机场悠兔”订阅 URL 是否使用了 `sub.xeton.dev` 转换链接（以避免 `type: anytls` 被内核拒绝）。
+- 检查含“机场悠兔” provider 的 Android 配置直接使用当前上游订阅入口；不在聊天、文档或公开仓库说明中输出该地址。
 - 检查 `rules` 中是否已包含 `DOMAIN-KEYWORD`（`anthropic` / `claude` / `openai` / `gemini` / `chatgpt` / `grok` / `muse`）并优先指向 `静态住宅`。
 - 检查 YouTube App / 媒体域名和 Google Photos 域名是否仍在宽泛 Google 规则前。
 - 检查 `proxy-providers` 中订阅入口没有被输出或提交到公开文档。
@@ -150,7 +150,7 @@
 
 **Mihomo / Clash Meta for Android**：
 - 按目标节点池导入 Android 配置文件。
-- 确认“机场悠兔”在通过 `sub.xeton.dev` 转换后能够正常拉取到标准的 Trojan 节点。
+- 确认“机场悠兔”直接订阅能够拉取节点、节点数不为 0，且协议受当前客户端支持。
 - 确认策略组（如 `赠送节点`）在开启 `filter: ".*"` 后节点列表不为空，且可正常发起连通性测试与测速。
 - 确认远程 rule providers 拉取成功。
 - 启用 TUN 后检查系统流量是否被接管。

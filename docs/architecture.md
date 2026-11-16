@@ -42,9 +42,9 @@ G1 让用户在不同客户端（Shadowrocket / Mac 与 Mihomo / Android）上�
   - 状态：已实现。
 
 - **G1.4 内核与协议兼容兜底**
-  - 要求：规避 Mihomo `exclude-filter` bug、云端清洗第三方私有协议、防频繁跳节点。
+  - 要求：规避 Mihomo `exclude-filter` bug、确保悠兔上游订阅可被目标客户端加载、防频繁跳节点。
   - 不可接受：Android 客户端因底层 bug 获取不到节点列表或因频繁测速导致严重耗电。
-  - 验收要点：Mihomo 配置中补充 `filter: ".*"`，机场订阅经 `sub.xeton.dev` 洗掉私有 `type: anytls`，配置 `url-test` 测速防抖参数（`tolerance: 50`, `lazy: true`）。
+  - 验收要点：Mihomo 配置中补充 `filter: ".*"`；含悠兔 provider 的 Android 配置直接使用上游订阅并在目标客户端验证能够拉取节点；配置 `url-test` 测速防抖参数（`tolerance: 50`, `lazy: true`）。
   - 涉及范围：`r_equ_*_android`。
   - 状态：已实现。
 
@@ -146,9 +146,9 @@ G1 让用户在不同客户端（Shadowrocket / Mac 与 Mihomo / Android）上�
 - `PROXY`：手工节点选择入口，供用户临时调试或强制指定节点；不再承担默认的国外全局兜底角色。
 
 ### 2. 外部服务与接口交互
-- `sub.xeton.dev`（订阅转换接口）：
-  - 职责：将“机场悠兔”订阅中下发的 `type: anytls` 私有协议清洗为 Clash Meta 标准内核支持的 `type: trojan`。
-  - 风险与应对：属于第三方公共服务，存在波动风险；若出现长期不可用，需考虑自建 Subconverter。
+- 悠兔上游订阅：
+  - 职责：由含“机场悠兔” provider 的 Android 配置直接拉取节点；真实入口按敏感信息处理，仅保留在配置中。
+  - 风险与应对：上游下发协议必须被目标 Mihomo / Clash Meta 客户端支持；若拉取失败或节点为空，按 `D-001` 重新评估兼容方案。
 - `raw.githubusercontent.com`：
   - 职责：作为 `raymond_direct.list` 远程规则集与配置文件的云端拉取端点。
 
